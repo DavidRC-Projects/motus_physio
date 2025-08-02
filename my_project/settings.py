@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-f)@=)9n#riqlsa$@gfbg(fp&6ml57++&u5hu%ey^(((-mvldb2
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'users',
+    'register',
 ]
 
 SITE_ID = 1

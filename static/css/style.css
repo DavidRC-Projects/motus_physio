@@ -14,6 +14,10 @@
     --secondary-font: "Montserrat", sans-serif;
 }
 
+.nav {
+    opacity: 0.8;
+}
+
 body {
     min-height: 100vh;
     width: 100%;
@@ -21,12 +25,24 @@ body {
     flex-direction: column;
 }
 
+main {
+    flex: 1 0 auto;
+}
+
+.main-content {
+    padding: 80px 0 40px 0;
+    margin-top: 67px;
+    flex: 1;
+    background-color: rgb(137, 211, 241);
+}
+
 /* Footer */
 .footer {
     background: black;
     color: white;
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0;
+    flex-shrink: 0;
     margin-top: auto;
 }
 

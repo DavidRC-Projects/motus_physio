@@ -1,12 +1,12 @@
 asgiref==3.8.1
 bleach==6.2.0
-certifi==2025.7.14
+certifi==2025.8.3
 cffi==1.17.1
 charset-normalizer==3.4.2
 crispy-bootstrap5==2024.10
 cryptography==45.0.5
 defusedxml==0.7.1
-dj-database-url==2.3.0
+dj-database-url==0.5.0
 Django==4.2.23
 django-allauth==0.57.2
 django-crispy-forms==2.3
@@ -29,4 +29,4 @@ typing_extensions==4.12.2
 tzdata==2025.1
 urllib3==2.5.0
 webencodings==0.5.1
-whitenoise==5.3.0
+whitenoise==6.5.0

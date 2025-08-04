@@ -70,7 +70,11 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+# Django AllAuth Settings for email verification
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ROOT_URLCONF = 'my_project.urls'
 

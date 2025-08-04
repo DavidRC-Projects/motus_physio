@@ -70,11 +70,16 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',   
+    'allauth.account.auth_backends.AuthenticationBackend', 
+]
+
 # Django AllAuth Settings for email verification
-ACCOUNT_EMAIL_VERIFICATION = 'optional' 
+ACCOUNT_EMAIL_VERIFICATION = 'none' 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_LOGIN_ON_SIGNUP = True
 
 # Email settings for development sends a an email output to the console rather than sending an email

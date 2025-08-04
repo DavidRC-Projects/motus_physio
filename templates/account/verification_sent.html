@@ -1,12 +1,63 @@
-{% extends "account/base.html" %}
-
+{% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Verify Your Email Address" %}{% endblock head_title %}
 
 {% block content %}
-    <h1>{% trans "Verify Your Email Address" %}</h1>
 
-    <p>{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}</p>
+<!-- Main content section that displays the verification instructions-->
+<div class="main-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow">
+                    <div class="card-body text-center p-5">
+                        <h1 class="mb-4">{% trans "Verify Your Email Address" %}</h1>
 
+                        <!-- Info alert showing that the verification email has been sent -->
+                        <div class="alert alert-info mb-4">
+                            <i class="fas fa-envelope-open-text fa-3x mb-3 text-primary"></i>
+                            <p class="mb-0">{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. You are already logged in and can use the site while waiting for verification.{% endblocktrans %}</p>
+                        </div>
+                        <!-- Warning alert reminding the user to check their email -->
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <small>{% blocktrans %}If you do not see the verification email in your main inbox, check your spam folder.{% endblocktrans %}</small>
+                        </div>
+                        <!-- Button to return to the home page -->
+                        <div class="mt-4">
+                            <a href="{% url 'index' %}" class="btn btn-primary">Go to Home Page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for displaying a popup message after registration -->
+<div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="verifyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal header with title and close button -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="verifyModalLabel">{% trans "Email Verification Sent" %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Modal body with instructions to check email -->
+      <div class="modal-body">
+        {% blocktrans %}A verification email has been sent to your address. Please check your inbox and follow the instructions to complete your registration. You are already logged in and can use the site while waiting for verification.{% endblocktrans %}
+      </div>
+      <!-- Modal footer with a button to dismiss the modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            {% trans "OK" %}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/verification-modal.js' %}"></script>
 {% endblock content %}

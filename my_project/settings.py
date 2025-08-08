@@ -16,6 +16,12 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+# Cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
@@ -24,7 +30,6 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f)@=)9n#riqlsa$@gfbg(fp&6ml57++&u5hu%ey^(((-mvldb2'
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -52,6 +57,8 @@ INSTALLED_APPS = [
     'users',
     'register',
     'django_summernote',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 SITE_ID = 1
@@ -167,3 +174,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary Configuration
+
+cloudinary.config(
+    cloud_name = "dtyahkut6",
+    api_key = "382354952571716",
+    api_secret = "HGkNZfiV2Iwi0op-ClZZH4_x7j8"
+)

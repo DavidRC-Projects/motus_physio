@@ -21,6 +21,7 @@ from register import views as register_views
 
 urlpatterns = [
     path('', users_views.index, name='index'),
+    path('profile/', users_views.profile, name='profile'),
     path('admin/', admin.site.urls),
     path("register/", register_views.register, name="register"),
     path("accounts/", include("allauth.urls")),

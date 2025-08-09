@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -17,6 +18,7 @@ def profile(request):
             profile, _ = UserProfile.objects.get_or_create(user=user)
             profile.profile_picture = profile_picture
             profile.save()
+            messages.success(request, 'Profile picture updated successfully')
             return redirect('profile')
 
     context = {

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
@@ -13,3 +13,15 @@ def profile(request):
         'user': user,
     }
     return render(request, 'users/profile.html', context)
+
+@login_required
+def upload_photo(request):
+    profile = request.user.userprofile
+    if request.method == 'POST':
+        file = request.FILES.get('profile_picture')
+        if file:
+            profile.profile_picture = file
+            profile.save()
+        return redirect('profile')
+    return render(request, 'upload_photo.html')
+

@@ -68,3 +68,16 @@ main {
     margin-bottom: 0;
     opacity: 0.8;
 }
+
+.upload-btn {
+    display: inline-block;
+    background-color: #000000;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #2130ff;
+}

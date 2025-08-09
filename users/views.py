@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.contrib import messages
+import cloudinary.uploader
 
 # Create your views here.
 def index(request):
@@ -26,4 +27,21 @@ def profile(request):
     }
     return render(request, 'users/profile.html', context)
 
-
+@login_required
+def delete_photo(request):
+    if request.method == 'POST':
+        user = request.user
+        try:
+            profile = user.userprofile
+            if profile.profile_picture and "placeholder" not in str(profile.profile_picture):
+                public_id = profile.profile_picture.public_id
+                cloudinary.uploader.destroy(public_id)
+                profile.profile_picture = 'placeholder'
+                profile.save()
+                messages.success(request, 'Profile picture deleted successfully!')
+            else:
+                messages.info(request, 'No profile picture to delete.')
+        except Exception as e:
+            messages.error(request, f'Failed to delete profile picture: {str(e)}')
+        return redirect('profile')
+    return redirect('profile')

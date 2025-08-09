@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
 
 # Create your views here.
 def index(request):
@@ -9,19 +10,18 @@ def index(request):
 @login_required
 def profile(request):
     user = request.user
+
+    if request.method == 'POST':
+        profile_picture = request.FILES.get('profile_picture')
+        if profile_picture:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            profile.profile_picture = profile_picture
+            profile.save()
+            return redirect('profile')
+
     context = {
         'user': user,
     }
     return render(request, 'users/profile.html', context)
 
-@login_required
-def upload_photo(request):
-    profile = request.user.userprofile
-    if request.method == 'POST':
-        file = request.FILES.get('profile_picture')
-        if file:
-            profile.profile_picture = file
-            profile.save()
-        return redirect('profile')
-    return render(request, 'upload_photo.html')
 

@@ -22,9 +22,9 @@
                                 {% endif %}
                             </div>
                             <div class="mt-3">
-                                <form method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data" id="upload-form">
                                     {% csrf_token %}
-                                    <input type="file" name="profile_picture" id="profile-picture" hidden>
+                                    <input type="file" name="profile_picture" id="profile-picture" hidden onchange="document.getElementById('upload-form').submit();">
                                     <label for="profile-picture" class="upload-btn">
                                         Upload Image
                                     </label>

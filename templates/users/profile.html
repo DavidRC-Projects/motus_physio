@@ -26,7 +26,11 @@
                                     {% csrf_token %}
                                     <input type="file" name="profile_picture" id="profile-picture" hidden onchange="document.getElementById('upload-form').submit();">
                                     <label for="profile-picture" class="upload-btn">
+                                        {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
+                                        Change Photo
+                                        {% else %}
                                         Upload Image
+                                        {% endif %}
                                     </label>
                                 </form>
                             </div>

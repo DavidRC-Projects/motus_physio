@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+'''
+This class is to help store the user profile information.
+It's relationship allows each user have a unique profile.
+Cloudinary is used to store the users profile picture.
+'''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = CloudinaryField('image', default='placeholder')

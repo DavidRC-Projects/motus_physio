@@ -5,9 +5,10 @@ from .models import UserProfile
 from django.contrib import messages
 import cloudinary.uploader
 
-# Create your views here.
+
 def index(request):
     return render(request, 'index.html')
+
 
 @login_required
 def profile(request):
@@ -26,6 +27,7 @@ def profile(request):
         'user': user,
     }
     return render(request, 'users/profile.html', context)
+
 
 @login_required
 def delete_photo(request):

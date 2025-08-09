@@ -33,6 +33,16 @@
                                         {% endif %}
                                     </label>
                                 </form>
+                                <!-- Delete photo button that shows when a picture is uploaded -->
+                                {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
+                                <form method="POST" class="mt-2">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="delete_photo" value="true">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete your profile picture?')">
+                                        Delete Photo
+                                    </button>
+                                </form>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-md-8">

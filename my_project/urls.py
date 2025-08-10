@@ -32,4 +32,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),
+    path('booking/', users_views.booking, name='booking'),
 ]

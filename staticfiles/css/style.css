@@ -16,7 +16,6 @@
 
 .navbar {
     background: black;
-    opacity: 0.8;
 }
 
 body {
@@ -66,7 +65,6 @@ main {
 
 .footer {
     margin-bottom: 0;
-    opacity: 0.8;
 }
 
 .upload-btn {

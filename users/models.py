@@ -18,3 +18,18 @@ class UserProfile(models.Model):
         return f"{self.user.username}'s Profile"
 
 
+class User(models.Model):
+    pass
+
+
+class Therapist(models.Model):
+    pass
+
+
+class Appointment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    therapist = models.ForeignKey(Therapist, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Appointment by {self.user} with {self.therapist}"
+

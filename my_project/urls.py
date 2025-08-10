@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from users import views as users_views
 from register import views as register_views
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from users.models import UserProfile
+from django.contrib import messages
 
 urlpatterns = [
     path('', users_views.index, name='index'),
@@ -27,4 +31,5 @@ urlpatterns = [
     path("register/", register_views.register, name="register"),
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
+    path('surgery-type/', users_views.surgery_type, name='surgery_type'),
 ]

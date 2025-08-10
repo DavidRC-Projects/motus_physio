@@ -59,16 +59,20 @@
                                 <div class="row mb-3">
                                     <div class="col-sm-4"><strong>Surgery Type:</strong></div>
                                     <div class="col-sm-8">
-                                        <div class="d-flex align-items-center">
-                                            <span class="me-3">{{ user.userprofile.surgery_type|default:"" }}</span>
-                                            <button type="button" class="btn btn-outline-primary btn-sm" onclick="toggleSurgeryEdit()">Please Select</button>
-                                        </div>
-                                        
-                                        <!-- Surgery Type dropdown options -->
-                                        <form method="POST" id="surgery-form" style="display: none;" class="mt-2">
-                                            {% csrf_token %}
-                                            <div class="mb-2">
-                                                <select name="surgery_type" class="form-select form-select-sm" id="surgery-select" onchange="toggleOtherInput()">
+                                        {% if not request.GET.edit_surgery %}
+                                            {% if user.userprofile.surgery_type %}
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-3">{{ user.userprofile.surgery_type }}</span>
+                                                    <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Change</a>
+                                                </div>
+                                            {% else %}
+                                                <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Please Select</a>
+                                            {% endif %}
+                                        {% else %}
+                                            <form method="POST" action="{% url 'surgery_type' %}">
+                                                {% csrf_token %}
+                                                <div class="mb-2">
+                                                <select name="surgery_type" class="form-select form-select-sm">
                                                     <option value="">Select Surgery Type</option>
                                                     <option value="Knee Replacement">Knee Replacement</option>
                                                     <option value="Hip Replacement">Hip Replacement</option>
@@ -82,13 +86,14 @@
                                                 </select>
                                             </div>
                                             <div class="mb-2" id="other-input">
-                                                <input type="text" name="other_surgery" class="form-control form-control-sm" placeholder="Please specify...">
+                                                <input type="text" name="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
                                             </div>
                                             <div>
                                                 <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
-                                                <button type="button" class="btn btn-secondary btn-sm" onclick="cancelSurgeryEdit()">Cancel</button>
+                                                <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm">Cancel</a>
                                             </div>
                                         </form>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -104,3 +109,4 @@
     </div>
 </div>
 {% endblock content %}
+

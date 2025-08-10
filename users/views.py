@@ -47,3 +47,20 @@ def delete_photo(request):
             messages.error(request, f'Failed to delete profile picture: {str(e)}')
         return redirect('profile')
     return redirect('profile')
+
+@login_required
+def surgery_type(request):
+    user = request.user
+    if request.method == 'POST':
+        surgery_type = request.POST.get('surgery_type')
+        other_surgery = request.POST.get('other_surgery')
+        if surgery_type:
+            profile, _ = UserProfile.objects.get_or_create(user=user)
+            if surgery_type == 'other' and other_surgery:
+                profile.surgery_type = other_surgery
+            else:
+                profile.surgery_type = surgery_type
+            profile.save()
+            messages.success(request, 'Surgery type updated successfully')
+            return redirect('profile')
+    return redirect('profile')

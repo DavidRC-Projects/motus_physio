@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.contrib import messages
 import cloudinary.uploader
+from .models import Appointment, Therapist, User
 
 
 def index(request):
@@ -52,6 +53,7 @@ def delete_photo(request):
         return redirect('profile')
     return redirect('profile')
 
+
 @login_required
 def surgery_type(request):
     user = request.user
@@ -68,3 +70,4 @@ def surgery_type(request):
             messages.success(request, 'Surgery type updated successfully')
             return redirect('profile')
     return redirect('profile')
+

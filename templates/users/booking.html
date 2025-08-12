@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<!-- Main Content -->
+<!-- Booking Form -->
 <div class="main-content">
     <div class="container">
         <h1 class="text-center">Appointment Booking</h1>
@@ -27,12 +27,6 @@
             </div>
             <div class="mb-3">
                 <label for="therapist" class="form-label">Select Therapist</label>
-                <select name="therapist" class="form-select" required>
-                    <option value="">Select Therapist</option>
-                    {% for therapist in therapists %}
-                        <option value="{{ therapist.id }}">{{ therapist.name }}</option>
-                    {% endfor %}
-                </select>
             </div>
             <div class="mb-3">
                 <label for="notes" class="form-label">Notes (Optional)</label>

@@ -22,6 +22,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from users.models import UserProfile
 from django.contrib import messages
+from users.models import Appointment
+from django.shortcuts import get_object_or_404
 
 urlpatterns = [
     path('', users_views.index_booking, name='index'),
@@ -34,4 +36,5 @@ urlpatterns = [
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),
     path('booking/', users_views.booking, name='booking'),
     path('index_booking/', users_views.index_booking, name='index_booking'),
+    path('delete-appointment/<int:appointment_id>/', users_views.delete_appointment, name='delete_appointment'),
 ]

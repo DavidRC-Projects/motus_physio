@@ -112,6 +112,21 @@ def delete_appointment(request, appointment_id):
 
 
 @login_required
+def edit_appointment(request, appointment_id):
+    if request.method == 'POST':
+        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        appointment_date = request.POST.get('appointment_date')
+        appointment_time = request.POST.get('appointment_time')
+        appointment.appointment_date = appointment_date
+        appointment.appointment_time = appointment_time
+        appointment.save()
+
+        messages.success(request, 'appointment has been updated!')
+        
+    return redirect('profile')
+
+
+@login_required
 def surgery_type(request):
     user = request.user
     if request.method == 'POST':

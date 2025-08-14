@@ -31,8 +31,6 @@ def booking(request):
             )
             return redirect('booking')
     
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-    
     context = {
         'user_appointments': user_appointments,
     }
@@ -51,9 +49,12 @@ def profile(request):
             profile.save()
             messages.success(request, 'Profile picture updated successfully')
             return redirect('profile')
+    
+    user_appointments = Appointment.objects.filter(user=user).order_by('-created_at')
 
     context = {
         'user': user,
+        'user_appointments': user_appointments,
     }
     return render(request, 'users/profile.html', context)
 

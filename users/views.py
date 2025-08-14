@@ -7,10 +7,6 @@ import cloudinary.uploader
 from .models import Appointment
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
 @login_required
 def booking(request):
     if request.method == 'POST':
@@ -38,6 +34,31 @@ def booking(request):
     }
     
     return render(request, 'users/booking.html', context)
+
+
+@login_required
+def index_booking(request):
+    if request.method == 'POST':
+        appointment_date = request.POST.get('appointment_date')
+        appointment_time = request.POST.get('appointment_time')
+        appointment_type = request.POST.get('appointment_type')
+        notes = request.POST.get('notes')
+        
+        if not appointment_date or not appointment_time or not appointment_type:
+            messages.error(request, 'Please fill in all required fields.')
+        else:
+            appointment = Appointment.objects.create(
+                user=request.user,
+                appointment_date=appointment_date,
+                appointment_time=appointment_time,
+                appointment_type=appointment_type,
+                notes=notes
+            )
+            messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
+            return redirect('index')
+    
+    return render(request, 'index.html')
+
 
 @login_required
 def profile(request):

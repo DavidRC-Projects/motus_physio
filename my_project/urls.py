@@ -24,7 +24,7 @@ from users.models import UserProfile
 from django.contrib import messages
 
 urlpatterns = [
-    path('', users_views.index, name='index'),
+    path('', users_views.index_booking, name='index'),
     path('profile/', users_views.profile, name='profile'),
     path('delete-photo/', users_views.delete_photo, name='delete_photo'),
     path('admin/', admin.site.urls),
@@ -33,4 +33,5 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),
     path('booking/', users_views.booking, name='booking'),
+    path('index_booking/', users_views.index_booking, name='index_booking'),
 ]

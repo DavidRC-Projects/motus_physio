@@ -31,6 +31,8 @@ def booking(request):
             )
             return redirect('booking')
     
+    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
+    
     context = {
         'user_appointments': user_appointments,
     }

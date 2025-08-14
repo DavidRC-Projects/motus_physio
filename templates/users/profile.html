@@ -129,9 +129,10 @@
                                 {% endif %}
                                 
                                 <!-- Buttons to delete and edit appointments -->
-                                <div class="mt-3 d-flex gap-2">
-                                    <button class="btn btn-outline-primary btn-sm">
-                                        <i class="fas fa-edit"></i> Edit
+                                <form method="POST" action="{% url 'edit_appointment' appointment.id %}" class="appointment-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-trash"></i> Edit
                                     </button>
                                     <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="appointment-form">
                                         {% csrf_token %}

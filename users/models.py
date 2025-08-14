@@ -17,18 +17,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
-'''
-This is a placeholder for the user model.
-'''
-class User(models.Model):
-    pass
-
-'''
-This is a placeholder for the therapist model.
-'''
-class Therapist(models.Model):
-    pass
-
 
 """
 This tracks the user's appointment when booking.
@@ -51,7 +39,7 @@ class Appointment(models.Model):
         ('cancelled', 'Cancelled'),
         ('completed', 'Completed')
     ], default='pending')
-    created_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):

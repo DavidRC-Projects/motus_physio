@@ -25,7 +25,7 @@ type of appointment, notes, and status.
 It will display 'appointment by the user on date entered'
 """
 class Appointment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='appointments')
     appointment_date = models.DateField(null=True, blank=True)
     appointment_time = models.TimeField(null=True, blank=True)
     appointment_type = models.CharField(max_length=100, choices=[

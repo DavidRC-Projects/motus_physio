@@ -106,7 +106,7 @@ def delete_photo(request):
 @login_required
 def delete_appointment(request, appointment_id):
     if request.method == 'POST':
-        appointment = Appointment.objects.get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment.delete()
     return redirect('profile')
 

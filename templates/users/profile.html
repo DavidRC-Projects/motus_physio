@@ -131,9 +131,13 @@
                                 <!-- Buttons to delete and edit appointments -->
                                 <form method="POST" action="{% url 'edit_appointment' appointment.id %}" class="appointment-form">
                                     {% csrf_token %}
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <input type="date" name="appointment_date" value="{{ appointment.appointment_date }}">
+                                        <input type="time" name="appointment_time" value="{{ appointment.appointment_time }}">
                                     <button type="submit" class="btn btn-outline-primary btn-sm">
                                         <i class="fas fa-trash"></i> Edit
                                     </button>
+                                    </div>
                                     <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="appointment-form">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-outline-dark btn-sm">

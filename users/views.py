@@ -101,6 +101,12 @@ def delete_photo(request):
         return redirect('profile')
     return redirect('profile')
 
+@login_required
+def delete_appointment(request, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id, user=request.user)
+    appointment.delete()
+    return redirect('profile')
+
 
 @login_required
 def surgery_type(request):

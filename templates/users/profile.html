@@ -139,11 +139,11 @@
                                                 {% csrf_token %}
                                                 <div class="mb-2">
                                                     <label for="appointment_date_{{ appointment.id }}" class="form-label small">New Date:</label>
-                                                    <input type="date" name="appointment_date" id="appointment_date_{{ appointment.id }}" value="{{ appointment.appointment_date }}" class="form-control form-control-sm" required>
+                                                    <input type="date" name="appointment_date" id="appointment_date_{{ appointment.id }}" value="{{ appointment.appointment_date }}" class="form-control form-control-sm " required>
                                                 </div>
                                                 <div class="mb-2">
                                                     <label for="appointment_time_{{ appointment.id }}" class="form-label small">New Time:</label>
-                                                    <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm" required>
+                                                    <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm timepicker" required>
                                                 </div>
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-primary btn-sm">

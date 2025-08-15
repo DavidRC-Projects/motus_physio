@@ -74,7 +74,7 @@ def profile(request):
             messages.success(request, 'Profile picture updated successfully')
             return redirect('profile')
     
-    user_appointments = Appointment.objects.filter(user=user).order_by('-created_at')
+    user_appointments = Appointment.objects.filter(user=user, status='confirmed').order_by('-created_at')
 
     context = {
         'user': user,

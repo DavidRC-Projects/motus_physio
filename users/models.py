@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 '''
-This class is to help store the user profile information.
+This model is to help store the user profile information.
 It's relationship allows each user have a unique profile.
 Cloudinary is used to store the users profile picture.
 '''
@@ -19,7 +19,7 @@ class UserProfile(models.Model):
 
 
 """
-This tracks the user's appointment when booking.
+This model tracks the user's appointment when booking.
 It will track who made the appointment, the date, time,
 type of appointment, notes, and status.
 It will display 'appointment by the user on date entered'

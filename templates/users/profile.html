@@ -165,7 +165,13 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        <p class="text-center text-muted">No appointments booked yet.</p>
+                        <div class="text-center">
+                            <p class="text-muted mb-2">No confirmed appointments yet.</p>
+                            <p class="text-info small">
+                                <i class="fas fa-clock me-1"></i>
+                                If you've booked an appointment, it's currently awaiting confirmation from our team.
+                            </p>
+                        </div>
                     {% endif %}
                 </div>
             </div>

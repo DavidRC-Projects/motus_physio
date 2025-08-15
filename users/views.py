@@ -112,6 +112,17 @@ def delete_appointment(request, appointment_id):
 
 
 @login_required
+def view_booking(request):
+    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
+    
+    context = {
+        'user_appointments': user_appointments,
+    }
+    
+    return render(request, 'users/view_booking.html', context)
+
+
+@login_required
 def edit_appointment(request, appointment_id):
     if request.method == 'POST':
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)

@@ -19,14 +19,24 @@ def booking(request):
         if not appointment_date or not appointment_time or not appointment_type:
             messages.error(request, 'Please fill in all required fields.')
         else:
-            appointment = Appointment.objects.create(
-                user=request.user,
+            # Check if this time slot is already booked
+            existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
-                appointment_time=appointment_time,
-                appointment_type=appointment_type,
-                notes=notes
-            )
-            return redirect('booking')
+                appointment_time=appointment_time
+            ).first()
+            
+            if existing_appointment:
+                messages.error(request, 'This time slot is already booked. Please choose a different time.')
+            else:
+                appointment = Appointment.objects.create(
+                    user=request.user,
+                    appointment_date=appointment_date,
+                    appointment_time=appointment_time,
+                    appointment_type=appointment_type,
+                    notes=notes
+                )
+                messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
+                return redirect('booking')
     
     user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
     
@@ -48,15 +58,24 @@ def index_booking(request):
         if not appointment_date or not appointment_time or not appointment_type:
             messages.error(request, 'Please fill in all required fields.')
         else:
-            appointment = Appointment.objects.create(
-                user=request.user,
+            # Check if this time slot is already booked
+            existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
-                appointment_time=appointment_time,
-                appointment_type=appointment_type,
-                notes=notes
-            )
-            messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
-            return redirect('index')
+                appointment_time=appointment_time
+            ).first()
+            
+            if existing_appointment:
+                messages.error(request, 'This time slot is already booked. Please choose a different time.')
+            else:
+                appointment = Appointment.objects.create(
+                    user=request.user,
+                    appointment_date=appointment_date,
+                    appointment_time=appointment_time,
+                    appointment_type=appointment_type,
+                    notes=notes
+                )
+                messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
+                return redirect('index')
     
     return render(request, 'index.html')
 
@@ -128,13 +147,22 @@ def edit_appointment(request, appointment_id):
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
-        appointment.appointment_date = appointment_date
-        appointment.appointment_time = appointment_time
-        appointment.save()
-
-        messages.success(request, 'appointment has been updated!')
         
-    return redirect('profile')
+        # Check if this time slot is already booked by another appointment
+        existing_appointment = Appointment.objects.filter(
+            appointment_date=appointment_date,
+            appointment_time=appointment_time
+        ).exclude(id=appointment_id).first()  # Exclude the current appointment being edited
+        
+        if existing_appointment:
+            messages.error(request, 'This time slot is already booked. Please choose a different time.')
+        else:
+            appointment.appointment_date = appointment_date
+            appointment.appointment_time = appointment_time
+            appointment.save()
+            messages.success(request, 'Appointment has been updated!')
+        
+    return redirect('view_booking')
 
 
 @login_required

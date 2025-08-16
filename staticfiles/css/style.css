@@ -12,10 +12,15 @@
 :root {
     --primary-font: "Marvel", sans-serif;
     --secondary-font: "Montserrat", sans-serif;
+    --primary-color: #ffffff;
+    --clr-dark: #000000;
+    --clr-blue: #0000ff;
+    --clr-light-blue: #e3f2fd;
+    --clr-green: #2e7d32;
 }
 
 .navbar {
-    background: black;
+    background: var(--clr-dark);
     opacity: 0.8;
 }
 
@@ -71,8 +76,8 @@ main {
 
 .upload-btn {
     display: inline-block;
-    background-color: #000000;
-    color: white;
+    background-color: var(--clr-dark);
+    color: var(--primary-color);
     padding: 0.6rem 1.2rem;
     border-radius: 0.3rem;
     cursor: pointer;
@@ -80,4 +85,61 @@ main {
 
 .upload-btn:hover {
     background-color: #2130ff;
+}
+
+/* Styles for booking calendar */
+
+/* Calendar container */
+.calendar-container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Calendar table */
+.calendar-table {
+    display: inline-block;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+/* Calendar header cells (weekdays) */
+.calendar-header {
+    padding: 10px;
+    border: 2px solid var(--clr-dark);
+    background-color: #f8f9fa;
+    font-family: var(--primary-font);
+    font-weight: bold;
+}
+
+/* Calendar date cells */
+.calendar-date {
+    padding: 10px;
+    border: 1px solid var(--clr-dark);
+    min-width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: var(--secondary-font);
+}
+
+/* Empty cells for calendar alignment */
+.calendar-empty {
+    padding: 10px;
+    border: 1px solid var(--clr-dark);
+    background-color: #f8f9fa;
+    min-width: 40px;
+    height: 40px;
+}
+
+/* Booked Day Styling */
+.calendar-date.booked {
+    background-color: var(--clr-light-blue) ;
+    color: var(--clr-blue);
+    font-weight: bold;
+    border: 2px solid var(--clr-blue);
+}
+
+.calendar-date:not(.booked) {
+    background-color: #f1f8e9;
+    color: var(--clr-green);
 }

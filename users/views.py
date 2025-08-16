@@ -183,6 +183,29 @@ def view_booking(request):
     return render(request, 'users/view_booking.html', context)
 
 
+def booking_calendar_view(request):
+    month = request.GET.get('month')
+    year = request.GET.get('year')
 
+    if month < 1:
+        month = 12
+        year -= 1
+    elif month > 12:
+        month = 1
+        year += 1
+
+    month_names = ['January', 'February', 'March', 'April', 'May', 'June',
+                   'July', 'August', 'September', 'October', 'November', 'December']
+    month_name = month_names[month - 1]
+    days_in_month = monthrange(year, month)[1]
+
+    context = {
+        'month': month,
+        'year': year,
+        'month_name': month_name,
+        'days_in_month': days_in_month,
+    }
+
+    return render(request, 'users/view_booking.html', context)
 
 

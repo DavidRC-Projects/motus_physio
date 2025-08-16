@@ -62,7 +62,7 @@
                             <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
                                 {{ day_number }}
                                 {% if day_number in booked_days %}
-                                    <br><small>Unavailable</small>
+                                    <br><small>Booked</small>
                                 {% else %}
                                     <br><small>Free</small>
                                 {% endif %}
@@ -80,7 +80,7 @@
                             <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
                                 {{ day_number }}
                                 {% if day_number in booked_days %}
-                                    <br><small>Unavailable</small>
+                                    <br><small>Booked</small>
                                 {% else %}
                                     <br><small>Free</small>
                                 {% endif %}
@@ -98,7 +98,7 @@
                             <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
                                 {{ day_number }}
                                 {% if day_number in booked_days %}
-                                    <br><small>Unavailable</small>
+                                    <br><small>Booked</small>
                                 {% else %}
                                     <br><small>Free</small>
                                 {% endif %}
@@ -185,7 +185,5 @@
         </div>
     {% endif %}
 </div>
-
-<script src="{% static 'js/appointment_click.js' %}"></script>
-
+<script src="{% static 'js/click_appointment.js' %}"></script>
 {% endblock content %}

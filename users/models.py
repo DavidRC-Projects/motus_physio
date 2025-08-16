@@ -36,7 +36,6 @@ class Appointment(models.Model):
     status = models.CharField(max_length=20, choices=[
         ('pending', 'Pending'),
         ('confirmed', 'Confirmed'),
-        ('cancelled', 'Cancelled'),
         ('completed', 'Completed')
     ], default='pending')
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)

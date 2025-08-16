@@ -35,7 +35,7 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),
     path('booking/', users_views.booking, name='booking'),
-    path('view-booking/', users_views.view_booking, name='view_booking'),
+    path('view-booking/', users_views.booking_calendar_view, name='view_booking'),
     path('index_booking/', users_views.index_booking, name='index_booking'),
     path('delete-appointment/<int:appointment_id>/', users_views.delete_appointment, name='delete_appointment'),
     path('edit-appointment/<int:appointment_id>/', users_views.edit_appointment, name='edit_appointment'),

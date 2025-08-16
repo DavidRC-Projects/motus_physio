@@ -199,17 +199,16 @@ def booking_calendar_view(request):
     month_name = month_names[month - 1]
     days_in_month = monthrange(year, month)[1]
 
-    # Get ALL appointments for the current month (from all users) to show booked days
-    all_appointments = Appointment.objects.filter(
-        appointment_date__year=year,
-        appointment_date__month=month
+    # Get current user's appointments for the selected month
+    user_appointments = Appointment.objects.filter(
+    user=request.user,
+    appointment_date__year=year,
+    appointment_date__month=month
     ).order_by('appointment_date')
 
-     # Get current user's appointments
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-
     # Create list of days that have appointments (for calendar display)
-    booked_days = [appointment.appointment_date.day for appointment in all_appointments]
+    booked_days = [appointment.appointment_date.day for appointment in user_appointments]
+
 
     context = {
         'month': month,

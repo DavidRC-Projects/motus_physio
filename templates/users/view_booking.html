@@ -22,13 +22,20 @@
                 <th class="calendar-header">Sat</th>
             </tr>
             <tr>
-                <td class="calendar-empty"></td>
-                <td class="calendar-empty"></td>
-                <td class="calendar-empty"></td>
-                <td class="calendar-date">1</td>
-                <td class="calendar-date">2</td>
-                <td class="calendar-date">3</td>
-                <td class="calendar-date">4</td>
+                {% for i in "1234567" %}
+                    {% if forloop.counter <= first_day %}
+                        <td class="calendar-empty"></td>
+                    {% else %}
+                        <td class="calendar-date {% if forloop.counter in booked_days %}booked{% endif %}">
+                            {{ forloop.counter }}
+                            {% if forloop.counter in booked_days %}
+                                <br><small>Booked</small>
+                                {% else %}
+                                <br><small>Free</small>
+                            {% endif %}
+                        </td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <td class="calendar-date">5</td>

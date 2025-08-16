@@ -14,6 +14,9 @@
     --secondary-font: "Montserrat", sans-serif;
     --primary-color: #ffffff;
     --clr-dark: #000000;
+    --clr-blue: #0000ff;
+    --clr-light-blue: #e3f2fd;
+    --clr-green: #2e7d32;
 }
 
 .navbar {
@@ -126,4 +129,17 @@ main {
     background-color: #f8f9fa;
     min-width: 40px;
     height: 40px;
+}
+
+/* Booked Day Styling */
+.calendar-date.booked {
+    background-color: var(--clr-light-blue) ;
+    color: var(--clr-blue);
+    font-weight: bold;
+    border: 2px solid var(--clr-blue);
+}
+
+.calendar-date:not(.booked) {
+    background-color: #f1f8e9;
+    color: var(--clr-green);
 }

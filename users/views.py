@@ -184,8 +184,8 @@ def view_booking(request):
 
 
 def booking_calendar_view(request):
-    month = request.GET.get('month')
-    year = request.GET.get('year')
+    month = int(request.GET.get('month', date.today().month))
+    year = int(request.GET.get('year', date.today().year))
 
     if month < 1:
         month = 12

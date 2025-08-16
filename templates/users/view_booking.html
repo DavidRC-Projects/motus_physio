@@ -38,40 +38,76 @@
                 {% endfor %}
             </tr>
             <tr>
-                <td class="calendar-date">5</td>
-                <td class="calendar-date">6</td>
-                <td class="calendar-date">7</td>
-                <td class="calendar-date">8</td>
-                <td class="calendar-date">9</td>
-                <td class="calendar-date">10</td>
-                <td class="calendar-date">11</td>
+                {% for i in "1234567" %}
+                    {% with day_number=forloop.counter|add:'7' %}
+                        {% if day_number <= days_in_month %}
+                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                {{ day_number }}
+                                {% if day_number in booked_days %}
+                                    <br><small>Unavailable</small>
+                                {% else %}
+                                    <br><small>Free</small>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="calendar-empty"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </tr>
             <tr>
-                <td class="calendar-date">12</td>
-                <td class="calendar-date">13</td>
-                <td class="calendar-date">14</td>
-                <td class="calendar-date">15</td>
-                <td class="calendar-date">16</td>
-                <td class="calendar-date">17</td>
-                <td class="calendar-date">18</td>
+                {% for i in "1234567" %}
+                    {% with day_number=forloop.counter|add:'14' %}
+                        {% if day_number <= days_in_month %}
+                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                {{ day_number }}
+                                {% if day_number in booked_days %}
+                                    <br><small>Unavailable</small>
+                                {% else %}
+                                    <br><small>Free</small>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="calendar-empty"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </tr>
             <tr>
-                <td class="calendar-date">19</td>
-                <td class="calendar-date">20</td>
-                <td class="calendar-date">21</td>
-                <td class="calendar-date">22</td>
-                <td class="calendar-date">23</td>
-                <td class="calendar-date">24</td>
-                <td class="calendar-date">25</td>
+                {% for i in "1234567" %}
+                    {% with day_number=forloop.counter|add:'21' %}
+                        {% if day_number <= days_in_month %}
+                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                {{ day_number }}
+                                {% if day_number in booked_days %}
+                                    <br><small>Unavailable</small>
+                                {% else %}
+                                    <br><small>Free</small>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="calendar-empty"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </tr>
             <tr>
-                <td class="calendar-date">26</td>
-                <td class="calendar-date">27</td>
-                <td class="calendar-date">28</td>
-                <td class="calendar-date">29</td>
-                <td class="calendar-date">30</td>
-                <td class="calendar-date">31</td>
-                <td class="calendar-empty"></td>
+                {% for i in "1234567" %}
+                    {% with day_number=forloop.counter|add:'28' %}
+                        {% if day_number <= days_in_month %}
+                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                {{ day_number }}
+                                {% if day_number in booked_days %}
+                                    <br><small>Unavailable</small>
+                                {% else %}
+                                    <br><small>Free</small>
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="calendar-empty"></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
             </tr>
         </table>
     </div>
@@ -149,4 +185,7 @@
         </div>
     {% endif %}
 </div>
+
+<script src="{% static 'js/appointment_click.js' %}"></script>
+
 {% endblock content %}

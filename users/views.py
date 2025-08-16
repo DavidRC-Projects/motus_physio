@@ -130,6 +130,8 @@ def delete_appointment(request, appointment_id):
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment.delete()
     return redirect('profile')
+
+
 @login_required
 def edit_appointment(request, appointment_id):
     if request.method == 'POST':
@@ -171,18 +173,7 @@ def surgery_type(request):
             return redirect('profile')
     return redirect('profile')
 
-
 @login_required
-def view_booking(request):
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-    
-    context = {
-        'user_appointments': user_appointments,
-    }
-    
-    return render(request, 'users/view_booking.html', context)
-
-
 def booking_calendar_view(request):
     month = int(request.GET.get('month', date.today().month))
     year = int(request.GET.get('year', date.today().year))
@@ -199,24 +190,49 @@ def booking_calendar_view(request):
     month_name = month_names[month - 1]
     days_in_month = monthrange(year, month)[1]
 
-    # Get ALL appointments for the current month (from all users) to show booked days
+    # Get current user's appointments for the current month
+    user_appointments = Appointment.objects.filter(
+        user=request.user,
+        appointment_date__year=year,
+        appointment_date__month=month
+    ).order_by('appointment_date')
+
+    # Get ALL appointments for the current month to determine if days are full
     all_appointments = Appointment.objects.filter(
         appointment_date__year=year,
         appointment_date__month=month
     ).order_by('appointment_date')
 
-     # Get current user's appointments
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-
-    # Create list of days that have appointments (for calendar display)
-    booked_days = [appointment.appointment_date.day for appointment in all_appointments]
+    # Dictionaries for calendar display
+    user_booked_days = {}  # Days where current user has appointments
+    full_days = {}          # Days where ALL time slots are booked
+    
+    # Process user appointments
+    for appointment in user_appointments:
+        day = appointment.appointment_date.day
+        if day not in user_booked_days:
+            user_booked_days[day] = []
+        user_booked_days[day].append(appointment)
+    
+    # Process all appointments to find full days
+    for appointment in all_appointments:
+        day = appointment.appointment_date.day
+        if day not in full_days:
+            full_days[day] = []
+        full_days[day].append(appointment)
+    
+    
+    FULL_DAY_THRESHOLD = 25
+    full_day_numbers = [day for day, appointments in full_days.items() 
+                       if len(appointments) >= FULL_DAY_THRESHOLD]
 
     context = {
         'month': month,
         'year': year,
         'month_name': month_name,
         'days_in_month': days_in_month,
-        'booked_days': booked_days,
+        'user_booked_days': user_booked_days,
+        'full_days': full_day_numbers,
         'user_appointments': user_appointments,
     }
 

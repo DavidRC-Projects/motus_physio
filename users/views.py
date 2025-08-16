@@ -6,6 +6,8 @@ from .models import UserProfile
 from django.contrib import messages
 import cloudinary.uploader
 from .models import Appointment
+from datetime import date
+from calendar import monthrange
 
 
 @login_required
@@ -128,19 +130,6 @@ def delete_appointment(request, appointment_id):
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment.delete()
     return redirect('profile')
-
-
-@login_required
-def view_booking(request):
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-    
-    context = {
-        'user_appointments': user_appointments,
-    }
-    
-    return render(request, 'users/view_booking.html', context)
-
-
 @login_required
 def edit_appointment(request, appointment_id):
     if request.method == 'POST':
@@ -181,4 +170,19 @@ def surgery_type(request):
             messages.success(request, 'Surgery type updated successfully')
             return redirect('profile')
     return redirect('profile')
+
+
+@login_required
+def view_booking(request):
+    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
+    
+    context = {
+        'user_appointments': user_appointments,
+    }
+    
+    return render(request, 'users/view_booking.html', context)
+
+
+
+
 

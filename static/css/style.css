@@ -20,7 +20,7 @@
 }
 
 .navbar {
-    background: var(--clr-dark) !important;
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
     border-bottom: 2px solid #4a148c !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
@@ -63,6 +63,19 @@ main {
     background-color: rgb(255, 255, 255);
 }
 
+/* Add gap above form in index.html */
+.main-content form {
+    margin-top: 1rem;
+}
+
+/* Tighter spacing for booking page */
+.booking-content {
+    padding: 20px 0 20px 0;
+    margin-bottom: 2rem;
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+}
+
 /* Styles for image in index.html */
 .home-image {
     width: 100%;
@@ -85,7 +98,7 @@ main {
     background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
     color: white;
     padding: 2rem 0;
-    margin-bottom: 2rem;
+    margin-top: 67px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 

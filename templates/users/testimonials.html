@@ -1,10 +1,40 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Testimonials{% endblock %}
+
 {% block content %}
-<!-- Main Content -->
-<div class="main-content">
-    <div class="container">
-        <h1>Testimonials</h1>
-    </div>
-{% endblock content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Testimonials</h1>
+    
+    <!-- Testimonial Form -->
+    {% if user.is_authenticated %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Add Your Testimonial</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea class="form-control" name="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+    
+    <!-- Display Testimonials -->
+    {% if testimonials %}
+        {% for testimonial in testimonials %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="mb-1">"{{ testimonial.testimonial }}"</p>
+                    <small class="text-muted">- {{ testimonial.user.username }}</small>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center text-muted">No testimonials yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

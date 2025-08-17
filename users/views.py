@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.contrib import messages
 import cloudinary.uploader
-from .models import Appointment, Message
+from .models import Appointment, Message, Testimonials
 from datetime import date
 from calendar import monthrange
 
@@ -250,6 +250,23 @@ def message_practitioner(request):
 
 
 def testimonials(request):
-    return render(request, 'users/testimonials.html')
+    if request.method == 'POST':
+        testimonial_text = request.POST.get('testimonial')
+        if testimonial_text:
+            Testimonials.objects.create(
+                user=request.user,
+                testimonial=testimonial_text
+            )
+            messages.success(request, 'Thank you! Your testimonial has been added.')
+            return redirect('testimonials')
+    
+    # Get all testimonials from the database, ordered by newest first
+    testimonials = Testimonials.objects.all().order_by('-created_at')
+    
+    context = {
+        'testimonials': testimonials,
+    }
+    
+    return render(request, 'users/testimonials.html', context)
 
 

@@ -28,10 +28,20 @@
         {% for testimonial in testimonials %}
             <div class="card mb-3">
                 <div class="card-body">
+                    <div class="d-flex justify-content-between"></div>
                     <p class="mb-1">"{{ testimonial.testimonial }}"</p>
                     <small class="text-muted">- {{ testimonial.user.username }}</small>
                     <br>
                     <small class="text-muted">{{ testimonial.created_at|date:"d/m/Y g:i A" }}</small>
+                </div>
+                {% if user == testimonial.user %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_testimonial" value="{{ testimonial.id }}">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                {% endif %}
+                    </div>
                 </div>
             </div>
         {% endfor %}

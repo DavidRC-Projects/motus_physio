@@ -89,7 +89,7 @@
                   Testimonials
                 </a>
               </li>
-              <!-- Therapist Dashboard (Staff Only) -->
+              <!-- Therapist Dashboard (Healthcare Professionals Only) -->
               {% if user.is_authenticated and user.is_staff %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'therapist_dashboard' %}">

@@ -21,7 +21,25 @@
 
 .navbar {
     background: var(--clr-dark);
-    opacity: 0.8;
+}
+
+/* Navbar styling */
+.navbar[data-bs-theme="dark"] {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    border-bottom: 2px solid #4a148c;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-text {
+    color: #ffffff;
 }
 
 body {

@@ -6,4 +6,62 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-5">Therapist Dashboard</h1>
+    <!-- Appointments Section -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>All Appointments</h3>
+                </div>
+                <div class="card-body">
+                    {% if appointments %}
+                        {% for appointment in appointments %}
+                            <div class="border-bottom pb-2 mb-2">
+                                <strong>{{ appointment.user.username }}</strong><br>
+                                Date: {{ appointment.appointment_date }}<br>
+                                Time: {{ appointment.appointment_time }}<br>
+                                Type: {{ appointment.appointment_type }}<br>
+                                Status: <span class="badge bg-{% if appointment.status == 'confirmed' %}success{% elif appointment.status == 'pending' %}warning{% else %}secondary{% endif %}">{{ appointment.status }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No appointments found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Messages Section -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>User Messages</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="border-bottom pb-2 mb-2">
+                                <strong>From: {{ message.user.username }}</strong><br>
+                                Subject: {{ message.subject }}<br>
+                                Date: {{ message.created_at|date:"M d, Y" }}<br>
+                                <p class="mb-1">{{ message.message|truncatewords:20 }}</p>
+                                
+                                <!-- Therapist Reply Form -->
+                                <form method="post" action="{% url 'reply_to_message' message.id %}" class="mt-2">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input type="text" name="reply_message" class="form-control form-control-sm" placeholder="Type your reply..." required>
+                                        <button type="submit" class="btn btn-primary btn-sm">Reply</button>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No messages found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -268,6 +268,25 @@ def therapist_dashboard(request):
     return render(request, 'users/therapist_dashboard.html', context)
 
 
+@login_required
+def reply_to_message(request, message_id):
+    if request.method == 'POST':
+        reply_text = request.POST.get('reply_message')
+        if reply_text:
+            original_message = get_object_or_404(Message, id=message_id)
+            Message.objects.create(
+                user=request.user,
+                subject=f"Re: {original_message.subject}",
+                message=reply_text,
+                reply=True,
+                parent_message=original_message
+            )
+            messages.success(request, 'Reply sent!')
+            return redirect('therapist_dashboard')
+    
+    return redirect('therapist_dashboard')
+
+
 def testimonials(request):
     if request.method == 'POST':
         testimonial_text = request.POST.get('testimonial')

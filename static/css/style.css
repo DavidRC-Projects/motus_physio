@@ -79,17 +79,14 @@ main {
 
 /* Footer */
 .footer {
-    background: black;
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
     color: white;
     text-align: center;
     padding: 20px 0;
     flex-shrink: 0;
     margin-top: auto;
-}
-
-.footer {
+    border-top: 2px solid #4a148c;
     margin-bottom: 0;
-    opacity: 0.8;
 }
 
 .upload-btn {

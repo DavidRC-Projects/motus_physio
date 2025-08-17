@@ -281,6 +281,9 @@ def reply_to_message(request, message_id):
                 reply=True,
                 parent_message=original_message
             )
+            
+            original_message.reply = True
+            original_message.save()
             messages.success(request, 'Reply sent!')
             return redirect('therapist_dashboard')
     

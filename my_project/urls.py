@@ -39,4 +39,5 @@ urlpatterns = [
     path('index_booking/', users_views.index_booking, name='index_booking'),
     path('delete-appointment/<int:appointment_id>/', users_views.delete_appointment, name='delete_appointment'),
     path('edit-appointment/<int:appointment_id>/', users_views.edit_appointment, name='edit_appointment'),
+    path('contact/', users_views.message_practitioner, name='message_practitioner'),
 ]

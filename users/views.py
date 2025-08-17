@@ -222,3 +222,18 @@ def booking_calendar_view(request):
     return render(request, 'users/view_booking.html', context)
 
 
+@login_required
+def message_practitioner(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        if subject and message:
+            messages.success(request, 'Your message has been sent to the practitioner!')
+            return redirect('message_practitioner')
+        else:
+            messages.error(request, 'Please fill in all required fields.')
+    
+    return render(request, 'users/message_practitioner.html')
+
+

@@ -63,3 +63,12 @@ class Message(models.Model):
     def __str__(self):
         return f"Message from {self.user.username}: {self.subject}"
 
+
+class Testimonials(models.Model):
+    user =models.ForeignKey(User, on_delete=models.CASCADE, related_name='testimonials')
+    testimonial = models.TextField(blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Testimonial by {self.user.username}"

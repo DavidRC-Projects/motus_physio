@@ -41,5 +41,6 @@ urlpatterns = [
     path('edit-appointment/<int:appointment_id>/', users_views.edit_appointment, name='edit_appointment'),
     path('contact/', users_views.message_practitioner, name='message_practitioner'),
     path('therapist-dashboard/', users_views.therapist_dashboard, name='therapist_dashboard'),
+    path('reply-message/<int:message_id>/', users_views.reply_to_message, name='reply_to_message'),
     path('testimonials/', users_views.testimonials, name='testimonials'),
 ]

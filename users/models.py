@@ -44,3 +44,22 @@ class Appointment(models.Model):
     def __str__(self):
         return f"Appointment by {self.user} on {self.appointment_date}"
 
+
+"""
+This model stores messages between users and practitioners.
+It tracks the conversation thread and allows for replies.
+"""
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
+    subject = models.CharField(max_length=150, blank=False)
+    message = models.TextField(blank=False)
+    reply = models.BooleanField(default=False)
+    parent_message = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Message from {self.user.username}: {self.subject}"
+

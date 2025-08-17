@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from django.contrib import messages
 import cloudinary.uploader
-from .models import Appointment
+from .models import Appointment, Message
 from datetime import date
 from calendar import monthrange
 
@@ -229,11 +229,23 @@ def message_practitioner(request):
         message = request.POST.get('message')
         
         if subject and message:
+            Message.objects.create(
+                user=request.user,
+                subject=subject,
+                message=message,
+                reply=False
+            )
             messages.success(request, 'Your message has been sent to the practitioner!')
             return redirect('message_practitioner')
         else:
             messages.error(request, 'Please fill in all required fields.')
     
-    return render(request, 'users/message_practitioner.html')
+    user_messages = Message.objects.filter(user=request.user).order_by('-created_at')
+    
+    context = {
+        'user_messages': user_messages,
+    }
+    
+    return render(request, 'users/message_practitioner.html', context)
 
 

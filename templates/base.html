@@ -89,6 +89,14 @@
                   Testimonials
                 </a>
               </li>
+              <!-- Therapist Dashboard (Staff Only) -->
+              {% if user.is_authenticated and user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'therapist_dashboard' %}">
+                  Therapist Dashboard
+                </a>
+              </li>
+              {% endif %}
               <!-- Authentication Links -->
               {% if user.is_authenticated %}
               <li class="nav-item">

@@ -259,6 +259,14 @@ def testimonials(request):
             )
             messages.success(request, 'Thank you! Your testimonial has been added.')
             return redirect('testimonials')
+
+        # Handle testimonial deletion
+        delete_id = request.POST.get('delete_testimonial')
+        if delete_id:
+            testimonial = Testimonials.objects.get(id=delete_id, user=request.user)
+            testimonial.delete()
+            messages.success(request, 'Testimonial deleted.')
+            return redirect('testimonials')
     
     # Get all testimonials from the database, ordered by newest first
     testimonials = Testimonials.objects.all().order_by('-created_at')

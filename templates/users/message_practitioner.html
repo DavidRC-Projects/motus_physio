@@ -67,12 +67,37 @@
                                 <h6 class="mb-2">{{ message.subject }}</h6>
                                 <p class="mb-0">{{ message.message }}</p>
                                 
+                                <!-- Delete button for user's own messages -->
+                                {% if message.user == user %}
+                                    <div class="mt-2">
+                                        <form method="post" action="{% url 'delete_message' message.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                                
+                                <!-- Show replies to this message -->
                                 {% if message.replies.all %}
                                     <div class="mt-3">
                                         {% for reply in message.replies.all %}
                                             <div class="reply-item ms-4 p-2 bg-light rounded">
                                                 <small class="text-muted">{{ reply.created_at|date:"M d, Y H:i" }}</small>
                                                 <p class="mb-0">{{ reply.message }}</p>
+                                                
+                                                <!-- Delete button for user's own replies -->
+                                                {% if reply.user == user %}
+                                                    <div class="mt-2">
+                                                        <form method="post" action="{% url 'delete_message' reply.id %}">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-trash"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         {% endfor %}
                                     </div>

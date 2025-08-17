@@ -290,6 +290,14 @@ def reply_to_message(request, message_id):
     return redirect('therapist_dashboard')
 
 
+@login_required
+def delete_message(request, message_id):
+    message = get_object_or_404(Message, id=message_id)
+    message.delete()
+    messages.success(request, 'Message deleted successfully.')
+    return redirect('message_practitioner')
+
+
 def testimonials(request):
     if request.method == 'POST':
         testimonial_text = request.POST.get('testimonial')

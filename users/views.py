@@ -249,3 +249,7 @@ def message_practitioner(request):
     return render(request, 'users/message_practitioner.html', context)
 
 
+def testimonials(request):
+    return render(request, 'users/testimonials.html')
+
+

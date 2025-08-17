@@ -249,6 +249,25 @@ def message_practitioner(request):
     return render(request, 'users/message_practitioner.html', context)
 
 
+@login_required
+def therapist_dashboard(request):
+    """Simple dashboard for therapists to see appointments and messages"""
+    if not request.user.is_staff:
+        messages.error(request, 'Access denied. Therapist only.')
+        return redirect('index')
+    
+    # Get all appointments and messages
+    all_appointments = Appointment.objects.all().order_by('-created_at')
+    all_messages = Message.objects.filter(reply=False).order_by('-created_at')
+    
+    context = {
+        'appointments': all_appointments,
+        'messages': all_messages,
+    }
+    
+    return render(request, 'users/therapist_dashboard.html', context)
+
+
 def testimonials(request):
     if request.method == 'POST':
         testimonial_text = request.POST.get('testimonial')

@@ -20,7 +20,9 @@
 }
 
 .navbar {
-    background: var(--clr-dark);
+    background: var(--clr-dark) !important;
+    border-bottom: 2px solid #4a148c !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Navbar styling */
@@ -113,7 +115,13 @@ main {
     border-radius: 8px;
     text-align: center;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Page header styling for Personal Information in profile.html */
+.page-header {
+    margin-top: 1.5rem;
 }
 
 /* Card header styling for User Profile */
@@ -127,6 +135,41 @@ main {
     border: 2px solid #4a148c !important;
     border-radius: 8px;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Profile buttons styling */
+.btn-outline-primary {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    border: 2px solid #4a148c;
+    color: white !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
+    border-color: #2d1b69;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
+}
+
+/* Delete button styling */
+.btn-outline-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: 2px solid #dc3545;
+    color: white !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
+    border-color: #c82333;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
 /* Footer */
@@ -143,15 +186,22 @@ main {
 
 .upload-btn {
     display: inline-block;
-    background-color: var(--clr-dark);
-    color: var(--primary-color);
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    color: white !important;
     padding: 0.6rem 1.2rem;
     border-radius: 0.3rem;
     cursor: pointer;
+    border: 2px solid #4a148c;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .upload-btn:hover {
-    background-color: #2130ff;
+    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
+    border-color: #2d1b69;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
 }
 
 /* Styles for booking calendar */

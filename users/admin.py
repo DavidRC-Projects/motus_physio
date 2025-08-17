@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Appointment
+from .models import UserProfile, Appointment, Testimonials
 
 
 @admin.register(UserProfile)
@@ -18,3 +18,9 @@ class AppointmentAdmin(admin.ModelAdmin):
     @admin.action(description='Approve selected appointments')
     def approve_appointments(self, request, queryset):
         queryset.update(status='confirmed')
+
+
+@admin.register(Testimonials)
+class TestimonialsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'testimonial', 'created_at', 'updated_at')
+    list_filter = ('created_at', 'updated_at')

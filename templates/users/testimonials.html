@@ -30,6 +30,8 @@
                 <div class="card-body">
                     <p class="mb-1">"{{ testimonial.testimonial }}"</p>
                     <small class="text-muted">- {{ testimonial.user.username }}</small>
+                    <br>
+                    <small class="text-muted">{{ testimonial.created_at|date:"d/m/Y g:i A" }}</small>
                 </div>
             </div>
         {% endfor %}

@@ -21,7 +21,25 @@
 
 .navbar {
     background: var(--clr-dark);
-    opacity: 0.8;
+}
+
+/* Navbar styling */
+.navbar[data-bs-theme="dark"] {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    border-bottom: 2px solid #4a148c;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-text {
+    color: #ffffff;
 }
 
 body {
@@ -55,23 +73,47 @@ main {
 .home-image-container {
     width: 100%;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     padding: 0 10px;
+}
+
+/* Appointment booking header with purple background */
+.appointment-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom purple button */
+.btn-purple {
+    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
+    border: 2px solid #4a148c;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-purple:hover {
+    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
+    border-color: #2d1b69;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
 }
 
 /* Footer */
 .footer {
-    background: black;
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
     color: white;
     text-align: center;
     padding: 20px 0;
     flex-shrink: 0;
     margin-top: auto;
-}
-
-.footer {
+    border-top: 2px solid #4a148c;
     margin-bottom: 0;
-    opacity: 0.8;
 }
 
 .upload-btn {

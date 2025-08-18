@@ -138,9 +138,25 @@ main {
 }
 
 /* Card header styling for User Profile */
-.card-header {
-    background-color: #b5b5b51f !important;
+.card .card-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
     border-bottom: 2px solid #4a148c;
+    color: white;
+    padding: 0.1rem 1rem !important;
+}
+
+/* Make h1 in card headers smaller for better proportions */
+.card .card-header h1 {
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Make h3 in card headers smaller for better proportions */
+.card .card-header h3 {
+    font-size: 1.25rem !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
 }
 
 /* Card borders styling */
@@ -272,4 +288,9 @@ main {
 .calendar-date:not(.booked) {
     background-color: #f1f8e9;
     color: var(--clr-green);
+}
+
+/* Contact page spacing */
+.contact-container {
+    margin-top: 100px;
 }

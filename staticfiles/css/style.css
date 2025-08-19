@@ -20,7 +20,9 @@
 }
 
 .navbar {
-    background: var(--clr-dark);
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
+    border-bottom: 2px solid #4a148c !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Navbar styling */
@@ -54,8 +56,28 @@ main {
 }
 
 .main-content {
-    padding: 80px 0 40px 0;
-    margin-top: 67px;
+    padding: 80px 0 20px 0;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Add gap above form in index.html */
+.main-content form {
+    margin-top: 1rem;
+}
+
+/* Appointment form spacing */
+.appointment-form {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Tighter spacing for booking page */
+.booking-content {
+    padding: 20px 0 20px 0;
+    margin-bottom: 2rem;
     flex: 1;
     background-color: rgb(255, 255, 255);
 }
@@ -72,7 +94,7 @@ main {
 
 .home-image-container {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0 10px;
 }
@@ -82,7 +104,7 @@ main {
     background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
     color: white;
     padding: 2rem 0;
-    margin-bottom: 2rem;
+    margin-top: 67px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -104,6 +126,87 @@ main {
     box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
 }
 
+/* Profile page header styling */
+.profile-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Page header styling for Personal Information in profile.html */
+.page-header {
+    margin-top: 1.5rem;
+}
+
+/* Card header styling for User Profile */
+.card .card-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
+    border-bottom: 2px solid #4a148c;
+    color: white;
+    padding: 0.1rem 1rem !important;
+}
+
+/* Make h1 in card headers smaller for better proportions */
+.card .card-header h1 {
+    font-size: 1.5rem !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Make h3 in card headers smaller for better proportions */
+.card .card-header h3 {
+    font-size: 1.25rem !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Card borders styling */
+.card {
+    border: 2px solid #4a148c !important;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Profile buttons styling */
+.btn-outline-primary {
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    border: 2px solid #4a148c;
+    color: white !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
+    border-color: #2d1b69;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
+}
+
+/* Delete button styling */
+.btn-outline-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: 2px solid #dc3545;
+    color: white !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
+    border-color: #c82333;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
 /* Footer */
 .footer {
     background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
@@ -118,15 +221,22 @@ main {
 
 .upload-btn {
     display: inline-block;
-    background-color: var(--clr-dark);
-    color: var(--primary-color);
+    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+    color: white !important;
     padding: 0.6rem 1.2rem;
     border-radius: 0.3rem;
     cursor: pointer;
+    border: 2px solid #4a148c;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .upload-btn:hover {
-    background-color: #2130ff;
+    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
+    border-color: #2d1b69;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
 }
 
 /* Styles for booking calendar */
@@ -186,11 +296,34 @@ main {
     color: var(--clr-green);
 }
 
+/* Contact page spacing */
+.contact-container {
+    margin-top: 100px;
+}
+
+/* Testimonials page spacing */
+.testimonials-container {
+    margin-top: 0.5rem;
+}
+
+/* Main page header with full-width and navbar styling */
+.main-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 67px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+/* Testimonials page header with full-width purple background */
 .testimonials-header {
     background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
     color: white;
     padding: 2rem 0;
     margin-top: 67px;
+    margin-bottom: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
 }

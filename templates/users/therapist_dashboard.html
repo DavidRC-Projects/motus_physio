@@ -4,10 +4,19 @@
 {% block title %}Therapist Dashboard{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-5">Therapist Dashboard</h1>
-    <!-- Appointments Section -->
-    <div class="row mb-5">
+<!-- Therapist Dashboard Header -->
+<div class="main-header">
+    <div class="container">
+        <h1 class="text-center">Therapist Dashboard</h1>
+        <p class="text-center">Manage appointments and respond to patient messages</p>
+    </div>
+</div>
+
+<!-- Dashboard Content -->
+<div class="main-content">
+    <div class="container">
+        <!-- Appointments Section -->
+        <div class="row mb-5">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -63,5 +72,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

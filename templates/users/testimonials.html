@@ -4,20 +4,28 @@
 {% block title %}Testimonials{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Testimonials</h1>
-    
+<!-- Testimonials Header -->
+<div class="testimonials-header">
+    <div class="container">
+        <h1 class="text-center">Testimonials</h1>
+        <p class="text-center">Share your experience and read what others have to say</p>
+    </div>
+</div>
+
+<div class="container testimonials-container">
     <!-- Testimonial Form -->
     {% if user.is_authenticated %}
         <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Add Your Testimonial</h5>
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Add Your Testimonial</h5>
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
                         <textarea class="form-control" name="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                    <button type="submit" class="btn btn-outline-primary">Submit Testimonial</button>
                 </form>
             </div>
         </div>

@@ -327,3 +327,26 @@ main {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .main-header,
+    .appointment-header,
+    .testimonials-header {
+        margin-top: 80px;
+    }
+    
+    .calendar-container {
+        margin-top: 120px !important;
+    }
+}
+
+/* Additional mobile fix for very small devices */
+@media (max-width: 576px) {
+    .main-header,
+    .appointment-header,
+    .testimonials-header {
+        padding-top: 120px !important;
+        margin-top: 0 !important;
+    }
+}

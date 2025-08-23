@@ -30,8 +30,37 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 
 ## Feature Planning
 
- |User Type | Feature | Importance | Viability |  | Delivered |
-| :--- | :--- | :---: | :---: | :---: | :---: |
+| User Type   | Feature                          | Importance | Viability | MVP |
+| :---------- | :------------------------------- | :--------: | :-------: | :-: |
+| User       | Sign up for an account           |     5      |     5     | MVP |
+| User       | Log in to existing account       |     5      |     5     | MVP |
+| User        | Email Verification               |     3      |     3     |   |
+| User        | Password Recovery                |     3      |     3     |   |
+| User        | Account Recovery                 |     3      |     3     |   |
+| User        | User Profile Management          |     4      |     5     | MVP |
+| User        | Profile Picture Upload           |     3      |     5     | MVP |
+| User        | Surgery Type Information         |     4      |     5     | MVP |
+| User        | Book Appointments                |     5      |     5     | MVP |
+| User        | View Appointment Status          |     5      |     5     | MVP |
+| User        | Amend Appointments               |     5      |     5     | MVP |
+| User        | Cancel Appointments              |     5      |     5     | MVP |
+| User        | Visual Calendar View             |     4      |     4     | MVP |
+| User        | Contact Healthcare Professionals |     5      |     5     | MVP |
+| User        | Send Messages                    |     5      |     5     | MVP |
+| User        | View Message Replies             |     5      |     5     | MVP |
+| User        | Submit Testimonials              |     3      |     5     | MVP |
+| User        | Read Other Testimonials          |     3      |     5     | MVP |
+| User        | Delete Own Testimonials          |     3      |     5     | MVP |
+| Admin       | View All Appointments            |     5      |     5     | MVP |
+| Admin       | Confirm Appointments             |     5      |     5     | MVP |
+| Admin       | Mark Appointments Complete       |     5      |     5     | MVP |
+| Admin       | View Unreplied Messages          |     5      |     5     | MVP |
+| Admin       | Reply to User Messages           |     5      |     5     | MVP |
+| Admin       | Therapist Dashboard               |     5      |     5     | MVP |
+| All         | Responsive Navigation            |     5      |     5     | MVP |
+| All         | Mobile-Friendly Design           |     5      |     5     | MVP |
+| All         | Date/Time Validation             |     5      |     5     | MVP |
+| All         | Past Date Prevention             |     5      |     5     | MVP |
 
 ### User Stories
 

@@ -6,9 +6,9 @@
     <h1>View Appointments</h1>
      <!-- Month/Year Navigation -->
       <div>
-        <a href="?month={{ month|add:'-1' }}&year={{ year }}">Forward</a>
+        <a href="?month={{ month|add:'-1' }}&year={{ year }}"><i class="fa-solid fa-arrow-left"></i></a>
         <strong>{{ month_name }} {{ year }}</strong>
-        <a href="?month={{ month|add:'1' }}&year={{ year }}">Back</a>
+        <a href="?month={{ month|add:'1' }}&year={{ year }}"><i class="fa-solid fa-arrow-right"></i></a>
     </div>
     <div>
         <table class="calendar-table">

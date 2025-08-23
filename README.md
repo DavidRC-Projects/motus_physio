@@ -41,24 +41,22 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 | :--- | :--- | :--- | :---|
 | Navigation bar | user | view and interact with the navigation bar | I can easily access different parts of the website from any page |
 | User login and logout | user | securely log in and log out of the application | I can access my account and protect my data|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
-| :--- | :--- | :--- | :---|
+| Register an account | user | register an account | securely log in and book my appointment |
+| Profile view | user | view and edit my profile details | manage my personal data |
+| Book an appointment | user | book an appointment | speak to a HCP |
+| View appointment status | user | see the status of each appointment | know if an appointment has been booked |
+| Amend an appointment | user | change the time of the appointment | have flexibility when booking|
+| Contact | user | send messages to healthcare professionals | get advice and support about my post-operative recovery |
+| Testimonials | user | share my recovery experience and read others' stories | help other users and build trust in the service |
+| View appointments | Admin | see all patient appointments in the system | manage the appointment schedule |
+| View messages | Admin | see all patient messages that need responses | provide timely support and advice to users |
+| Reply to messages | Admin | respond to patient messages and concerns | users get a bespoke response from the therapist in a timely manner |
+| Appointment marked as confirmed | Admin | approve and confirm patient appointments | ensure users know their appointments are confirmed |
+| Appointment marked as complete | Admin | mark appointments as finished | track user care progress and maintain records |
 
-Acceptance Criteria
-Navigation bar
+#### **Acceptance Criteria**
+
+**Navigation bar**
 1. The navbar should be visible on all pages.
 2. There should be clearly labeled links (Home, Profile, Bookings, Register and Logout).
 3. The active page should be highlighted.
@@ -68,12 +66,135 @@ Navigation bar
 5. The navbar should be responsive to different devices with a drop down for smaller screens.
 6. Clicking the navbar links should take the user to the correct page.
 
-Login and logout
-1. The user can login to their account.
+**Login and logout**
+1. The user can login to their account using username/email and password.
 2. When logged in the user should be redirected to the homepage.
-3. When logged in the login and register page should not be visible and replaced with 4. logout.
-5. There should be feedback that i am logged in with my name.
-6. The user can log out of the account.
+3. When logged in the login and register page should not be visible and replaced with logout.
+4. There should be feedback that I am logged in with my name displayed in the navbar.
+5. The user can log out of the account securely.
+6. After logout, the user should be redirected to the homepage.
+7. Login form should validate required fields and show appropriate error messages.
+8. Failed login attempts should show clear error messages without revealing sensitive information.
+
+**Register an account**
+1. The user can register an account with username, email, and password.
+2. Account should be created when valid details are added.
+3. Error message should be sent for duplicate email addresses.
+4. Should prompt user with an error message when the user enters blank fields.
+5. The user should have feedback that the account has been registered successfully.
+6. Password should meet minimum security requirements.
+7. Username should be unique across the system.
+8. Email should be in valid format and unique.
+9. User should be automatically logged in after successful registration.
+10. UserProfile should be automatically created upon registration.
+
+**Profile View**
+1. Display data including name, email, profile picture, type of surgery and account creation date.
+2. Details can be saved and updated in real-time.
+3. Displays an error if request fails.
+4. If I'm not logged in then it should redirect me back to the login page.
+5. A picture can be uploaded.
+6. The user can change their photo by uploading a new one.
+7. The user can delete their photo and return to default placeholder.
+8. Gives feedback when the user makes a change with success messages.
+9. Surgery type field should allow free text input for various surgery types.
+10. Profile should be accessible only to the logged-in user.
+
+**Book an Appointment**
+1. Booking page should have a date/time selection and submit button.
+2. Times that are already selected should show an error message when the user attempts to book.
+3. Successful booking should show a confirmation message and appointment status set to pending.
+4. The user can only input times in 30 minute increments.
+5. Times can only be from 9am to 9pm, available all days of the week.
+6. The user will see all appointments on a visual calendar.
+7. The user should be prevented from selecting past dates.
+8. Appointment type selection should include Initial Consultation and Follow Up options.
+9. Notes field should be optional for additional information.
+10. Form validation should check all required fields before submission.
+11. User should be redirected to their profile after successful booking.
+12. Calendar should update immediately to show the new booking.
+
+
+**View Appointment Status**
+1. The list of appointments should display current status (Pending, Confirmed, Completed).
+2. Each appointment should show date, time, type, and current status clearly.
+3. Status should be colour-coded for easy identification (e.g., Pending=Yellow, Confirmed=Green, Completed=Blue).
+4. Appointment details should include notes and creation timestamp.
+5. Calendar view should show appointment status.
+
+**Amend an Appointment**
+1. I should be able to update the time/date through an edit form.
+2. The updated appointment should retain pending status with new time/date.
+3. I should receive feedback if I book/amend.
+4. The amended booking should appear in the upcoming bookings on the dashboard and remove the old booking.
+5. Validation should prevent booking in the past or on unavailable dates.
+6. User should receive confirmation when appointment is successfully amended.
+7. Calendar should update immediately to reflect the change.
+8. Original appointment should be completely replaced, not duplicated.
+9. Edit should maintain the same appointment ID.
+
+**Cancel an Appointment**
+1. User profile should show list of upcoming appointments.
+2. Appointments can be cancelled by the user or changed to another date.
+3. When appointment cancelled it should no longer appear in the upcoming appointments list.
+4. The user should get feedback when an appointment is cancelled.
+5. The visual calendar will update the changes of any cancellation.
+6. Cancel action should require user confirmation to prevent accidental cancellations.
+7. Cancelled appointments should be removed from the system completely.
+
+**Contact**
+1. Users can send messages to healthcare professionals through a contact form.
+2. The contact form should include subject and message fields.
+3. Users can view their own sent messages and any replies received.
+4. Users can delete their own messages and replies.
+5. Messages are displayed in chronological order with timestamps.
+6. Users receive confirmation when messages are sent successfully.
+7. The contact page should be accessible from the navigation menu.
+8. Users must be logged in to send messages.
+
+**Testimonials**
+1. Users can submit their own testimonials about their recovery experience.
+2. Testimonials should include a text area for the testimonial content.
+3. Users can view all testimonials from other patients.
+4. Users can delete their own testimonials.
+5. Testimonials should display the username and timestamp.
+6. Users must be logged in to submit testimonials.
+7. The testimonials page should be accessible from the navigation menu.
+
+**Admin - View Appointments**
+1. Admin users can see all patient appointments in the system.
+2. Appointments should display user details, date, time, type, and status.
+3. Appointments should be sorted by date and time.
+4. Admin can filter appointments by status (pending, confirmed, completed).
+5. Admin can search appointments by patient name or date.
+6. The admin dashboard should be accessible only to staff users.
+7. Appointments should show creation and update timestamps.
+
+**Admin - View Messages**
+1. Admin users can see all patient messages that need responses.
+2. Messages should display sender details, subject, content, and timestamp.
+3. Only unreplied messages should be visible in the dashboard.
+4. Messages should be sorted by creation date.
+5. Messages that have been replied to should be hidden from the dashboard.
+
+**Admin - Reply to Messages**
+1. Admin users can respond to patient messages through a reply form.
+2. Reply form should include a text input field for the response.
+3. When a reply is sent, the original message should be marked as replied to.
+4. Replies should be linked to their parent messages for conversation threading.
+5. Admin should receive confirmation when replies are sent successfully.
+6. After replying, messages should no longer appear in the "needs reply" dashboard.
+7. Reply timestamps should be recorded for tracking response times.
+
+**Admin - Mark Appointment as confirmed**
+1. Admin can change appointment status from pending to confirmed.
+2. Status changes should be reflected immediately in the user dashboard.
+3. Admin can only modify appointment status.
+
+**Admin - Mark Appointment as complete**
+1. Admin can mark appointments as completed after they finish.
+2. Status changes should be reflected immediately in the user dashboard.
+3. Admin can only modify appointment status.
 
 #### **Database Schema**
 

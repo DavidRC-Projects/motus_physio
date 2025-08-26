@@ -7,27 +7,28 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Sign In" %}</h3>
-
-            <p>{% blocktrans %}Welcome back to the code|star blog. To leave a comment or like a post, please log in. If
-                you
-                have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-                first.{% endblocktrans %}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <form class="login" method="POST" action="{% url 'account_login' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans "Sign In" %}</button>
-            </form>
+<div class="main-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="text-center mb-0">{% trans "Sign In" %}</h3>
+                </div>
+                <div class="card-body">
+                    <p class="text-center mb-4">{% blocktrans %}Welcome back to Motus Physio. To book appointments or manage your account, please log in.
+                        {% endblocktrans %}</p>
+                    
+                    <form class="login" method="POST" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                        {% endif %}
+                        <button class="btn btn-purple right" type="submit">{% trans "Sign In" %}</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

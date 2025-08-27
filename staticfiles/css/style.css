@@ -56,7 +56,7 @@ main {
 }
 
 .main-content {
-    padding: 80px 0 20px 0;
+    padding: 20px 0 20px 0;
     margin-top: 1rem;
     margin-bottom: 2rem;
     flex: 1;
@@ -104,7 +104,6 @@ main {
     background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
     color: white;
     padding: 2rem 0;
-    margin-top: 67px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -211,12 +210,29 @@ main {
 .footer {
     background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
     color: white;
-    text-align: center;
     padding: 20px 0;
     flex-shrink: 0;
     margin-top: auto;
     border-top: 2px solid #4a148c;
     margin-bottom: 0;
+    text-align: center;
+}
+
+/* Social Media Links */
+.social-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-link {
+    color: white;
+    font-size: 24px;
+    margin: 0 20px;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: white;
 }
 
 .upload-btn {
@@ -352,17 +368,29 @@ main {
         margin-top: 80px;
     }
     
-    .calendar-container {
+        .calendar-container {
         margin-top: 120px !important;
     }
-}
-
-/* Additional mobile fix for very small devices */
-@media (max-width: 576px) {
+    
     .main-header,
-    .appointment-header,
-    .testimonials-header {
-        padding-top: 120px !important;
-        margin-top: 0 !important;
+    .appointment-header {
+        margin-top: 0;
+    }
+    
+    .appointment-header {
+        padding: 20px 0 20px 0;
+    }
+    
+    .appointment-header .container {
+        margin-top: 0;
+        padding-top: 0;
+    }
+    
+    .main-header {
+        padding-top: 120px;
+    }
+    
+    .main-content {
+        padding: 20px 0 20px 0;
     }
 }

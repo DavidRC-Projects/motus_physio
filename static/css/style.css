@@ -369,17 +369,25 @@ main {
         margin-top: 80px;
     }
     
-    .calendar-container {
+        .calendar-container {
         margin-top: 120px !important;
     }
-}
-
-/* Additional mobile fix for very small devices */
-@media (max-width: 576px) {
+    
     .main-header,
-    .appointment-header,
-    .testimonials-header {
-        padding-top: 120px !important;
-        margin-top: 0 !important;
+    .appointment-header {
+        margin-top: 0;
+    }
+    
+    .appointment-header {
+        padding: 20px 0 20px 0;
+    }
+    
+    .appointment-header .container {
+        margin-top: 0;
+        padding-top: 0;
+    }
+    
+    .main-header {
+        padding-top: 120px;
     }
 }

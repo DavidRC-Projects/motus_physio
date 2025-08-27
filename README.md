@@ -266,5 +266,25 @@ Entity Relationship Diagrams (ERD's)
 
 
 
+
+
 https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield
+
+## General Features of the Site
+
+Each page of the site shares the following:
+
+* **Favicon** - I used [Favicon.io](https://favicon.io/) to create the favicon for the site.
+
+  ![Motus Physio Favicon](static/images/motusfavicon.png)
+
+* **Navbar** - The navbar on the site is split into two sections, the first section contains the Motus Physio logo and navigation links. The second section contains the main site navigation including Home, Profile, Bookings, Testimonials, and Contact. The navbar is fully responsive, and utilises a hamburger menu toggle on smaller screens.
+
+  The navigation links have smooth transitions and hover effects that give the user additional feedback when interacting with the menu. The navbar adapts to show different options depending on whether a user is logged in or not.
+
+  ![Large Navbar](static/images/motusnavbar.png)
+
+* **Footer** - The footer contains information about Motus Physio, including contact details and social media links. The footer is fully responsive and uses the same purple gradient theme as the navbar to maintain visual consistency throughout the site.
+
+  ![Site Footer](static/images/motusfooter.png)
 

@@ -56,7 +56,7 @@ main {
 }
 
 .main-content {
-    padding: 80px 0 20px 0;
+    padding: 20px 0 20px 0;
     margin-top: 1rem;
     margin-bottom: 2rem;
     flex: 1;
@@ -104,7 +104,6 @@ main {
     background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
     color: white;
     padding: 2rem 0;
-    margin-top: 67px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -389,5 +388,9 @@ main {
     
     .main-header {
         padding-top: 120px;
+    }
+    
+    .main-content {
+        padding: 20px 0 20px 0;
     }
 }

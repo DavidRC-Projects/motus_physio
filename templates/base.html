@@ -56,19 +56,19 @@
             <ul class="navbar-nav ms-auto mb-md-0">
               <!-- Home -->
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">
+                <a class="nav-link {% if request.path == '/' %}active{% endif %}" {% if request.path == '/' %}aria-current="page"{% endif %} href="/">
                   Home
                 </a>
               </li>
               <!-- Profile -->
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' %}">
+                <a class="nav-link {% if request.path == '/profile/' %}active{% endif %}" {% if request.path == '/profile/' %}aria-current="page"{% endif %} href="{% url 'profile' %}">
                   Profile
                 </a>
               </li>
               <!-- Appointments -->
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle {% if request.path == '/booking/' or request.path == '/view-booking/' %}active{% endif %}" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Appointments
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end mb-2">
@@ -79,20 +79,20 @@
               </li>
               <!-- Contact -->
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'message_practitioner' %}">
+                <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" {% if request.path == '/contact/' %}aria-current="page"{% endif %} href="{% url 'message_practitioner' %}">
                   Contact
                 </a>
               </li>
               <!-- Testimonials -->
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'testimonials' %}">
+                <a class="nav-link {% if request.path == '/testimonials/' %}active{% endif %}" {% if request.path == '/testimonials/' %}aria-current="page"{% endif %} href="{% url 'testimonials' %}">
                   Testimonials
                 </a>
               </li>
               <!-- Therapist Dashboard (Healthcare Professionals Only) -->
               {% if user.is_authenticated and user.is_staff %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'therapist_dashboard' %}">
+                <a class="nav-link {% if request.path == '/therapist-dashboard/' %}active{% endif %}" {% if request.path == '/therapist-dashboard/' %}aria-current="page"{% endif %} href="{% url 'therapist_dashboard' %}">
                   Therapist Dashboard
                 </a>
               </li>
@@ -100,14 +100,14 @@
               <!-- Authentication Links -->
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                <a class="nav-link {% if request.path == logout_url %}active{% endif %}" {% if request.path == logout_url %}aria-current="page"{% endif %} href="{% url 'account_logout' %}">Logout</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                <a class="nav-link {% if request.path == signup_url %}active{% endif %}" {% if request.path == signup_url %}aria-current="page"{% endif %} href="{% url 'account_signup' %}">Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                <a class="nav-link {% if request.path == login_url %}active{% endif %}" {% if request.path == login_url %}aria-current="page"{% endif %} href="{% url 'account_login' %}">Login</a>
               </li>
               {% endif %}
             </ul>

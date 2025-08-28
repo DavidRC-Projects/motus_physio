@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
 
@@ -98,6 +99,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = False
+
+# Message constants for consistent alert styling
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'alert-success',
+    messages.ERROR: 'alert-danger',
+    messages.INFO: 'alert-info',
+}
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 

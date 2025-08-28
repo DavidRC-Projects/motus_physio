@@ -12,39 +12,57 @@
 :root {
     --primary-font: "Marvel", sans-serif;
     --secondary-font: "Montserrat", sans-serif;
-    --primary-color: #ffffff;
+    
+    /* Base colours */
+    --clr-white: #ffffff;
     --clr-dark: #000000;
+    
+    /* Purple theme colours */
+    --clr-purple-dark: #2d1b69;
+    --clr-purple-medium: #4a148c;
+    --clr-purple-light: rgba(74, 20, 140, 0.3);
+    
+    /* Blue Colours */
     --clr-blue: #0000ff;
     --clr-light-blue: #e3f2fd;
+    
+    /* Green Colours */
     --clr-green: #2e7d32;
+    --clr-light-green: #f1f8e9;
+    
+    /* Red/Danger Colours */
+    --clr-red: #dc3545;
+    --clr-red-dark: #c82333;
+    --clr-red-shadow: rgba(220, 53, 69, 0.3);
+    
+    /* Gray/Neutral Colours */
+    --clr-gray-light: #f8f9fa;
+    
+    /* Shadow Colours */
+    --clr-shadow-light: rgba(0, 0, 0, 0.2);
+    --clr-shadow-medium: rgba(0, 0, 0, 0.3);
+    --clr-shadow-dark: rgba(0, 0, 0, 0.5);
 }
 
+/* Navigation bar styling */
 .navbar {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
-    border-bottom: 2px solid #4a148c !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Navbar styling */
-.navbar[data-bs-theme="dark"] {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
-    border-bottom: 2px solid #4a148c;
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    border-bottom: 2px solid var(--clr-purple-medium);
+    box-shadow: 0 4px 12px var(--clr-shadow-medium);
 }
 
 .navbar-brand {
-    color: #ffffff;
+    color: var(--clr-white);
     font-weight: bold;
     font-family: var(--primary-font);
 }
 
 .navbar-nav .nav-link {
-    color: #ffffff;
-    font-family: var(--secondary-font);
+    color: var(--clr-white);
 }
 
 .navbar-text {
-    color: #ffffff;
-    font-family: var(--secondary-font);
+    color: var(--clr-white);
 }
 
 body {
@@ -59,38 +77,58 @@ main {
     flex: 1 0 auto;
 }
 
+/* Card borders styling */
+.card {
+    border: 2px solid var(--clr-purple-medium);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Style for main heading inside a card header */
+.card .card-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.2;
+    font-family: var(--primary-font);
+}
+
+.card .card-header h2 {
+    font-size: 1.35rem;
+    margin: 0;
+    line-height: 1.2;
+    font-family: var(--primary-font);
+}
+
+/* Style for subheading inside a card header */
+.card .card-header h3 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-family: var(--primary-font);
+}
+
 .main-content {
     padding: 20px 0 20px 0;
     margin-top: 1rem;
     margin-bottom: 2rem;
     flex: 1;
-    background-color: rgb(255, 255, 255);
-    font-family: var(--secondary-font);
+    background-color: var(--clr-white);
 }
 
-/* Add gap above form in index.html */
-.main-content form {
-    margin-top: 1rem;
-    font-family: var(--secondary-font);
+/* Home page styling */
+/* Home page header styling */
+.main-header {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-medium) 100%);
+    color: var(--clr-white);
+    padding: 2rem 0;
+    margin-top: 67px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px var(--clr-shadow-light);
+    width: 100%;
+    font-family: var(--primary-font);
 }
 
-/* Appointment form spacing */
-.appointment-form {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    font-family: var(--secondary-font);
-}
-
-/* Tighter spacing for booking page */
-.booking-content {
-    padding: 20px 0 20px 0;
-    margin-bottom: 2rem;
-    flex: 1;
-    background-color: rgb(255, 255, 255);
-    font-family: var(--secondary-font);
-}
-
-/* Styles for image in index.html */
+/* Styles for image in home page */
 .home-image {
     width: 100%;
     height: 400px;
@@ -107,48 +145,31 @@ main {
     padding: 0 10px;
 }
 
-/* Appointment booking header with purple background */
+/* Home page header styling for appointment booking section */
 .appointment-header {
-    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-medium) 100%);
+    color: var(--clr-white);
     padding: 2rem 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 67px;
+    box-shadow: 0 4px 12px var(--clr-shadow-light);
     font-family: var(--primary-font);
 }
 
-/* Custom purple button */
-.btn-purple {
-    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
-    border: 2px solid #4a148c;
-    color: white;
-    font-weight: bold;
-    padding: 0.75rem 2rem;
-    transition: all 0.3s ease;
-    font-family: var(--secondary-font);
-}
-
-.btn-purple:hover {
-    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
-    border-color: #2d1b69;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
-}
-
+/* Profile page styling */
 /* Profile page header styling */
 .profile-header {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    color: var(--clr-white);
     padding: 1rem;
     border-radius: 8px;
     text-align: center;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--clr-shadow-light);
     font-family: var(--primary-font);
 }
 
-/* Page header styling for Personal Information in profile.html */
+/* Page header styling for Personal Information */
 .page-header {
     margin-top: 1.5rem;
     font-family: var(--primary-font);
@@ -156,123 +177,31 @@ main {
 
 /* Card header styling for User Profile */
 .card .card-header {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%) !important;
-    border-bottom: 2px solid #4a148c;
-    color: white;
-    padding: 0.1rem 1rem !important;
-}
-
-/* Make h1 in card headers smaller for better proportions */
-.card .card-header h1 {
-    font-size: 1.5rem !important;
-    margin: 0 !important;
-    line-height: 1.2 !important;
-    font-family: var(--primary-font);
-}
-
-/* Make h3 in card headers smaller for better proportions */
-.card .card-header h3 {
-    font-size: 1.25rem !important;
-    line-height: 1.2 !important;
-    font-family: var(--primary-font);
-}
-
-/* Card borders styling */
-.card {
-    border: 2px solid #4a148c !important;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-/* Profile buttons styling */
-.btn-outline-primary {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
-    border: 2px solid #4a148c;
-    color: white !important;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    font-family: var(--secondary-font);
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    border-bottom: 2px solid var(--clr-purple-medium);
+    color: var(--clr-white);
+    padding: 0.1rem 1rem;
 }
 
 .btn-outline-primary:hover {
-    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
-    border-color: #2d1b69;
-    color: white !important;
+    background: linear-gradient(135deg, var(--clr-purple-medium) 0%, var(--clr-purple-dark) 100%);
+    border-color: var(--clr-purple-dark);
+    color: var(--clr-white);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
+    box-shadow: 0 4px 12px var(--clr-purple-light);
 }
 
-/* Delete button styling */
-.btn-outline-danger {
-    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-    border: 2px solid #dc3545;
-    color: white !important;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    font-family: var(--secondary-font);
+/* Appointment booking page styling */
+/* Main container for appointment booking page */
+.booking-content {
+    padding: 20px 0 20px 0;
+    margin-bottom: 2rem;
+    flex: 1;
+    background-color: var(--clr-white);
 }
 
-.btn-outline-danger:hover {
-    background: linear-gradient(135deg, #c82333 0%, #dc3545 100%);
-    border-color: #c82333;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
-    color: white;
-    padding: 20px 0;
-    flex-shrink: 0;
-    margin-top: auto;
-    border-top: 2px solid #4a148c;
-    margin-bottom: 0;
-    text-align: center;
-    font-family: var(--primary-font);
-}
-
-/* Social Media Links */
-.social-links {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.social-link {
-    color: white;
-    font-size: 24px;
-    margin: 0 20px;
-    text-decoration: none;
-    font-family: var(--secondary-font);
-}
-
-.social-link:hover {
-    color: white;
-}
-
-.upload-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
-    color: white !important;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.3rem;
-    cursor: pointer;
-    border: 2px solid #4a148c;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.upload-btn:hover {
-    background: linear-gradient(135deg, #4a148c 0%, #2d1b69 100%);
-    border-color: #2d1b69;
-    color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 20, 140, 0.3);
-}
-
-/* Styles for booking calendar */
+/*  View appointments page styling */
+/* Styles for booking calendar in view appointments page */
 
 /* Calendar container */
 .calendar-container {
@@ -291,7 +220,7 @@ main {
 .calendar-header {
     padding: 10px;
     border: 2px solid var(--clr-dark);
-    background-color: #f8f9fa;
+    background-color: var(--clr-gray-light);
     font-family: var(--primary-font);
     font-weight: bold;
 }
@@ -311,7 +240,7 @@ main {
 .calendar-empty {
     padding: 10px;
     border: 1px solid var(--clr-dark);
-    background-color: #f8f9fa;
+    background-color: var(--clr-gray-light);
     min-width: 40px;
     height: 40px;
 }
@@ -325,13 +254,43 @@ main {
 }
 
 .calendar-date:not(.booked) {
-    background-color: #f1f8e9;
+    background-color: var(--clr-light-green);
     color: var(--clr-green);
 }
 
+/* Calendar Navigation Arrow Styling */
+.calendar-container .fa-solid,
+.calendar-container i.fa-solid {
+    color: var(--clr-purple-medium);
+    font-size: 18px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px var(--clr-shadow-medium);
+}
+
+.calendar-container .fa-solid:hover,
+.calendar-container i.fa-solid:hover {
+    color: var(--clr-purple-dark);
+    font-size: 22px;
+    text-shadow: 2px 2px 4px var(--clr-shadow-dark);
+}
+
+/* Contact page styling */
 /* Contact page spacing */
 .contact-container {
     margin-top: 100px;
+}
+
+/* Testimonials page styling */
+/* Testimonials page header */
+.testimonials-header {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-medium) 100%);
+    color: var(--clr-white);
+    padding: 2rem 0;
+    margin-top: 67px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 12px var(--clr-shadow-light);
+    width: 100%;
+    font-family: var(--primary-font);
 }
 
 /* Testimonials page spacing */
@@ -339,56 +298,113 @@ main {
     margin-top: 0.5rem;
 }
 
-/* Main page header with full-width and navbar styling */
-.main-header {
-    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
-    color: white;
-    padding: 2rem 0;
-    margin-top: 67px;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 100%;
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    color: var(--clr-white);
+    padding: 20px 0;
+    flex-shrink: 0;
+    margin-top: auto;
+    border-top: 2px solid var(--clr-purple-medium);
+    margin-bottom: 0;
+    text-align: center;
     font-family: var(--primary-font);
 }
 
-/* Testimonials page header with full-width purple background */
-.testimonials-header {
-    background: linear-gradient(135deg, #2d1b69 0%, #4a148c 100%);
-    color: white;
-    padding: 2rem 0;
-    margin-top: 67px;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    font-family: var(--primary-font);
+/* Social Media Links */
+.social-links {
+    text-align: center;
+    margin-top: 20px;
 }
 
-/* Calendar Navigation Arrow Styling */
-.calendar-container .fa-solid,
-.calendar-container i.fa-solid {
-    color: #4a148c ;
-    font-size: 18px ;
+.social-link {
+    color: white;
+    font-size: 24px;
+    margin: 0 20px;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: white;
+}
+
+/* Button styling */
+/* Custom purple button to match theme */
+.btn-purple {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-medium) 100%);
+    border: 1px solid var(--clr-purple-medium);
+    color: var(--clr-white);
+    font-weight: bold;
+    padding: 0.75rem 2rem;
     transition: all 0.3s ease;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.calendar-container .fa-solid:hover,
-.calendar-container i.fa-solid:hover {
-    color: #2d1b69;
-    font-size: 22px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+.btn-purple:hover {
+    background: linear-gradient(135deg, var(--clr-purple-medium) 0%, var(--clr-purple-dark) 100%);
+    border-color: var(--clr-purple-dark);
+    color: var(--clr-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--clr-purple-light);
+}
+
+/* Profile buttons styling */
+.btn-outline-primary {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    border: 2px solid var(--clr-purple-medium);
+    color: var(--clr-white);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Upload button style */
+.upload-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
+    color: var(--clr-white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    border: 2px solid var(--clr-purple-medium);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background: linear-gradient(135deg, var(--clr-purple-medium) 0%, var(--clr-purple-dark) 100%);
+    border-color: var(--clr-purple-dark);
+    color: var(--clr-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--clr-purple-light);
+}
+
+/* Delete button styling */
+.btn-outline-danger {
+    background: linear-gradient(135deg, var(--clr-red) 0%, var(--clr-red-dark) 100%);
+    border: 2px solid var(--clr-red);
+    color: var(--clr-white);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    background: linear-gradient(135deg, var(--clr-red-dark) 0%, var(--clr-red) 100%);
+    border-color: var(--clr-red-dark);
+    color: var(--clr-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--clr-red-shadow);
 }
 
 /* Media query for mobile devices */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .main-header,
     .appointment-header,
     .testimonials-header {
         margin-top: 80px;
     }
     
-        .calendar-container {
-        margin-top: 120px !important;
+    .calendar-container {
+        margin-top: 120px;
     }
     
     .main-header,

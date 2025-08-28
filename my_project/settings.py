@@ -92,13 +92,6 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_LOGIN_ON_SIGNUP = True
 
-# Email settings for development sends a an email output to the console rather than sending an email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = False
-
-
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 

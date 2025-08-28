@@ -4,8 +4,12 @@ from cloudinary.models import CloudinaryField
 
 '''
 This model is to help store the user profile information.
-It's relationship allows each user have a unique profile.
-Cloudinary is used to store the users profile picture.
+It's relationship allows each user have a unique profile as
+it has a one to one relationship. 
+Cloudinary is used to store the users images.
+The surgery type is a dropdown menu to allow selection of the
+surgery type.
+This has automatic timestamps for creation and updates.
 '''
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -19,10 +23,13 @@ class UserProfile(models.Model):
 
 
 """
+Represents an appointment booked by the user.
 This model tracks the user's appointment when booking.
 It will track who made the appointment, the date, time,
 type of appointment, notes, and status.
-It will display 'appointment by the user on date entered'
+appointment_type can be initial consultation or follow up.
+This has automatic timestamps for creation and updates.
+It will display a string of 'Appointment by <user> on <date>'
 """
 class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='appointments')
@@ -47,7 +54,13 @@ class Appointment(models.Model):
 
 """
 This model stores messages between users and practitioners.
-It tracks the conversation thread and allows for replies.
+Each message is linked to a user.
+The 'message' stores the content of the message.
+The 'reply' is a boolean field to track if the message is a reply.
+The 'parent_message' allows one message to have multiple replies.
+The created_ at stores the timestamp when the message was created.
+The messages are ordered by most recent first using the class Meta.
+It will display a string that displays 'Messages from <username>: <subject>'.
 """
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='messages')
@@ -63,7 +76,15 @@ class Message(models.Model):
     def __str__(self):
         return f"Message from {self.user.username}: {self.subject}"
 
-
+"""
+This model stores testimonials submitted by users.
+Each testimonial is linked to a specific user.
+The 'testimonial' stores the actual feedback text provided by the user.
+The 'created_at' automatically records the date and time when the testimonial was first created.
+The 'updated_at' automatically updates whenever the testimonial is modified.
+The testimonials are ordered by creation date in descending order (newest first).
+It will display a string that displays 'Testimonial by <username>'.
+"""
 class Testimonials(models.Model):
     user =models.ForeignKey(User, on_delete=models.CASCADE, related_name='testimonials')
     testimonial = models.TextField(blank=False)

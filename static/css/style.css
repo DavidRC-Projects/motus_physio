@@ -115,6 +115,13 @@ main {
     background-color: var(--clr-white);
 }
 
+/* Logo styling */
+.rounded-circle {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
 /* Home page styling */
 /* Home page header styling */
 .main-header {

@@ -52,6 +52,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-family: var(--secondary-font);
 }
 
 main {
@@ -64,17 +65,20 @@ main {
     margin-bottom: 2rem;
     flex: 1;
     background-color: rgb(255, 255, 255);
+    font-family: var(--secondary-font);
 }
 
 /* Add gap above form in index.html */
 .main-content form {
     margin-top: 1rem;
+    font-family: var(--secondary-font);
 }
 
 /* Appointment form spacing */
 .appointment-form {
     margin-top: 1rem;
     margin-bottom: 2rem;
+    font-family: var(--secondary-font);
 }
 
 /* Tighter spacing for booking page */
@@ -83,6 +87,7 @@ main {
     margin-bottom: 2rem;
     flex: 1;
     background-color: rgb(255, 255, 255);
+    font-family: var(--secondary-font);
 }
 
 /* Styles for image in index.html */
@@ -119,6 +124,7 @@ main {
     font-weight: bold;
     padding: 0.75rem 2rem;
     transition: all 0.3s ease;
+    font-family: var(--secondary-font);
 }
 
 .btn-purple:hover {
@@ -186,6 +192,7 @@ main {
     color: white !important;
     font-weight: bold;
     transition: all 0.3s ease;
+    font-family: var(--secondary-font);
 }
 
 .btn-outline-primary:hover {
@@ -203,6 +210,7 @@ main {
     color: white !important;
     font-weight: bold;
     transition: all 0.3s ease;
+    font-family: var(--secondary-font);
 }
 
 .btn-outline-danger:hover {
@@ -237,6 +245,7 @@ main {
     font-size: 24px;
     margin: 0 20px;
     text-decoration: none;
+    font-family: var(--secondary-font);
 }
 
 .social-link:hover {

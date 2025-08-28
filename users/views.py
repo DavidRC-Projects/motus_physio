@@ -1,17 +1,26 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
 from django.contrib import messages
-import cloudinary.uploader
-from .models import Appointment, Message, Testimonials
+from .models import UserProfile, Appointment, Message, Testimonials
 from datetime import date
 from calendar import monthrange
+import cloudinary.uploader
 
 
 @login_required
 def booking(request):
+    """
+    Handle appointment booking for authenticated users.
+
+    **Context**
+
+    ``user_appointments``
+        All appointments for the current user, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/booking.html`
+    """
     if request.method == 'POST':
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
@@ -21,7 +30,6 @@ def booking(request):
         if not appointment_date or not appointment_time or not appointment_type:
             messages.error(request, 'Please fill in all required fields.')
         else:
-            # Check if this time slot is already booked
             existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
                 appointment_time=appointment_time
@@ -51,6 +59,13 @@ def booking(request):
 
 @login_required
 def index_booking(request):
+    """
+    Handle appointment booking from the home page.
+
+    **Template:**
+
+    :template:`index.html`
+    """
     if request.method == 'POST':
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
@@ -60,7 +75,6 @@ def index_booking(request):
         if not appointment_date or not appointment_time or not appointment_type:
             messages.error(request, 'Please fill in all required fields.')
         else:
-            # Check if this time slot is already booked
             existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
                 appointment_time=appointment_time
@@ -69,7 +83,7 @@ def index_booking(request):
             if existing_appointment:
                 messages.error(request, 'This time slot is already booked. Please choose a different time.')
             else:
-                appointment = Appointment.objects.create(
+                Appointment.objects.create(
                     user=request.user,
                     appointment_date=appointment_date,
                     appointment_time=appointment_time,
@@ -84,6 +98,20 @@ def index_booking(request):
 
 @login_required
 def profile(request):
+    """
+    Display and update user profile information.
+
+    **Context**
+
+    ``user``
+        The current authenticated user.
+    ``user_appointments``
+        Confirmed appointments for the current user, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/profile.html`
+    """
     user = request.user
 
     if request.method == 'POST':
@@ -106,6 +134,13 @@ def profile(request):
 
 @login_required
 def delete_photo(request):
+    """
+    Delete user's profile picture from Cloudinary storage.
+
+    **Template:**
+
+    Redirects to profile page after deletion.
+    """
     if request.method == 'POST':
         user = request.user
         try:
@@ -126,22 +161,47 @@ def delete_photo(request):
 
 @login_required
 def delete_appointment(request, appointment_id):
+    """
+    Delete a specific appointment for the authenticated user.
+
+    **Context**
+
+    ``appointment_id``
+        The ID of the appointment to delete.
+
+    **Template:**
+
+    Redirects to profile page after deletion.
+    """
     if request.method == 'POST':
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment.delete()
     return redirect('profile')
+
+
 @login_required
 def edit_appointment(request, appointment_id):
+    """
+    Edit an existing appointment for the authenticated user.
+    Prevents users from booking the same time slot twice.
+
+    **Context**
+
+    ``appointment_id``
+        The ID of the appointment to edit.
+
+    **Template:**
+
+    Redirects to view_booking page after editing.
+    """
     if request.method == 'POST':
         appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
-        
-        # Check if this time slot is already booked by another appointment
         existing_appointment = Appointment.objects.filter(
             appointment_date=appointment_date,
             appointment_time=appointment_time
-        ).exclude(id=appointment_id).first()  # Exclude the current appointment being edited
+        ).exclude(id=appointment_id).first()
         
         if existing_appointment:
             messages.error(request, 'This time slot is already booked. Please choose a different time.')
@@ -156,6 +216,13 @@ def edit_appointment(request, appointment_id):
 
 @login_required
 def surgery_type(request):
+    """
+    Update user's surgery type in their profile.
+
+    **Template:**
+
+    Redirects to profile page after updating.
+    """
     user = request.user
     if request.method == 'POST':
         surgery_type = request.POST.get('surgery_type')
@@ -174,6 +241,18 @@ def surgery_type(request):
 
 @login_required
 def view_booking(request):
+    """
+    Display all appointments for the authenticated user.
+
+    **Context**
+
+    ``user_appointments``
+        All appointments for the current user, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/view_booking.html`
+    """
     user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
     
     context = {
@@ -184,6 +263,28 @@ def view_booking(request):
 
 
 def booking_calendar_view(request):
+    """
+    Display a calendar view of user's appointments for a specific month.
+
+    **Context**
+
+    ``month``
+        The month number (1-12) to display.
+    ``year``
+        The year to display.
+    ``month_name``
+        The full name of the month.
+    ``days_in_month``
+        Total number of days in the month.
+    ``booked_days``
+        List of days that have appointments.
+    ``user_appointments``
+        All appointments for the current user in the selected month.
+
+    **Template:**
+
+    :template:`users/view_booking.html`
+    """
     month = int(request.GET.get('month', date.today().month))
     year = int(request.GET.get('year', date.today().year))
 
@@ -198,17 +299,12 @@ def booking_calendar_view(request):
                    'July', 'August', 'September', 'October', 'November', 'December']
     month_name = month_names[month - 1]
     days_in_month = monthrange(year, month)[1]
-
-    # Get current user's appointments for the selected month
     user_appointments = Appointment.objects.filter(
     user=request.user,
     appointment_date__year=year,
     appointment_date__month=month
     ).order_by('appointment_date')
-
-    # Create list of days that have appointments (for calendar display)
     booked_days = [appointment.appointment_date.day for appointment in user_appointments]
-
 
     context = {
         'month': month,
@@ -224,6 +320,18 @@ def booking_calendar_view(request):
 
 @login_required
 def message_practitioner(request):
+    """
+    Handle sending messages to practitioners and display user's message history.
+
+    **Context**
+
+    ``user_messages``
+        All messages sent by the current user, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/message_practitioner.html`
+    """
     if request.method == 'POST':
         subject = request.POST.get('subject')
         message = request.POST.get('message')
@@ -251,12 +359,24 @@ def message_practitioner(request):
 
 @login_required
 def therapist_dashboard(request):
-    """Simple dashboard for therapists to see appointments and messages"""
+    """
+    Display dashboard for therapists to view all appointments and patient messages.
+
+    **Context**
+
+    ``appointments``
+        All appointments in the system, ordered by creation date.
+    ``messages``
+        All unread patient messages, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/therapist_dashboard.html`
+    """
     if not request.user.is_staff:
         messages.error(request, 'Access denied. Therapist only.')
         return redirect('index')
     
-    # Get all appointments and messages
     all_appointments = Appointment.objects.all().order_by('-created_at')
     all_messages = Message.objects.filter(reply=False).order_by('-created_at')
     
@@ -270,6 +390,18 @@ def therapist_dashboard(request):
 
 @login_required
 def reply_to_message(request, message_id):
+    """
+    Allow therapists to reply to patient messages.
+
+    **Context**
+
+    ``message_id``
+        The ID of the message to reply to.
+
+    **Template:**
+
+    Redirects to therapist dashboard after replying.
+    """
     if request.method == 'POST':
         reply_text = request.POST.get('reply_message')
         if reply_text:
@@ -292,6 +424,18 @@ def reply_to_message(request, message_id):
 
 @login_required
 def delete_message(request, message_id):
+    """
+    Delete a specific message for the authenticated user.
+
+    **Context**
+
+    ``message_id``
+        The ID of the message to delete.
+
+    **Template:**
+
+    Redirects to message practitioner page after deletion.
+    """
     message = get_object_or_404(Message, id=message_id)
     message.delete()
     messages.success(request, 'Message deleted successfully.')
@@ -299,6 +443,18 @@ def delete_message(request, message_id):
 
 
 def testimonials(request):
+    """
+    Handle creating, displaying, and deleting user testimonials.
+
+    **Context**
+
+    ``testimonials``
+        All testimonials in the system, ordered by creation date.
+
+    **Template:**
+
+    :template:`users/testimonials.html`
+    """
     if request.method == 'POST':
         testimonial_text = request.POST.get('testimonial')
         if testimonial_text:
@@ -309,7 +465,6 @@ def testimonials(request):
             messages.success(request, 'Thank you! Your testimonial has been added.')
             return redirect('testimonials')
 
-        # Handle testimonial deletion
         delete_id = request.POST.get('delete_testimonial')
         if delete_id:
             testimonial = Testimonials.objects.get(id=delete_id, user=request.user)
@@ -317,7 +472,6 @@ def testimonials(request):
             messages.success(request, 'Testimonial deleted.')
             return redirect('testimonials')
     
-    # Get all testimonials from the database, ordered by newest first
     testimonials = Testimonials.objects.all().order_by('-created_at')
     
     context = {

@@ -266,10 +266,6 @@ Entity Relationship Diagrams (ERD's)
 
 
 
-
-
-https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield
-
 ## General Features of the Site
 
 Each page of the site shares the following:
@@ -288,3 +284,9 @@ Each page of the site shares the following:
 
   ![Site Footer](static/images/motusfooter.png)
 
+
+
+
+
+
+https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield

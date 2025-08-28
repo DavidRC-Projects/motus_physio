@@ -34,14 +34,17 @@
 .navbar-brand {
     color: #ffffff;
     font-weight: bold;
+    font-family: var(--primary-font);
 }
 
 .navbar-nav .nav-link {
     color: #ffffff;
+    font-family: var(--secondary-font);
 }
 
 .navbar-text {
     color: #ffffff;
+    font-family: var(--secondary-font);
 }
 
 body {
@@ -105,6 +108,7 @@ main {
     color: white;
     padding: 2rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: var(--primary-font);
 }
 
 /* Custom purple button */
@@ -135,11 +139,13 @@ main {
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: var(--primary-font);
 }
 
 /* Page header styling for Personal Information in profile.html */
 .page-header {
     margin-top: 1.5rem;
+    font-family: var(--primary-font);
 }
 
 /* Card header styling for User Profile */
@@ -155,13 +161,14 @@ main {
     font-size: 1.5rem !important;
     margin: 0 !important;
     line-height: 1.2 !important;
+    font-family: var(--primary-font);
 }
 
 /* Make h3 in card headers smaller for better proportions */
 .card .card-header h3 {
     font-size: 1.25rem !important;
-    margin: 0 !important;
     line-height: 1.2 !important;
+    font-family: var(--primary-font);
 }
 
 /* Card borders styling */
@@ -216,6 +223,7 @@ main {
     border-top: 2px solid #4a148c;
     margin-bottom: 0;
     text-align: center;
+    font-family: var(--primary-font);
 }
 
 /* Social Media Links */
@@ -331,6 +339,7 @@ main {
     margin-bottom: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
+    font-family: var(--primary-font);
 }
 
 /* Testimonials page header with full-width purple background */
@@ -342,6 +351,7 @@ main {
     margin-bottom: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
+    font-family: var(--primary-font);
 }
 
 /* Calendar Navigation Arrow Styling */

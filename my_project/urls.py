@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from users import views as users_views
-from register import views as register_views
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from users.models import UserProfile
@@ -30,7 +29,6 @@ urlpatterns = [
     path('profile/', users_views.profile, name='profile'),
     path('delete-photo/', users_views.delete_photo, name='delete_photo'),
     path('admin/', admin.site.urls),
-    path("register/", register_views.register, name="register"),
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),

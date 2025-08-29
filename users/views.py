@@ -262,6 +262,7 @@ def view_booking(request):
     return render(request, 'users/view_booking.html', context)
 
 
+@login_required
 def booking_calendar_view(request):
     """
     Display a calendar view of user's appointments for a specific month.

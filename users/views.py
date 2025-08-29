@@ -208,8 +208,10 @@ def edit_appointment(request, appointment_id):
         else:
             appointment.appointment_date = appointment_date
             appointment.appointment_time = appointment_time
+            appointment.status = 'pending'
+            appointment.needs_approval = True
             appointment.save()
-            messages.success(request, 'Appointment has been updated!')
+            messages.success(request, 'Appointment updated! Changes require admin approval.')
         
     return redirect('view_booking')
 
@@ -300,12 +302,20 @@ def booking_calendar_view(request):
                    'July', 'August', 'September', 'October', 'November', 'December']
     month_name = month_names[month - 1]
     days_in_month = monthrange(year, month)[1]
-    user_appointments = Appointment.objects.filter(
-    user=request.user,
-    appointment_date__year=year,
-    appointment_date__month=month
-    ).order_by('appointment_date')
-    booked_days = [appointment.appointment_date.day for appointment in user_appointments]
+    current_month_appointments = Appointment.objects.filter(
+        user=request.user,
+        appointment_date__year=year,
+        appointment_date__month=month
+    )
+    
+    approval_appointments = Appointment.objects.filter(
+        user=request.user,
+        needs_approval=True
+    )
+    
+    user_appointments = (current_month_appointments | approval_appointments).distinct().order_by('appointment_date')
+    
+    booked_days = [appointment.appointment_date.day for appointment in current_month_appointments]
 
     context = {
         'month': month,

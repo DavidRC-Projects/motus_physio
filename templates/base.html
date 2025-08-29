@@ -29,7 +29,7 @@
 
 </head>
 
-<body>
+<body class="{% if user.is_authenticated and user.is_staff %}admin-user{% endif %}">
 
     {% block navbar %}
     <!-- Navigation -->
@@ -105,7 +105,7 @@
               {% if user.is_authenticated %}
               <li class="nav-item d-flex align-items-center">
                 <a class="nav-link {% if request.path == logout_url %}active{% endif %}" {% if request.path == logout_url %}aria-current="page"{% endif %} href="{% url 'account_logout' %}">Logout</a>
-                <span class="welcome-text-desktop d-none d-md-inline">
+                <span class="welcome-text-desktop d-none d-lg-inline">
                   {% if user.userprofile.profile_picture %}
                     <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile" class="profile-pic-small">
                   {% else %}

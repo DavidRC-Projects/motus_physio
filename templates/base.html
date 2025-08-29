@@ -131,7 +131,7 @@
     <main>
         <!-- Bootstrap Modal for Django Messages -->
         {% if messages %}
-        <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -186,7 +186,6 @@
         <!-- jQuery Timepicker Plugin -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
         <script src="{% static 'js/timepicker.js' %}"></script>
-        <script src="{% static 'js/script.js' %}"></script>
         <script src="{% static 'js/date_valid.js' %}"></script>
         <!-- Bootstrap last -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

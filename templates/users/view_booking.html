@@ -172,7 +172,7 @@
                                 <!-- Edit and Delete Buttons -->
                                 <div class="mt-3 d-flex gap-2 justify-content-center align-items-center">
                                     <div class="dropdown">
-                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <button class="btn btn-outline-purple btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
                                         <div class="dropdown-menu p-3" style="min-width: 250px;">
@@ -187,7 +187,7 @@
                                                     <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm timepicker" required>
                                                 </div>
                                                 <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                    <button type="submit" class="btn btn-purple btn-sm">
                                                         <i class="fas fa-save"></i> Save Changes
                                                     </button>
                                                 </div>
@@ -209,9 +209,9 @@
             </div>
         </div>
     {% else %}
-        <div class="text-center mt-4">
+        <div class="text-center mt-4 mb-4">
             <p class="text-muted">No appointments found.</p>
-            <a href="{% url 'booking' %}" class="btn btn-primary">Book an Appointment</a>
+            <a href="{% url 'booking' %}" class="btn btn-purple">Book an Appointment</a>
         </div>
     {% endif %}
 </div>

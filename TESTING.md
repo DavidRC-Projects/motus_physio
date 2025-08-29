@@ -39,7 +39,24 @@
 | Post-Logout Redirect | Check redirect after logout | Redirected to sign in  page | |
 
 
-## Bug fixes
+## Base Template Testing
+
+### Navigation Bar Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Logo Display | Check if Motus logo appears correctly | Logo displays as circular image with text | Pass |
+| Brand Text | Verify "MOTUS Healthcare" text | Brand text displays correctly | Pass |
+| Fixed Positioning | Check if navbar stays at top when scrolling | Navbar remains fixed at top of viewport |Pass |
+| Responsive Toggle | Test burger menu on mobile devices | Burger menu functions on mobile device | Pass |
+| Active State Highlighting | Check if current page is highlighted | Current page navigation link not showing active state | Fail |
+| Dropdown Functionality | Test Appointments dropdown menu | Dropdown opens and shows Book/View options | Pass |
+| Authentication Links | Check Register/Login links when logged out | Authentication links display correctly | Pass |
+| Logout Link | Verify logout link when logged in | Logout link appears for authenticated users | Pass |
+
+
+
+
+## Bug fixes and testing after fix
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |
 
 Fix:
@@ -47,3 +64,6 @@ When logged out i clicked on the view-bookings page and it came up with the foll
 Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x107d73980>>.
 
 This was fixed by adding @login required for the booking_calendar_view function in the views.py.
+
+| Active State Highlighting | Check if current page is highlighted | Current page navigation showing active state | Pass |
+No CSS styles applied for active nav bar link. Added this to underline in white when page is active.

@@ -454,7 +454,7 @@ main {
     }
     
     .profile-pic-small.fas {
-        font-size: 25px;
+        font-size: 18px;
         line-height: 25px;
         text-align: center;
         display: inline-flex;
@@ -505,7 +505,7 @@ main {
     }
     
     .welcome-text-desktop .profile-pic-small.fas {
-        font-size: 25px;
+        font-size: 18px;
         line-height: 25px;
         text-align: center;
         display: inline-flex;
@@ -546,7 +546,7 @@ main {
     }
     
     .welcome-text-desktop .profile-pic-small.fas {
-        font-size: 35px;
+        font-size: 25px;
         line-height: 35px;
         text-align: center;
         display: inline-flex;

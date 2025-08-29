@@ -118,8 +118,17 @@
 | Appointment Details | Shows appointment details date and time | All appointment details show correctly | Pass |
 | Appointment Status | Check status of appointment | Status displays confirmed | Pass |
 | No Appointments Message | Check message when no appointments | "No confirmed appointments yet" message shows | Pass |
-| Edit Appointment | Click Edit button on appointment | Edit dropdown opens with form | |
-| Delete Appointment | Click Delete button on appointment | Delete confirmation works | |
+| Edit Appointment | Click Edit button on appointment | Edit dropdown opens with form | Pass |
+| Delete Appointment | Click Delete button on appointment | Delete confirmation works | Pass |
+| Delete Appointment Warning | Click Delete button on appointment | Bootstrap modal shows confirmation warning | Pass |
+| Delete Appointment Confirmation | Click "Delete Appointment" in modal | Appointment is deleted successfully | Pass |
+| Edit Appointment Approval | Edit appointment date/time and submit | Success message shows "Changes require admin approval" | Pass |
+| Pending Status Update | Check appointment status after edit | Status changes to "pending" in view_bookings page | Pass |
+| 24-Hour Notice Warning | Check warning message on profile page | Warning about 24-hour notice and admin approval shows | Pass |
+| 24-Hour Notice Warning | Check warning message on view_booking page | Warning about 24-hour notice and admin approval shows | Pass |
+
+
+
 
 
 ## Bug fixes and testing after fix

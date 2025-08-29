@@ -36,28 +36,4 @@
     </div>
 </div>
 
-<!-- Modal for displaying a popup message after registration -->
-<div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="verifyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <!-- Modal header with title and close button -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="verifyModalLabel">{% trans "Email Verification Sent" %}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!-- Modal body with instructions to check email -->
-      <div class="modal-body">
-        {% blocktrans %}A verification email has been sent to your address. Please check your inbox and follow the instructions to complete your registration. You are already logged in and can use the site while waiting for verification.{% endblocktrans %}
-      </div>
-      <!-- Modal footer with a button to dismiss the modal -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-            {% trans "OK" %}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="{% static 'js/verification-modal.js' %}"></script>
 {% endblock content %}

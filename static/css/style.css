@@ -116,10 +116,19 @@ main {
 
 .main-content {
     padding: 20px 0 20px 0;
-    margin-top: 1rem;
+    margin-top: 60px;
     margin-bottom: 2rem;
     flex: 1;
     background-color: var(--clr-white);
+}
+
+.main-content .card {
+    margin-top: 2rem;
+}
+
+.main-content .card-header {
+    background: linear-gradient(135deg, var(--clr-purple-light) 0%, var(--clr-white) 100%);
+    border-bottom: 2px solid var(--clr-purple-medium);
 }
 
 /* Logo styling */

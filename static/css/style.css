@@ -403,7 +403,7 @@ main {
 }
 
 /* Media query for mobile devices */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     .main-header,
     .appointment-header,
     .testimonials-header {
@@ -434,5 +434,66 @@ main {
     
     .main-content {
         padding: 20px 0 20px 0;
+    }
+    
+    /* Profile picture styling for mobile */
+    .profile-pic-small {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.5rem;
+        border: 2px solid var(--clr-white);
+    }
+    
+    .profile-pic-small.fas {
+        font-size: 25px;
+        line-height: 25px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Styling of profile picture in navbar for desktop */
+@media screen and (min-width: 768px) {
+    .navbar-text {
+        display: none;
+    }
+    
+    .welcome-text-desktop {
+        color: var(--clr-white);
+        margin-left: 2rem;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .welcome-text-desktop .profile-pic-small {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.5rem;
+        border: 2px solid var(--clr-white);
+    }
+    
+    .welcome-text-desktop .profile-pic-small.fas {
+        font-size: 35px;
+        line-height: 35px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .navbar-nav {
+        margin-right: auto;
+        margin-left: 0;
+    }
+    
+    .navbar-nav .nav-item:last-child {
+        margin-left: auto;
     }
 }

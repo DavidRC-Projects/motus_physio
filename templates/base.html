@@ -44,7 +44,11 @@
            <!-- Welcome message centered for logged in users -->
            {% if user.is_authenticated %}
            <div class="navbar-text mx-auto">
-             <i class="fas fa-user me-1"></i>
+             {% if user.userprofile.profile_picture %}
+               <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile" class="profile-pic-small">
+             {% else %}
+               <i class="fas fa-user profile-pic-small"></i>
+             {% endif %}
              Welcome, {{ user.username }}!
            </div>
            {% endif %}
@@ -99,8 +103,16 @@
               {% endif %}
               <!-- Authentication Links -->
               {% if user.is_authenticated %}
-              <li class="nav-item">
+              <li class="nav-item d-flex align-items-center">
                 <a class="nav-link {% if request.path == logout_url %}active{% endif %}" {% if request.path == logout_url %}aria-current="page"{% endif %} href="{% url 'account_logout' %}">Logout</a>
+                <span class="welcome-text-desktop d-none d-md-inline">
+                  {% if user.userprofile.profile_picture %}
+                    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile" class="profile-pic-small">
+                  {% else %}
+                    <i class="fas fa-user profile-pic-small"></i>
+                  {% endif %}
+                  Welcome, {{ user.username }}!
+                </span>
               </li>
               {% else %}
               <li class="nav-item">

@@ -235,10 +235,6 @@ main {
 /*  View appointments page styling */
 /* Styles for booking calendar in view appointments page */
 
-/* Appointment form styling */
-.text-center.mt-4 p + a.btn {
-    margin-bottom: 2rem !important;
-}
 
 /* Calendar container */
 .calendar-container {

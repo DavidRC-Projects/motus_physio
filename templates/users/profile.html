@@ -157,12 +157,32 @@
                                         </div>
                                     </div>
                                     
-                                    <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="d-inline">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-outline-dark btn-sm">
-                                            <i class="fas fa-trash"></i> Delete
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal{{ appointment.id }}">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                    
+                                    <!-- Delete Appointment Bootstrap Modal -->
+                                    <div class="modal fade" id="deleteAppointmentModal{{ appointment.id }}" tabindex="-1" aria-labelledby="deleteAppointmentModalLabel{{ appointment.id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteAppointmentModalLabel{{ appointment.id }}">Delete Appointment</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete your appointment for {{ appointment.appointment_date }} at {{ appointment.appointment_time }}?</p>
+                                                    <p class="text-muted small">This action cannot be undone.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">Delete Appointment</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             {% endfor %}

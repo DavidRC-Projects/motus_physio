@@ -34,10 +34,9 @@
 | Protected Route Access - Contact | Try to access contact page without login | Redirected to login page | Pass |
 | Public Route Access - Testimonials | Try to access testimonials page without login | Testimonial page shown | Pass |
 | Protected Route Access - Appointments Dropdown | Try to access appointment dropdown without login | Redirected to login page | Pass |
-| Post-Login Redirect | Check redirect after successful login | Redirected to appropriate page | |
-| Logout Functionality | Click logout button/link | Successfully logged out | |
-| Post-Logout Redirect | Check redirect after logout | Redirected to sign in  page | |
-
+| Post-Login Redirect | Check redirect after successful login | Redirected to homepage | Pass |
+| Logout Functionality | Click logout button/link | Successfully logged out | Pass |
+| Post-Logout Redirect | Check redirect after logout | Redirected to sign in page | Pass |
 
 ## Base Template Testing
 
@@ -49,11 +48,32 @@
 | Fixed Positioning | Check if navbar stays at top when scrolling | Navbar remains fixed at top of viewport |Pass |
 | Responsive Toggle | Test burger menu on mobile devices | Burger menu functions on mobile device | Pass |
 | Active State Highlighting | Check if current page is highlighted | Current page navigation link not showing active state | Fail |
+| Welcome Message with username Display | Check welcome message for logged in users | Welcome message appears with username in the navbar for all devices | Pass |
+| Profile Picture Display | Verify profile picture shows in welcome message | Profile picture displays correctly if image added or shows font awesome icon if no image | Pass |
 | Dropdown Functionality | Test Appointments dropdown menu | Dropdown opens and shows Book/View options | Pass |
 | Authentication Links | Check Register/Login links when logged out | Authentication links display correctly | Pass |
 | Logout Link | Verify logout link when logged in | Logout link appears for authenticated users | Pass |
 
+### Admin User Navigation Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Admin Navigation Items | Login as admin user and check navbar | Only Profile, Contact, Therapist Dashboard, Logout visible | Pass |
+| Regular User Navigation | Login as regular user and check navbar | All navigation items visible except Therapist Dashboard | Pass |
 
+### Responsive Design Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Mobile Layout | Test on mobile device or small viewport | Burger menu appears, navigation collapses | Pass |
+| Tablet Layout | Test on tablet-sized viewport | Full navigation menu visible | Pass |
+| Desktop Layout | Test on desktop viewport | Full navigation menu visible | Pass |
+
+### Footer Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Copyright Text | Verify copyright information displays | "© 2025 Motus Healthcare. All rights reserved." shows | Pass |
+| Social Media Links | Check social media icons and links | Facebook, X, Instagram icons display | Pass |
+| Social Link Functionality | Test social media link clicks | Links open in new tab to social platforms |  Pass |
+| Footer Positioning | Check if footer stays at bottom | Footer positioned at bottom of page | Pass |
 
 
 ## Bug fixes and testing after fix

@@ -211,7 +211,35 @@
 | Delete Other Testimonial | Check delete button visibility | Delete button only shows for own testimonials | Pass |
 | Delete Success Message | Check after deletion | Success message shows "Testimonial deleted" | Pass |
 | Delete Button Visibility | Check delete button for different users | Delete button only visible to testimonial author | Pass |
+| Form Submission Valid | Submit with testimonial text | Success message shows "Thank you! Your testimonial has been added" | Pass |
 
+## Therapist Dashboard Testing (therapist_dashboard.html)
+
+### Appointments Section Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Appointments Display | Check if all appointments show | All appointments display with user details | Pass |
+| Appointment Details | Check appointment information display | Shows username, date, time, type, and status | Pass |
+| Appointment Ordering | Check appointment order | Appointments ordered by newest first | Pass |
+| Appointment Count | Check number of appointments shown | All appointments in system are displayed | Pass |
+
+### Messages Section Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Messages Display | Check if unread messages show | Only messages needing replies are displayed | Pass |
+| Message Details | Check message information display | Shows username, subject, date and message | Pass |
+| Message Ordering | Check message order | Messages ordered by newest first | Pass |
+| No Messages | Check when no messages exist | Shows "No messages found" message | Pass |
+| Reply Form Display | Check if reply form shows for each message | Reply form appears under each message | Pass |
+
+### Reply Functionality Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Reply Form Input | Type in reply message field | Accepts text input | Pass |
+| Reply Form Submission | Submit reply with message | Reply is sent and success message shows | Pass |
+| Reply Form Validation | Submit empty reply form | Form prevents submission (required field) | Pass |
+| Message Status Update | Check if original message status updates | Original message marked as replied | Pass |
+| Reply Redirect | Check after reply submission | Redirects back to therapist dashboard | Pass |
 
 
 ## Bug fixes and testing after fix

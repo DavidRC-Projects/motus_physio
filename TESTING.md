@@ -127,8 +127,105 @@
 | 24-Hour Notice Warning | Check warning message on profile page | Warning about 24-hour notice and admin approval shows | Pass |
 | 24-Hour Notice Warning | Check warning message on view_booking page | Warning about 24-hour notice and admin approval shows | Pass |
 
+## Appointments Pages Testing
 
+### Booking Page Testing (booking.html)
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Date Field | Click on date field | Date picker opens and allows date selection | Pass |
+| Time Field | Click on time field | Time picker opens and allows time selection | Pass |
+| Appointment Type Dropdown | Click dropdown | Shows Initial Consultation and Follow Up options | Pass |
+| Notes Field | Type in textarea | Accepts text input | Pass |
+| Form Submission Valid | Submit with all required fields | Success message appears and redirects to booking page | Pass |
+| Time Slot Already Booked | Try to book existing date/time | Error message shows "This time slot is already booked" | Pass |
 
+### View Booking Page Testing (view_booking.html)
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Calendar Display | Check if calendar shows current month | Calendar displays with correct month/year | Pass |
+| Month Navigation | Click left/right arrows | Calendar changes to previous/next month | Pass |
+| Free Day Display | Check unbooked days | Shows "Free" on calendar days | Pass |
+| Booked Day Display | Check booked days | Shows "Booked" with appointment time | Pass |
+| Click Free Day | Click on day marked "Free" | Redirects to booking page | Pass |
+| Click Booked Day | Click on day marked "Booked" | Modal warning shows "This day is already booked" | Pass |
+| Booked Day Modal | Click "OK" on booked day modal | Modal closes and returns to calendar | Pass |
+| Appointment List | Check if appointments show below calendar | All appointments display with details | Pass |
+| Edit Appointment | Click Edit button on appointment | Edit dropdown opens with form | Pass |
+| Delete Appointment | Click Delete button on appointment | Delete confirmation modal appears | Pass |
+| Calendar Responsive | Test calendar on mobile/tablet | Calendar adapts to different screen sizes | Pass |
+
+## Contact Page Testing (message_practitioner.html)
+
+### Message Form Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Subject Field | Type in subject field | Accepts text input | Pass |
+| Message Field | Type in message textarea | Accepts multi-line text input | Pass |
+| Form Submission Valid | Submit with subject and message | Success message shows "Your message has been sent to the practitioner!" | Pass |
+| Form Submission Invalid | Submit with missing subject | Error message shows "Please fill in all required fields" | Pass |
+| Form Submission Invalid | Submit with missing message | Error message shows "Please fill in all required fields" | Pass |
+| Form Reset | After successful submission | Form clears and shows success message | Pass |
+| Required Field Validation | Try to submit empty form | Form prevents submission and shows validation | Pass |
+| Message Display | Check if sent messages show | User messages display with subject and content | Pass |
+| Message Timestamp | Check message creation time | Timestamp shows | Pass |
+| Message Ordering | Check message order | Messages ordered by newest first | Pass |
+| Reply Display | Check if practitioner replies show | Replies display with different styling | Pass |
+| Reply Icon | Check reply icon display | Reply icon shows for practitioner messages | Pass |
+| Message Styling | Check message styling | User messages blue, replies light background | Pass |
+
+### Message Management Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Delete User Message | Click Delete on own message | Message is deleted and removed from list | Pass |
+| Delete Reply | Click Delete on own reply | Reply is deleted and removed from list | Pass |
+| Delete Success Message | Check after deletion | Success message shows "Message deleted successfully" | Pass |
+| No Messages Display | Check when no messages | Shows empty state or no messages | Pass |
+| Message Replies | Check if replies show under original | Replies display nested under original message | Pass |
+
+### Call Functionality Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Call Button | Check call button state | Button shows as disabled with "Call functionality coming soon" | Pass |
+| Call Section | Check call section display | Call section shows as placeholder | Pass |
+
+## Testimonials Page Testing (testimonials.html)
+
+### Testimonial Form Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Form Display | Check if form shows for logged in users | Form displays for authenticated users | Pass |
+| Form Hidden | Check if form shows for guests | Form hidden for non-authenticated users | Pass |
+| Testimonial Field | Type in testimonial textarea | Accepts multi-line text input | Pass |
+| Form Submission Valid | Submit with testimonial text | Success message shows "Thank you! Your testimonial has been added" | Pass |
+| Form Submission Invalid | Submit empty form | Form prevents submission | Pass |
+| Form Reset | After successful submission | Form clears and shows success message | Pass |
+| Required Field Validation | Try to submit empty form | Form prevents submission | Pass |
+
+### Testimonials Display Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Testimonials List | Check if testimonials show | All testimonials display in list | Pass |
+| Testimonial Content | Check testimonial text display | Testimonial text shows in quotes | Pass |
+| User Attribution | Check username display | Username shows as "- username" | Pass |
+| Timestamp Display | Check creation time | Timestamp shows in format "d/m/Y g:i A" | Pass |
+| Testimonial Ordering | Check testimonial order | Testimonials ordered by newest first | Pass |
+| No Testimonials | Check when no testimonials | Shows "No testimonials yet" message | Pass |
+
+### Testimonial Management Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Delete Own Testimonial | Click Delete on own testimonial | Testimonial is deleted and removed | Pass |
+| Delete Other Testimonial | Check delete button visibility | Delete button only shows for own testimonials | Pass |
+| Delete Success Message | Check after deletion | Success message shows "Testimonial deleted" | Pass |
+| Delete Button Visibility | Check delete button for different users | Delete button only visible to testimonial author | Pass |
+
+### Authentication Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Guest Access | Check testimonials page as guest | Page accessible, form hidden | Pass |
+| User Access | Check testimonials page as user | Page accessible, form visible | Pass |
+| Message Page Access | Check contact page as guest | Redirected to login (login_required) | Pass |
+| Message Page Access | Check contact page as user | Page accessible | Pass |
 
 
 ## Bug fixes and testing after fix

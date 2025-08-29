@@ -177,16 +177,9 @@
 | Feature | Testing Performed | Result | Pass/Fail |
 |---------|------------------|---------|-----------|
 | Delete User Message | Click Delete on own message | Message is deleted and removed from list | Pass |
-| Delete Reply | Click Delete on own reply | Reply is deleted and removed from list | Pass |
 | Delete Success Message | Check after deletion | Success message shows "Message deleted successfully" | Pass |
-| No Messages Display | Check when no messages | Shows empty state or no messages | Pass |
+| No Messages Display | Check when no messages | Shows no messages yet | Pass |
 | Message Replies | Check if replies show under original | Replies display nested under original message | Pass |
-
-### Call Functionality Testing
-| Feature | Testing Performed | Result | Pass/Fail |
-|---------|------------------|---------|-----------|
-| Call Button | Check call button state | Button shows as disabled with "Call functionality coming soon" | Pass |
-| Call Section | Check call section display | Call section shows as placeholder | Pass |
 
 ## Testimonials Page Testing (testimonials.html)
 
@@ -207,7 +200,7 @@
 | Testimonials List | Check if testimonials show | All testimonials display in list | Pass |
 | Testimonial Content | Check testimonial text display | Testimonial text shows in quotes | Pass |
 | User Attribution | Check username display | Username shows as "- username" | Pass |
-| Timestamp Display | Check creation time | Timestamp shows in format "d/m/Y g:i A" | Pass |
+| Timestamp Display | Check creation time | Timestamp shows | Pass |
 | Testimonial Ordering | Check testimonial order | Testimonials ordered by newest first | Pass |
 | No Testimonials | Check when no testimonials | Shows "No testimonials yet" message | Pass |
 
@@ -219,13 +212,6 @@
 | Delete Success Message | Check after deletion | Success message shows "Testimonial deleted" | Pass |
 | Delete Button Visibility | Check delete button for different users | Delete button only visible to testimonial author | Pass |
 
-### Authentication Testing
-| Feature | Testing Performed | Result | Pass/Fail |
-|---------|------------------|---------|-----------|
-| Guest Access | Check testimonials page as guest | Page accessible, form hidden | Pass |
-| User Access | Check testimonials page as user | Page accessible, form visible | Pass |
-| Message Page Access | Check contact page as guest | Redirected to login (login_required) | Pass |
-| Message Page Access | Check contact page as user | Page accessible | Pass |
 
 
 ## Bug fixes and testing after fix

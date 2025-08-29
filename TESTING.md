@@ -75,6 +75,19 @@
 | Social Link Functionality | Test social media link clicks | Links open in new tab to social platforms |  Pass |
 | Footer Positioning | Check if footer stays at bottom | Footer positioned at bottom of page | Pass |
 
+## Homepage Testing (index.html)
+
+### Booking Form Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Date Field | Click on date field | Date picker opens | Pass |
+| Time Field | Click on time field | Unable to select time | Fail |
+| Appointment Type | Click dropdown | Shows Initial Consultation and Follow Up | Pass |
+| Notes Field | Type in textarea | Accepts text input | Pass |
+| Form Submission | Submit with valid data | Success modal appears | Pass |
+| Form Submission With Errors | Submit with missing data | Shows validation messages | Pass |
+| Modal Dismissal | Close modal | Modal closes properly | Pass |
+
 
 ## Bug fixes and testing after fix
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |
@@ -87,3 +100,6 @@ This was fixed by adding @login required for the booking_calendar_view function 
 
 | Active State Highlighting | Check if current page is highlighted | Current page navigation showing active state | Pass |
 No CSS styles applied for active nav bar link. Added this to underline in white when page is active.
+
+| Time Field | Click on time field | Time picker opens | Pass |
+time input in the appointment booking form did not allow input. Checked code in index.html and its inputtype was date and not time. This worked after chaning this.

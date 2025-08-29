@@ -88,6 +88,39 @@
 | Form Submission With Errors | Submit with missing data | Shows validation messages | Pass |
 | Modal Dismissal | Close modal | Modal closes properly | Pass |
 
+## Profile Page Testing (profile.html)
+
+### Profile Image Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Default Image Display | Check if default user icon shows when no photo | Default user icon displays correctly | Pass |
+| Image Upload | Click "Upload Image" button and select file | File picker opens and allows image selection | Pass |
+| Image Display | After upload, check if image appears | Uploaded image displays correctly | Pass |
+| Change Photo | Click "Change Photo" button | File picker opens for new image | Pass |
+| Delete Photo | Click "Delete Photo" button | Confirmation dialog appears |  Pass |
+| Image Responsiveness | Check image on different screen sizes | Image scales properly across devices | Pass |
+
+### Surgery Type Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Surgery Type Display | Check if current surgery type shows | Surgery type displays or "Please Select" shows | Pass |
+| Edit Surgery Type | Click "Change" or "Please Select" button | Surgery type dropdown appears | Pass |
+| Dropdown Options | Check all surgery type options | All options display correctly | Pass |
+| Save Surgery Type | Select type and click Save | Surgery type saves and displays | Pass |
+| Cancel Edit Surgery | Click Cancel button | Returns to display mode without saving | Pass |
+| Cancel Delete Photo | Click Cancel button | Returns to display mode without saving | Pass |
+| Cancel Edit Photo | Click Cancel button | Returns to display mode without saving | Pass |
+
+### Appointments Display Testing
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
+| Confirmed Appointments | Check if confirmed appointments show | Confirmed appointments display in list | Pass |
+| Appointment Details | Shows appointment details date and time | All appointment details show correctly | Pass |
+| Appointment Status | Check status of appointment | Status displays confirmed | Pass |
+| No Appointments Message | Check message when no appointments | "No confirmed appointments yet" message shows | Pass |
+| Edit Appointment | Click Edit button on appointment | Edit dropdown opens with form | |
+| Delete Appointment | Click Delete button on appointment | Delete confirmation works | |
+
 
 ## Bug fixes and testing after fix
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |

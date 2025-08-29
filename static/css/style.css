@@ -491,22 +491,22 @@ main {
         color: var(--clr-white);
         margin-left: 1rem;
         white-space: nowrap;
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
     
     /* Profile picture styling for tablet welcome message */
     .welcome-text-desktop .profile-pic-small {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 0.5rem;
+        margin-right: 0.1rem;
         border: 2px solid var(--clr-white);
     }
     
     .welcome-text-desktop .profile-pic-small.fas {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 25px;
+        line-height: 25px;
         text-align: center;
         display: inline-flex;
         align-items: center;

@@ -59,6 +59,15 @@
 
 .navbar-nav .nav-link {
     color: var(--clr-white);
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link.active {
+    text-decoration: underline;
+    text-decoration-color: var(--clr-white);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    font-weight: 600;
 }
 
 /* Hide unnecessary nav items for admin users on all device sizes */

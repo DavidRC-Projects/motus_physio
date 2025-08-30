@@ -1,3 +1,11 @@
+/* jshint esversion: 6 */
+/*
+ Handles the appointment calendar:
+ - Creates a Bootstrap modal.
+ - Makes each calendar day clickable.
+ - If a day is marked as "booked", shows a warning modal.
+ - Otherwise, redirects the user to the booking page.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     const modalHTML = `
     <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">

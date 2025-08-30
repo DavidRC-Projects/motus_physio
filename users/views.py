@@ -599,3 +599,8 @@ def testimonials(request):
     }
 
     return render(request, 'users/testimonials.html', context)
+
+
+def custom_404(request, exception):
+    """Custom 404 error handler."""
+    return render(request, '404.html', status=404)

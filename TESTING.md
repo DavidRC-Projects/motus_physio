@@ -242,8 +242,15 @@
 | Reply Redirect | Check after reply submission | Redirects back to therapist dashboard | Pass |
 
 
-## Bug fixes and testing after fix
+## Bug fixes
+| Feature | Testing Performed | Result | Pass/Fail |
+|---------|------------------|---------|-----------|
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |
+| Active State Highlighting | Check if current page is highlighted | Current page navigation showing active state | Pass |
+| Time Field | Click on time field | Time picker opens | Pass |
+
+
+
 
 Fix:
 When logged out i clicked on the view-bookings page and it came up with the following error: TypeError at /view-booking/
@@ -251,8 +258,20 @@ Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.mod
 
 This was fixed by adding @login required for the booking_calendar_view function in the views.py.
 
-| Active State Highlighting | Check if current page is highlighted | Current page navigation showing active state | Pass |
 No CSS styles applied for active nav bar link. Added this to underline in white when page is active.
 
-| Time Field | Click on time field | Time picker opens | Pass |
 time input in the appointment booking form did not allow input. Checked code in index.html and its inputtype was date and not time. This worked after chaning this.
+
+
+#### Validation Check for run.py using CI Python Linter
+
+Admin.py - fine
+
+views.py and models - fine
+Trailing whitespace - Removed trailing spaces from several lines.
+Blank lines with whitespace - Cleaned up whitespace in blank lines throughout file
+Indentation errors fixed
+Missing newline - Added newline at end of file
+
+settings.py
+urls.py

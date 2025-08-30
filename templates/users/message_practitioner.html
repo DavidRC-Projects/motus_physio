@@ -4,111 +4,116 @@
 {% block title %}Message Practitioner{% endblock %}
 
 {% block content %}
-<div class="container contact-container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="text-center mb-0">Contact Your Practitioner</h2>
-                </div>
-                <div class="card-body">
-                    <!-- Message Form -->
-                    <form method="post" class="mb-4">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" name="subject" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Send Message</button>
-                        </div>
-                    </form>
+<div class="contact-page">
+    <div class="container contact-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-0">Contact Your Practitioner</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Message Form -->
+                        <form method="post" class="mb-4">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-primary">Send Message</button>
+                            </div>
+                        </form>
 
-                    <!-- Call Practitioner Section -->
-                    <div class="border-top pt-4">
-                        <h4 class="text-center mb-3">Need to Call?</h4>
-                        <div class="text-center">
-                            <button class="btn btn-outline-primary">Call Practitioner</button>
+                        <!-- Call Practitioner Section -->
+                        <div class="border-top pt-4">
+                            <h4 class="text-center mb-3">Need to Call?</h4>
+                            <div class="text-center">
+                                <button class="btn btn-outline-primary">Call Practitioner</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Messages and Replies Section -->
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center mb-0">Your Messages</h3>
-                </div>
-                <div class="card-body">
-                    {% if user_messages %}
-                        {% for message in user_messages %}
-                            <div class="message-item mb-4 p-3 {% if message.reply %}bg-light{% else %}bg-primary text-white{% endif %} rounded">
-                                <div class="d-flex justify-content-between align-items-start">
-                                    <h6 class="mb-1">
-                                        {% if message.reply %}
-                                            <i class="fas fa-reply"></i> Practitioner Reply
-                                        {% else %}
-                                            <i class="fas fa-paper-plane"></i> Your Message
-                                        {% endif %}
-                                    </h6>
-                                    <small class="text-muted">{{ message.created_at|date:"M d, Y H:i" }}</small>
+    <!-- Messages and Replies Section -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center mb-0">Your Messages</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if user_messages %}
+                            {% for message in user_messages %}
+                                <div class="message-item mb-4 p-3 {% if message.reply %}bg-light{% else %}bg-primary text-white{% endif %} rounded">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6 class="mb-1">
+                                            {% if message.reply %}
+                                                <i class="fas fa-reply"></i> Practitioner Reply
+                                            {% else %}
+                                                <i class="fas fa-paper-plane"></i> Your Message
+                                            {% endif %}
+                                        </h6>
+                                        <small class="text-muted">{{ message.created_at|date:"M d, Y H:i" }}</small>
+                                    </div>
+                                    <h6 class="mb-2">{{ message.subject }}</h6>
+                                    <p class="mb-0">{{ message.message }}</p>
+                                    
+                                    <!-- Delete button for user's own messages -->
+                                    {% if message.user == user %}
+                                        <div class="mt-2">
+                                            <form method="post" action="{% url 'delete_message' message.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    <!-- Show replies to this message -->
+                                    {% if message.replies.all %}
+                                        <div class="mt-3">
+                                            {% for reply in message.replies.all %}
+                                                <div class="reply-item ms-4 p-2 bg-light rounded">
+                                                    <small class="text-muted">{{ reply.created_at|date:"M d, Y H:i" }}</small>
+                                                    <p class="mb-0">{{ reply.message }}</p>
+                                                    
+                                                    <!-- Delete button for user's own replies -->
+                                                    {% if reply.user == user %}
+                                                        <div class="mt-2">
+                                                            <form method="post" action="{% url 'delete_message' reply.id %}">
+                                                                {% csrf_token %}
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash"></i> Delete
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
-                                <h6 class="mb-2">{{ message.subject }}</h6>
-                                <p class="mb-0">{{ message.message }}</p>
-                                
-                                <!-- Delete button for user's own messages -->
-                                {% if message.user == user %}
-                                    <div class="mt-2">
-                                        <form method="post" action="{% url 'delete_message' message.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                {% endif %}
-                                
-                                <!-- Show replies to this message -->
-                                {% if message.replies.all %}
-                                    <div class="mt-3">
-                                        {% for reply in message.replies.all %}
-                                            <div class="reply-item ms-4 p-2 bg-light rounded">
-                                                <small class="text-muted">{{ reply.created_at|date:"M d, Y H:i" }}</small>
-                                                <p class="mb-0">{{ reply.message }}</p>
-                                                
-                                                <!-- Delete button for user's own replies -->
-                                                {% if reply.user == user %}
-                                                    <div class="mt-2">
-                                                        <form method="post" action="{% url 'delete_message' reply.id %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fas fa-trash"></i> Delete
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="text-center">
+                                <p class="text-muted">No messages yet.</p>
+                                <p class="text-info small">Send a message to your practitioner to get started.</p>
                             </div>
-                        {% endfor %}
-                    {% else %}
-                        <p class="text-center text-muted">No messages yet. Send a message to get started!</p>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}

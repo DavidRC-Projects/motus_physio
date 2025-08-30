@@ -2,144 +2,170 @@
 {% load static %}
 
 {% block content %}
-<div class="calendar-container">
-    <h1>View Appointments</h1>
-     <!-- Month/Year Navigation -->
-      <div>
-        <a href="?month={{ month|add:'-1' }}&year={{ year }}"><i class="fa-solid fa-arrow-left"></i></a>
-        <strong>{{ month_name }} {{ year }}</strong>
-        <a href="?month={{ month|add:'1' }}&year={{ year }}"><i class="fa-solid fa-arrow-right"></i></a>
-    </div>
-    <div>
-        <table class="calendar-table">
-            <tr>
-                <th class="calendar-header">Sun</th>
-                <th class="calendar-header">Mon</th>
-                <th class="calendar-header">Tue</th>
-                <th class="calendar-header">Wed</th>
-                <th class="calendar-header">Thu</th>
-                <th class="calendar-header">Fri</th>
-                <th class="calendar-header">Sat</th>
-            </tr>
-            <tr>
-                {% for i in "1234567" %}
-                    {% if forloop.counter <= first_day %}
-                        <td class="calendar-empty"></td>
-                    {% else %}
-                        <td class="calendar-date {% if forloop.counter in booked_days %}booked{% endif %}">
-                            {{ forloop.counter }}
-                            {% if forloop.counter in booked_days %}
-                                <br><small>Booked 
-                                {% for appointment in user_appointments %}
-                                    {% if appointment.appointment_date.day == forloop.parentloop.counter %}
-                                        {{ appointment.appointment_time }}
+<div class="view-booking-page">
+    <div class="calendar-container">
+        <h1>View Appointments</h1>
+         <!-- Month/Year Navigation -->
+          <div>
+            <a href="?month={{ month|add:'-1' }}&year={{ year }}"><i class="fa-solid fa-arrow-left"></i></a>
+            <strong>{{ month_name }} {{ year }}</strong>
+            <a href="?month={{ month|add:'1' }}&year={{ year }}"><i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div>
+            <table class="calendar-table">
+                <tr>
+                    <th class="calendar-header">Sun</th>
+                    <th class="calendar-header">Mon</th>
+                    <th class="calendar-header">Tue</th>
+                    <th class="calendar-header">Wed</th>
+                    <th class="calendar-header">Thu</th>
+                    <th class="calendar-header">Fri</th>
+                    <th class="calendar-header">Sat</th>
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% if forloop.counter <= first_day %}
+                            <td class="calendar-empty"></td>
+                        {% else %}
+                            <td class="calendar-date {% if forloop.counter in booked_days %}booked{% endif %}">
+                                {{ forloop.counter }}
+                                {% if forloop.counter in booked_days %}
+                                    <br><small>Booked 
+                                    {% for appointment in user_appointments %}
+                                        {% if appointment.appointment_date.day == forloop.parentloop.counter %}
+                                            {{ appointment.appointment_time }}
+                                        {% endif %}
+                                    {% endfor %}
+                                    </small>
+                                    {% else %}
+                                    <br><small>Free</small>
+                                {% endif %}
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% with day_number=forloop.counter|add:'7' %}
+                            {% if day_number <= days_in_month %}
+                                <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                    {{ day_number }}
+                                    {% if day_number in booked_days %}
+                                        <br><small>Booked 
+                                        {% for appointment in user_appointments %}
+                                            {% if appointment.appointment_date.day == day_number %}
+                                                {{ appointment.appointment_time }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </small>
+                                    {% else %}
+                                        <br><small>Free</small>
                                     {% endif %}
-                                {% endfor %}
-                                </small>
-                                {% else %}
-                                <br><small>Free</small>
+                                </td>
+                            {% else %}
+                                <td class="calendar-empty"></td>
                             {% endif %}
-                        </td>
-                    {% endif %}
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for i in "1234567" %}
-                    {% with day_number=forloop.counter|add:'7' %}
-                        {% if day_number <= days_in_month %}
-                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
-                                {{ day_number }}
-                                {% if day_number in booked_days %}
-                                    <br><small>Booked 
-                                    {% for appointment in user_appointments %}
-                                        {% if appointment.appointment_date.day == day_number %}
-                                            {{ appointment.appointment_time }}
-                                        {% endif %}
-                                    {% endfor %}
-                                    </small>
-                                {% else %}
-                                    <br><small>Free</small>
-                                {% endif %}
-                            </td>
-                        {% else %}
-                            <td class="calendar-empty"></td>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for i in "1234567" %}
-                    {% with day_number=forloop.counter|add:'14' %}
-                        {% if day_number <= days_in_month %}
-                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
-                                {{ day_number }}
-                                {% if day_number in booked_days %}
-                                    <br><small>Booked 
-                                    {% for appointment in user_appointments %}
-                                        {% if appointment.appointment_date.day == day_number %}
-                                            {{ appointment.appointment_time }}
-                                        {% endif %}
-                                    {% endfor %}
-                                    </small>
-                                {% else %}
-                                    <br><small>Free</small>
-                                {% endif %}
-                            </td>
-                        {% else %}
-                            <td class="calendar-empty"></td>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for i in "1234567" %}
-                    {% with day_number=forloop.counter|add:'21' %}
-                        {% if day_number <= days_in_month %}
-                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
-                                {{ day_number }}
-                                {% if day_number in booked_days %}
-                                    <br><small>Booked 
-                                    {% for appointment in user_appointments %}
-                                        {% if appointment.appointment_date.day == day_number %}
-                                            {{ appointment.appointment_time }}
-                                        {% endif %}
-                                    {% endfor %}
-                                    </small>
-                                {% else %}
-                                    <br><small>Free</small>
-                                {% endif %}
-                            </td>
-                        {% else %}
-                            <td class="calendar-empty"></td>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </tr>
-            <tr>
-                {% for i in "1234567" %}
-                    {% with day_number=forloop.counter|add:'28' %}
-                        {% if day_number <= days_in_month %}
-                            <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
-                                {{ day_number }}
-                                {% if day_number in booked_days %}
-                                    <br><small>Booked 
-                                    {% for appointment in user_appointments %}
-                                        {% if appointment.appointment_date.day == day_number %}
-                                            {{ appointment.appointment_time }}
-                                        {% endif %}
-                                    {% endfor %}
-                                    </small>
-                                {% else %}
-                                    <br><small>Free</small>
-                                {% endif %}
-                            </td>
-                        {% else %}
-                            <td class="calendar-empty"></td>
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </tr>
-        </table>
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% with day_number=forloop.counter|add:'14' %}
+                            {% if day_number <= days_in_month %}
+                                <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                    {{ day_number }}
+                                    {% if day_number in booked_days %}
+                                        <br><small>Booked 
+                                        {% for appointment in user_appointments %}
+                                            {% if appointment.appointment_date.day == day_number %}
+                                                {{ appointment.appointment_time }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </small>
+                                    {% else %}
+                                        <br><small>Free</small>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="calendar-empty"></td>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% with day_number=forloop.counter|add:'21' %}
+                            {% if day_number <= days_in_month %}
+                                <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                    {{ day_number }}
+                                    {% if day_number in booked_days %}
+                                        <br><small>Booked 
+                                        {% for appointment in user_appointments %}
+                                            {% if appointment.appointment_date.day == day_number %}
+                                                {{ appointment.appointment_time }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </small>
+                                    {% else %}
+                                        <br><small>Free</small>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="calendar-empty"></td>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% with day_number=forloop.counter|add:'28' %}
+                            {% if day_number <= days_in_month %}
+                                <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                    {{ day_number }}
+                                    {% if day_number in booked_days %}
+                                        <br><small>Booked 
+                                        {% for appointment in user_appointments %}
+                                            {% if appointment.appointment_date.day == day_number %}
+                                                {{ appointment.appointment_time }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </small>
+                                    {% else %}
+                                        <br><small>Free</small>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="calendar-empty"></td>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% for i in "1234567" %}
+                        {% with day_number=forloop.counter|add:'35' %}
+                            {% if day_number <= days_in_month %}
+                                <td class="calendar-date {% if day_number in booked_days %}booked{% endif %}">
+                                    {{ day_number }}
+                                    {% if day_number in booked_days %}
+                                        <br><small>Booked 
+                                        {% for appointment in user_appointments %}
+                                            {% if appointment.appointment_date.day == day_number %}
+                                                {{ appointment.appointment_time }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </small>
+                                    {% else %}
+                                        <br><small>Free</small>
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td class="calendar-empty"></td>
+                            {% endif %}
+                        {% endwith %}
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
     </div>
     
     <!-- Appointments List with Edit/Delete -->

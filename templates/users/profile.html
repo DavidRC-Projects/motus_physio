@@ -2,200 +2,202 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5 pt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="text-center profile-header">Profile</h1>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4 text-center">
-                            <div class="profile-picture-container">
-                                {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
-                                    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
-                                {% else %}
-                                    <div class="default-profile-picture rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px; background-color: #e9ecef;">
-                                        <i class="fas fa-user fa-3x text-muted"></i>
-                                    </div>
-                                {% endif %}
-                            </div>
-                            <div class="mt-3">
-                                <form method="POST" enctype="multipart/form-data" id="upload-form">
-                                    {% csrf_token %}
-                                    <input type="file" name="profile_picture" id="profile-picture" hidden onchange="document.getElementById('upload-form').submit();">
-                                    <label for="profile-picture" class="upload-btn">
-                                        {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
-                                        Change Photo
-                                        {% else %}
-                                        Upload Image
-                                        {% endif %}
-                                    </label>
-                                </form>
-                                <!-- Delete photo button that shows when a picture is uploaded -->
-                                {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
-                                <form method="POST" action="{% url 'delete_photo' %}" class="mt-2">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete your profile picture?')">
-                                        <i class="fas fa-trash"></i> Delete Photo
-                                    </button>
-                                </form>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="profile-info">
-                                <h2 class="page-header text-center">Personal Information</h2>
-                                <hr>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Name:</strong></div>
-                                    <div class="col-sm-8">{{ user.get_full_name|default:user.username }}</div>
+<div class="profile-page">
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center profile-header">Profile</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                                <div class="profile-picture-container">
+                                    {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
+                                        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="default-profile-picture rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px; background-color: #e9ecef;">
+                                            <i class="fas fa-user fa-3x text-muted"></i>
+                                        </div>
+                                    {% endif %}
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Email:</strong></div>
-                                    <div class="col-sm-8">{{ user.email }}</div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Surgery Type:</strong></div>
-                                    <div class="col-sm-8">
-                                        {% if not request.GET.edit_surgery %}
-                                            {% if user.userprofile.surgery_type %}
-                                                <div class="d-flex align-items-center">
-                                                    <span class="me-3">{{ user.userprofile.surgery_type }}</span>
-                                                    <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Change</a>
-                                                </div>
+                                <div class="mt-3">
+                                    <form method="POST" enctype="multipart/form-data" id="upload-form">
+                                        {% csrf_token %}
+                                        <input type="file" name="profile_picture" id="profile-picture" hidden onchange="document.getElementById('upload-form').submit();">
+                                        <label for="profile-picture" class="upload-btn">
+                                            {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
+                                            Change Photo
                                             {% else %}
-                                                <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Please Select</a>
+                                            Upload Image
                                             {% endif %}
-                                        {% else %}
-                                            <form method="POST" action="{% url 'surgery_type' %}">
-                                                {% csrf_token %}
-                                                <div class="mb-2">
-                                                <select name="surgery_type" class="form-select form-select-sm">
-                                                    <option value="">Select Surgery Type</option>
-                                                    <option value="Knee Replacement">Knee Replacement</option>
-                                                    <option value="Hip Replacement">Hip Replacement</option>
-                                                    <option value="Shoulder Replacement">Shoulder Replacement</option>
-                                                    <option value="Elbow Replacement">Elbow Replacement</option>
-                                                    <option value="Spinal Fusion">Spinal Fusion</option>
-                                                    <option value="Laminectomy">Laminectomy</option>
-                                                    <option value="Discectomy">Discectomy</option>
-                                                    <option value="Knee Arthroscopy">Knee Arthroscopy</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-2" id="other-input">
-                                                <input type="text" name="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
-                                            </div>
-                                            <div>
-                                                <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
-                                                <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm">Cancel</a>
-                                            </div>
-                                        </form>
-                                        {% endif %}
-                                    </div>
+                                        </label>
+                                    </form>
+                                    <!-- Delete photo button that shows when a picture is uploaded -->
+                                    {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
+                                    <form method="POST" action="{% url 'delete_photo' %}" class="mt-2">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete your profile picture?')">
+                                            <i class="fas fa-trash"></i> Delete Photo
+                                        </button>
+                                    </form>
+                                    {% endif %}
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Account Created:</strong></div>
-                                    <div class="col-sm-8">{{ user.date_joined|date:"F j, Y" }}</div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="profile-info">
+                                    <h2 class="page-header text-center">Personal Information</h2>
+                                    <hr>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4"><strong>Name:</strong></div>
+                                        <div class="col-sm-8">{{ user.get_full_name|default:user.username }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4"><strong>Email:</strong></div>
+                                        <div class="col-sm-8">{{ user.email }}</div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4"><strong>Surgery Type:</strong></div>
+                                        <div class="col-sm-8">
+                                            {% if not request.GET.edit_surgery %}
+                                                {% if user.userprofile.surgery_type %}
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="me-3">{{ user.userprofile.surgery_type }}</span>
+                                                        <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Change</a>
+                                                    </div>
+                                                {% else %}
+                                                    <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Please Select</a>
+                                                {% endif %}
+                                            {% else %}
+                                                <form method="POST" action="{% url 'surgery_type' %}">
+                                                    {% csrf_token %}
+                                                    <div class="mb-2">
+                                                    <select name="surgery_type" class="form-select form-select-sm">
+                                                        <option value="">Select Surgery Type</option>
+                                                        <option value="Knee Replacement">Knee Replacement</option>
+                                                        <option value="Hip Replacement">Hip Replacement</option>
+                                                        <option value="Shoulder Replacement">Shoulder Replacement</option>
+                                                        <option value="Elbow Replacement">Elbow Replacement</option>
+                                                        <option value="Spinal Fusion">Spinal Fusion</option>
+                                                        <option value="Laminectomy">Laminectomy</option>
+                                                        <option value="Discectomy">Discectomy</option>
+                                                        <option value="Knee Arthroscopy">Knee Arthroscopy</option>
+                                                        <option value="other">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-2" id="other-input">
+                                                    <input type="text" name="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
+                                                    <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm">Cancel</a>
+                                                </div>
+                                            </form>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-4"><strong>Account Created:</strong></div>
+                                        <div class="col-sm-8">{{ user.date_joined|date:"F j, Y" }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Appointments Section -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h3 class="text-center mb-0 profile-header">Your Appointments</h3>
-                </div>
-                <div class="card-body">
-                    {% if user_appointments %}
-                        <div class="list-group">
-                            {% for appointment in user_appointments %}
-                            <div class="list-group-item">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h4 class="mb-1">{{ appointment.appointment_type|title }}</h4>
-                                    <small class="text-muted">{{ appointment.status|title }}</small>
-                                </div>
-                                <p class="mb-1">
-                                    <strong>Date:</strong> {{ appointment.appointment_date }}<br>
-                                    <strong>Time:</strong> {{ appointment.appointment_time }}
-                                    <span class="badge {% if appointment.status == 'confirmed' %}bg-success{% elif appointment.status == 'pending' %}bg-warning{% else %}bg-secondary{% endif %}">
-                                        {{ appointment.status}}
-                                    </span>
-                                </p>
-                                {% if appointment.notes %}
-                                    <small class="text-muted">{{ appointment.notes }}</small>
-                                {% endif %}
-                                
-                                <!-- Buttons to delete and edit appointments -->
-                                <div class="mt-3 d-flex gap-2 align-items-center">
-                                    <div class="dropdown">
-                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </button>
-                                        <div class="dropdown-menu p-3" style="min-width: 250px;" id="editDropdown_{{ appointment.id }}">
-                                            <form method="POST" action="{% url 'edit_appointment' appointment.id %}">
-                                                {% csrf_token %}
-                                                <div class="mb-2">
-                                                    <label for="appointment_date_{{ appointment.id }}" class="form-label small">New Date:</label>
-                                                    <input type="date" name="appointment_date" id="appointment_date_{{ appointment.id }}" value="{{ appointment.appointment_date }}" class="form-control form-control-sm " required>
-                                                </div>
-                                                <div class="mb-2">
-                                                    <label for="appointment_time_{{ appointment.id }}" class="form-label small">New Time:</label>
-                                                    <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm timepicker" required>
-                                                </div>
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-save"></i> Save Changes
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                
+                <!-- Appointments Section -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3 class="text-center mb-0 profile-header">Your Appointments</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if user_appointments %}
+                            <div class="list-group">
+                                {% for appointment in user_appointments %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h4 class="mb-1">{{ appointment.appointment_type|title }}</h4>
+                                        <small class="text-muted">{{ appointment.status|title }}</small>
                                     </div>
+                                    <p class="mb-1">
+                                        <strong>Date:</strong> {{ appointment.appointment_date }}<br>
+                                        <strong>Time:</strong> {{ appointment.appointment_time }}
+                                        <span class="badge {% if appointment.status == 'confirmed' %}bg-success{% elif appointment.status == 'pending' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                            {{ appointment.status}}
+                                        </span>
+                                    </p>
+                                    {% if appointment.notes %}
+                                        <small class="text-muted">{{ appointment.notes }}</small>
+                                    {% endif %}
                                     
-                                    <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal{{ appointment.id }}">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                    
-                                    <!-- Delete Appointment Bootstrap Modal -->
-                                    <div class="modal fade" id="deleteAppointmentModal{{ appointment.id }}" tabindex="-1" aria-labelledby="deleteAppointmentModalLabel{{ appointment.id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteAppointmentModalLabel{{ appointment.id }}">Delete Appointment</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete your appointment for {{ appointment.appointment_date }} at {{ appointment.appointment_time }}?</p>
-                                                    <p class="text-muted small">This action cannot be undone.</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="d-inline">
-                                                        {% csrf_token %}
-                                                        <button type="submit" class="btn btn-danger">Delete Appointment</button>
-                                                    </form>
+                                    <!-- Buttons to delete and edit appointments -->
+                                    <div class="mt-3 d-flex gap-2 align-items-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                            <div class="dropdown-menu p-3" style="min-width: 250px;" id="editDropdown_{{ appointment.id }}">
+                                                <form method="POST" action="{% url 'edit_appointment' appointment.id %}">
+                                                    {% csrf_token %}
+                                                    <div class="mb-2">
+                                                        <label for="appointment_date_{{ appointment.id }}" class="form-label small">New Date:</label>
+                                                        <input type="date" name="appointment_date" id="appointment_date_{{ appointment.id }}" value="{{ appointment.appointment_date }}" class="form-control form-control-sm " required>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <label for="appointment_time_{{ appointment.id }}" class="form-label small">New Time:</label>
+                                                        <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm timepicker" required>
+                                                    </div>
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-save"></i> Save Changes
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal{{ appointment.id }}">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                        
+                                        <!-- Delete Appointment Bootstrap Modal -->
+                                        <div class="modal fade" id="deleteAppointmentModal{{ appointment.id }}" tabindex="-1" aria-labelledby="deleteAppointmentModalLabel{{ appointment.id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteAppointmentModalLabel{{ appointment.id }}">Delete Appointment</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete your appointment for {{ appointment.appointment_date }} at {{ appointment.appointment_time }}?</p>
+                                                        <p class="text-muted small">This action cannot be undone.</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <form method="POST" action="{% url 'delete_appointment' appointment.id %}" class="d-inline">
+                                                            {% csrf_token %}
+                                                            <button type="submit" class="btn btn-danger">Delete Appointment</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <div class="text-center">
-                            <p class="text-muted mb-2">No confirmed appointments yet.</p>
-                            <p class="text-info small">
-                                <i class="fas fa-clock me-1"></i>
-                                If you've booked an appointment, it's currently awaiting confirmation from our team.
-                            </p>
-                        </div>
-                    {% endif %}
+                        {% else %}
+                            <div class="text-center">
+                                <p class="text-muted mb-2">No confirmed appointments yet.</p>
+                                <p class="text-info small">
+                                    <i class="fas fa-clock me-1"></i>
+                                    If you've booked an appointment, it's currently awaiting confirmation from our team.
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

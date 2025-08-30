@@ -4,57 +4,59 @@
 {% block title %}Testimonials{% endblock %}
 
 {% block content %}
-<!-- Testimonials Header -->
-<div class="testimonials-header">
-    <div class="container">
-        <h1 class="text-center">Testimonials</h1>
-        <p class="text-center">Share your experience and read what others have to say</p>
-    </div>
-</div>
-
-<div class="container testimonials-container">
-    <!-- Testimonial Form -->
-    {% if user.is_authenticated %}
-        <div class="card mb-4">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Add Your Testimonial</h5>
-            </div>
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <textarea class="form-control" name="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary">Submit Testimonial</button>
-                </form>
-            </div>
+<div class="testimonials-page">
+    <!-- Testimonials Header -->
+    <div class="testimonials-header">
+        <div class="container">
+            <h1 class="text-center">Testimonials</h1>
+            <p class="text-center">Share your experience and read what others have to say</p>
         </div>
-    {% endif %}
-    
-    <!-- Display Testimonials -->
-    {% if testimonials %}
-        {% for testimonial in testimonials %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between"></div>
-                    <p class="mb-1">"{{ testimonial.testimonial }}"</p>
-                    <small class="text-muted">- {{ testimonial.user.username }}</small>
-                    <br>
-                    <small class="text-muted">{{ testimonial.created_at|date:"d/m/Y g:i A" }}</small>
+    </div>
+
+    <div class="container testimonials-container">
+        <!-- Testimonial Form -->
+        {% if user.is_authenticated %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Add Your Testimonial</h5>
                 </div>
-                {% if user == testimonial.user %}
-                <form method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="delete_testimonial" value="{{ testimonial.id }}">
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                </form>
-                {% endif %}
-                    </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <textarea class="form-control" name="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Submit Testimonial</button>
+                    </form>
                 </div>
             </div>
-        {% endfor %}
-    {% else %}
-        <p class="text-center text-muted">No testimonials yet.</p>
-    {% endif %}
+        {% endif %}
+        
+        <!-- Display Testimonials -->
+        {% if testimonials %}
+            {% for testimonial in testimonials %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between"></div>
+                        <p class="mb-1">"{{ testimonial.testimonial }}"</p>
+                        <small class="text-muted">- {{ testimonial.user.username }}</small>
+                        <br>
+                        <small class="text-muted">{{ testimonial.created_at|date:"d/m/Y g:i A" }}</small>
+                    </div>
+                    {% if user == testimonial.user %}
+                    <div class="card-footer">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_testimonial" value="{{ testimonial.id }}">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center text-muted">No testimonials yet.</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

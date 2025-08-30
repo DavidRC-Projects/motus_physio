@@ -26,7 +26,8 @@
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <textarea class="form-control" name="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
+                            <label for="testimonial" class="form-label">Your Testimonial</label>
+                            <textarea class="form-control" name="testimonial" id="testimonial" rows="3" placeholder="Share your experience..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-outline-primary">Submit Testimonial</button>
                     </form>

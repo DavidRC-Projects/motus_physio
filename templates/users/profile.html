@@ -77,22 +77,24 @@
                                                 <form method="POST" action="{% url 'surgery_type' %}">
                                                     {% csrf_token %}
                                                     <div class="mb-2">
-                                                    <select name="surgery_type" class="form-select form-select-sm">
-                                                        <option value="">Select Surgery Type</option>
-                                                        <option value="Knee Replacement">Knee Replacement</option>
-                                                        <option value="Hip Replacement">Hip Replacement</option>
-                                                        <option value="Shoulder Replacement">Shoulder Replacement</option>
-                                                        <option value="Elbow Replacement">Elbow Replacement</option>
-                                                        <option value="Spinal Fusion">Spinal Fusion</option>
-                                                        <option value="Laminectomy">Laminectomy</option>
-                                                        <option value="Discectomy">Discectomy</option>
-                                                        <option value="Knee Arthroscopy">Knee Arthroscopy</option>
-                                                        <option value="other">Other</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-2" id="other-input">
-                                                    <input type="text" name="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
-                                                </div>
+                                                        <label for="surgery_type" class="form-label small">Surgery Type:</label>
+                                                        <select name="surgery_type" id="surgery_type" class="form-select form-select-sm">
+                                                            <option value="">Select Surgery Type</option>
+                                                            <option value="Knee Replacement">Knee Replacement</option>
+                                                            <option value="Hip Replacement">Hip Replacement</option>
+                                                            <option value="Shoulder Replacement">Shoulder Replacement</option>
+                                                            <option value="Elbow Replacement">Elbow Replacement</option>
+                                                            <option value="Spinal Fusion">Spinal Fusion</option>
+                                                            <option value="Laminectomy">Laminectomy</option>
+                                                            <option value="Discectomy">Discectomy</option>
+                                                            <option value="Knee Arthroscopy">Knee Arthroscopy</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-2" id="other-input">
+                                                        <label for="other_surgery" class="form-label small">Other Surgery:</label>
+                                                        <input type="text" name="other_surgery" id="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
+                                                    </div>
                                                 <div>
                                                     <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
                                                     <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm">Cancel</a>

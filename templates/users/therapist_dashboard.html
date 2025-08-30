@@ -62,7 +62,8 @@
                                         <form method="post" action="{% url 'reply_to_message' message.id %}" class="mt-2">
                                             {% csrf_token %}
                                             <div class="input-group">
-                                                <input type="text" name="reply_message" class="form-control form-control-sm" placeholder="Type your reply..." required>
+                                                <label for="reply_message_{{ message.id }}" class="visually-hidden">Reply to {{ message.user.username }}</label>
+                                                <input type="text" name="reply_message" id="reply_message_{{ message.id }}" class="form-control form-control-sm" placeholder="Type your reply..." required>
                                                 <button type="submit" class="btn btn-primary btn-sm">Reply</button>
                                             </div>
                                         </form>

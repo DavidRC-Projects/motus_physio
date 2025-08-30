@@ -497,6 +497,10 @@ main {
         padding: 20px 0 20px 0;
     }
     
+    .appointment-header {
+        margin-top: 100px;
+    }
+    
     /* Profile picture styling for mobile */
     .profile-pic-small {
         width: 25px;
@@ -569,6 +573,10 @@ main {
     
     .navbar-nav .nav-item:last-child {
         margin-left: 1rem;
+    }
+
+    .appointment-header {
+        margin-top: 67px;
     }
 }
 

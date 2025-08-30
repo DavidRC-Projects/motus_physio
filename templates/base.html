@@ -193,16 +193,11 @@
         </script>
 
         <!-- Font Awesome Kit -->
-    <script src="https://kit.fontawesome.com/dceba04a03.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/dceba04a03.js" crossorigin="anonymous"></script>
 
-        <!-- Auto-show message modal if messages exist -->
+        <!-- Message Modal Script -->
         {% if messages %}
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                var messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
-                messageModal.show();
-            });
-        </script>
+        <script src="{% static 'js/message-modal.js' %}"></script>
         {% endif %}
     </body>
 </html>

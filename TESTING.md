@@ -333,6 +333,14 @@ I used the [W3C HTML Validator](https://validator.w3.org/) to validate my HTML p
 
 ---
 
+### Validation Check for CSS Files using W3C CSS Validator
+
+I used the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to validate my CSS files and found no issues.
+
+![CSS Validation](documentation/validcss.png)
+
+---
+
 ### Validation Check for JavaScript Files using JSHint
 
 I used [JSHint](https://jshint.com/) to validate my JavaScript code.

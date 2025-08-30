@@ -242,7 +242,7 @@
 | Reply Redirect | Check after reply submission | Redirects back to therapist dashboard | Pass |
 
 
-## Bug fixes
+### Bug fixes
 | Feature | Testing Performed | Result | Pass/Fail |
 |---------|------------------|---------|-----------|
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |
@@ -263,15 +263,58 @@ No CSS styles applied for active nav bar link. Added this to underline in white 
 time input in the appointment booking form did not allow input. Checked code in index.html and its inputtype was date and not time. This worked after chaning this.
 
 
-#### Validation Check for run.py using CI Python Linter
+## Validation checks
 
-Admin.py - fine
+### Validation Check for Python Files using CI Python Linter
 
-views.py and models - fine
-Trailing whitespace - Removed trailing spaces from several lines.
-Blank lines with whitespace - Cleaned up whitespace in blank lines throughout file
-Indentation errors fixed
-Missing newline - Added newline at end of file
+### PEP8 Compliance Summary
 
-settings.py
-urls.py
+I used https://pep8ci.herokuapp.com/.
+
+#### **admin.py** - Django Admin Configuration
+![Admin PEP8 Validation](documentation/admin.png)
+
+**Issues Fixed:**
+- Line length violations (E501) - Broke down long lines to stay under 79 characters
+- Trailing whitespace (W291) - Removed trailing spaces from lines
+- Blank lines with whitespace (W293) - Cleaned up whitespace in blank lines
+- Proper indentation - Fixed inconsistent indentation throughout file
+
+---
+
+#### **views.py** - Django Views Logic
+![Views PEP8 Validation](documentation/views.png)
+
+**Issues Fixed:**
+- Line length violations (E501) - Broke down long lines to stay under 79 characters
+- Trailing whitespace (W291) - Removed trailing spaces from multiple lines
+- Blank lines with whitespace (W293) - Cleaned up whitespace in blank lines throughout file
+- Indentation errors - Fixed improper indentation in multi-line statements
+- Missing newline - Added newline at end of file
+
+---
+
+#### **urls.py** - URL Routing Configuration
+![URLs PEP8 Validation](documentation/urls.png)
+
+**Issues Fixed:**
+- Line length violations (E501) - Broke down long URL pattern definitions to stay under 79 characters
+- Fixed URL patterns for:
+  - delete-appointment
+  - edit-appointment
+  - contact
+  - therapist-dashboard
+  - reply-message
+  - delete-message
+  - testimonials
+  - view-booking
+
+---
+
+#### **models.py** - Database Models
+![Models PEP8 Validation](documentation/models.png)
+
+**Issues Fixed:**
+- Line length violations (E501) - Broke down long field definitions to stay under 79 characters
+- Trailing whitespace (W291) - Removed trailing spaces from lines
+- Blank lines with whitespace (W293) - Cleaned up whitespace in blank lines

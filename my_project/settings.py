@@ -9,18 +9,14 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
+import cloudinary
+import cloudinary.api
+import cloudinary.uploader
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
-
-# Cloudinary imports
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!git add 
+# SECURITY WARNING: don't run with debug turned on in production!git add
 DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
@@ -77,8 +73,8 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',   
-    'allauth.account.auth_backends.AuthenticationBackend', 
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -86,7 +82,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Django AllAuth Settings for email verification
-ACCOUNT_EMAIL_VERIFICATION = 'none' 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

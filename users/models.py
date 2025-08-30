@@ -33,11 +33,16 @@ type of appointment, notes, and status.
 appointment_type can be initial consultation or follow up.
 This has automatic timestamps for creation and updates.
 It will display a string of 'Appointment by <user> on <date>'
-- :model:`auth.User` - ForeignKey relationship, each user can have multiple appointments.
-- :view:`users.views.booking` - Returns appointment data for booking form.
-- :view:`users.views.view_booking` - Returns appointments for calendar display.
-- :view:`users.views.edit_appointment` - Returns appointment data for editing.
-- :view:`users.views.delete_appointment` - Returns appointment data for deletion.
+- :model:`auth.User` - ForeignKey relationship, each user can
+have multiple appointments.
+- :view:`users.views.booking` - Returns appointment data
+for booking form.
+- :view:`users.views.view_booking` - Returns appointments
+for calendar display.
+- :view:`users.views.edit_appointment` - Returns appointment
+data for editing.
+- :view:`users.views.delete_appointment` - Returns appointment
+data for deletion.
 """
 
 
@@ -88,10 +93,13 @@ The 'parent_message' allows one message to have multiple replies.
 The created_ at stores the timestamp when the message was created.
 The messages are ordered by most recent first using the class Meta.
 It will display a string that displays 'Messages from <username>: <subject>'.
-- :model:`auth.User` - ForeignKey relationship, each user can have multiple messages.
-- :model:`users.Message` - Self-referencing ForeignKey for message replies.
-- :view:`users.views.message_practitioner` - Returns messages for contact page display.
-- :view:`users.views.reply_to_message` - Returns message data for reply functionality.
+- :model:`auth.User` - ForeignKey relationship, each user can have
+multiple messages.
+- :model:`users.Message` - ForeignKey for message replies.
+- :view:`users.views.message_practitioner` - Returns messages for
+contact page display.
+- :view:`users.views.reply_to_message` - Returns message data for
+reply functionality.
 - :view:`users.views.delete_message` - Returns message data for deletion.
 """
 
@@ -131,9 +139,12 @@ The 'updated_at' automatically updates whenever the testimonial is modified.
 The testimonials are ordered by creation date in descending order
 (newest first).
 It will display a string that displays 'Testimonial by <username>'.
-- :model:`auth.User` - ForeignKey relationship, each user can have multiple testimonials.
-- :view:`users.views.testimonials` - Returns testimonials for testimonials page display.
-- :view:`users.views.delete_testimonial` - Returns testimonial data for deletion.
+- :model:`auth.User` - ForeignKey relationship, each user can have
+multiple testimonials.
+- :view:`users.views.testimonials` - Returns testimonials for testimonials
+page display.
+- :view:`users.views.delete_testimonial` - Returns testimonial data
+for deletion.
 """
 
 

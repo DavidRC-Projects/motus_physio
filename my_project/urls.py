@@ -75,3 +75,4 @@ urlpatterns = [
 ]
 
 handler404 = 'users.views.custom_404'
+handler500 = 'users.views.custom_500'

@@ -265,11 +265,49 @@ time input in the appointment booking form did not allow input. Checked code in 
 
 ## Validation checks
 
+### Validation Check for JavaScript Files using JSHint
+
+I used [JSHint](https://jshint.com/) to validate my JavaScript code.
+The following adjustments were made:
+
+#### **click_appointment.js** - Calendar Interaction Logic
+![JSHint Click Appointment Validation](documentation/jshintclickapp.png)
+
+**Issues Fixed:**
+- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+
+---
+
+#### **date_valid.js** - Date Validation Logic
+![JSHint Date Valid Validation](documentation/jshintdatevalid.png)
+
+**Issues Fixed:**
+- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+
+---
+
+#### **timepicker.js** - Time Selection Logic
+![JSHint Timepicker Validation](documentation/jshinttimepicker.png)
+
+**Issues Fixed:**
+- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+
+---
+
 ### Validation Check for Python Files using CI Python Linter
 
 ### PEP8 Compliance Summary
 
-I used https://pep8ci.herokuapp.com/.
+I used the [CI Python Linter](https://pep8ci.herokuapp.com/) and followed the [PEP8 guidelines](https://peps.python.org/pep-0008/) to validate my code.
+
+The following adjustments were made:
+
+1. **Removed unnecessary blank lines and trailing whitespace** - Cleaned up formatting throughout all files.
+2. **Ensured line length compliance** - All lines are under 79 characters, with docstring lines limited to 72 characters as recommended.
+3. **Grouped imports in the correct order**:
+   - Standard library imports
+   - Related third-party imports  
+   - Local application imports
 
 #### **admin.py** - Django Admin Configuration
 ![Admin PEP8 Validation](documentation/admin.png)

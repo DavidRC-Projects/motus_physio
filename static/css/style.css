@@ -207,6 +207,27 @@ main {
     font-family: var(--primary-font);
 }
 
+/* Profile picture styling */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.default-profile-picture {
+    width: 150px;
+    height: 150px;
+    background-color: #e9ecef;
+}
+
+.dropdown-menu-edit {
+    min-width: 250px;
+}
+
+.hidden-input {
+    display: none;
+}
+
 /* Card header styling for User Profile */
 .card .card-header {
     background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);

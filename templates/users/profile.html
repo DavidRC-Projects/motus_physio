@@ -30,7 +30,7 @@
                                     <form method="POST" enctype="multipart/form-data" id="upload-form">
                                         {% csrf_token %}
                                         <input type="file" name="profile_picture" id="profile-picture" hidden onchange="document.getElementById('upload-form').submit();">
-                                        <label for="profile-picture" class="upload-btn">
+                                        <label for="profile-picture" class="upload-btn small">
                                             {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
                                             Change Photo
                                             {% else %}
@@ -42,7 +42,7 @@
                                     {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
                                     <form method="POST" action="{% url 'delete_photo' %}" class="mt-2">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete your profile picture?')">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm small" onclick="return confirm('Are you sure you want to delete your profile picture?')">
                                             <i class="fas fa-trash"></i> Delete Photo
                                         </button>
                                     </form>
@@ -68,10 +68,10 @@
                                                 {% if user.userprofile.surgery_type %}
                                                     <div class="d-flex align-items-center">
                                                         <span class="me-3">{{ user.userprofile.surgery_type }}</span>
-                                                        <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Change</a>
+                                                        <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm small">Change</a>
                                                     </div>
                                                 {% else %}
-                                                    <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm">Please Select</a>
+                                                    <a href="?edit_surgery=1" class="btn btn-outline-primary btn-sm small">Please Select</a>
                                                 {% endif %}
                                             {% else %}
                                                 <form method="POST" action="{% url 'surgery_type' %}">
@@ -80,14 +80,16 @@
                                                         <label for="surgery_type" class="form-label small">Surgery Type:</label>
                                                         <select name="surgery_type" id="surgery_type" class="form-select form-select-sm">
                                                             <option value="">Select Surgery Type</option>
-                                                            <option value="Knee Replacement">Knee Replacement</option>
-                                                            <option value="Hip Replacement">Hip Replacement</option>
-                                                            <option value="Shoulder Replacement">Shoulder Replacement</option>
-                                                            <option value="Elbow Replacement">Elbow Replacement</option>
-                                                            <option value="Spinal Fusion">Spinal Fusion</option>
-                                                            <option value="Laminectomy">Laminectomy</option>
-                                                            <option value="Discectomy">Discectomy</option>
-                                                            <option value="Knee Arthroscopy">Knee Arthroscopy</option>
+                                                            <option value="Ankle">Ankle</option>
+                                                            <option value="Knee">Knee</option>
+                                                            <option value="Hip">Hip</option>
+                                                            <option value="Shoulder">Shoulder</option>
+                                                            <option value="Elbow">Elbow</option>
+                                                            <option value="Wrist">Wrist</option>
+                                                            <option value="Hand">Hand</option>
+                                                            <option value="Spine Lower">Spine Lower</option>
+                                                            <option value="Spine Middle">Spine Middle</option>
+                                                            <option value="Spine Upper">Spine Upper</option>
                                                             <option value="other">Other</option>
                                                         </select>
                                                     </div>
@@ -96,8 +98,8 @@
                                                         <input type="text" name="other_surgery" id="other_surgery" class="form-control form-control-sm hidden-input" placeholder="Please specify...">
                                                     </div>
                                                 <div>
-                                                    <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
-                                                    <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm">Cancel</a>
+                                                    <button type="submit" class="btn btn-success btn-sm small me-2">Save</button>
+                                                    <a href="{% url 'profile' %}" class="btn btn-secondary btn-sm small">Cancel</a>
                                                 </div>
                                             </form>
                                             {% endif %}
@@ -141,7 +143,7 @@
                                     <!-- Buttons to delete and edit appointments -->
                                     <div class="mt-3 d-flex gap-2 align-items-center">
                                         <div class="dropdown">
-                                            <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-outline-primary btn-sm small" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-edit"></i> Edit
                                             </button>
                                             <div class="dropdown-menu p-3 dropdown-menu-edit" id="editDropdown_{{ appointment.id }}">
@@ -156,7 +158,7 @@
                                                         <input type="time" name="appointment_time" id="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}" class="form-control form-control-sm timepicker" required>
                                                     </div>
                                                     <div class="d-grid">
-                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                        <button type="submit" class="btn btn-primary btn-sm small">
                                                             <i class="fas fa-save"></i> Save Changes
                                                         </button>
                                                     </div>
@@ -164,7 +166,7 @@
                                             </div>
                                         </div>
                                         
-                                        <button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal{{ appointment.id }}">
+                                        <button type="button" class="btn btn-outline-dark btn-sm small" data-bs-toggle="modal" data-bs-target="#deleteAppointmentModal{{ appointment.id }}">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
                                         

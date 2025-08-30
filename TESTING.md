@@ -265,6 +265,74 @@ time input in the appointment booking form did not allow input. Checked code in 
 
 ## Validation checks
 
+### Validation Check for HTML Files using W3C HTML Validator
+
+I used the [W3C HTML Validator](https://validator.w3.org/) to validate my HTML pages by URI. The following pages were validated and all HTML structure issues were resolved.
+
+#### **Homepage (index.html)**
+![Homepage HTML Validation](documentation/validhome.png)
+
+**Issues Fixed:**
+- Trailing slash warnings on void elements - Removed trailing slashes from meta and input tags
+- Unclosed div structure - Added semantic wrapper
+
+---
+
+#### **Profile Page (profile.html)**
+![Profile Page HTML Validation](documentation/validprofile.png)
+
+**Issues Fixed:**
+- Unclosed div structure - Added semantic wrapper
+- Proper nesting of all div elements within main structure
+
+---
+
+#### **Appointment Booking (booking.html)**
+![Booking Page HTML Validation](documentation/validbooking.png)
+
+**Issues Fixed:**
+- Unclosed div structure - Added semantic wrapper
+- Proper nesting of appointment header and booking form content
+
+---
+
+#### **View Bookings (view_booking.html)**
+![View Bookings HTML Validation](documentation/validviewbooking.png)
+
+**Issues Fixed:**
+- Unclosed div structure - Added semantic wrapper
+- Proper nesting of calendar container within main structure
+
+---
+
+#### **Contact Page (message_practitioner.html)**
+![Contact Page HTML Validation](documentation/validcontact.png)
+
+**Issues Fixed:**
+- Unclosed div structure - Added semantic wrapper
+- Proper nesting of contact form and messages sections
+
+---
+
+#### **Testimonials Page (testimonials.html)**
+![Testimonials HTML Validation](documentation/validtestimonials.png)
+
+**Issues Fixed:**
+- Stray end tag div errors - Removed extra closing div tags
+- Unclosed div structure - Added semantic wrapper
+- Improved card structure with proper card-footer elements
+
+---
+
+#### **Therapist Dashboard (therapist_dashboard.html)**
+![Therapist Dashboard HTML Validation](documentation/validdashboard.png)
+
+**Issues Fixed:**
+- Missing closing div for row elements - Added Bootstrap grid structure
+- Unclosed div structure - Added semantic wrapper
+
+---
+
 ### Validation Check for JavaScript Files using JSHint
 
 I used [JSHint](https://jshint.com/) to validate my JavaScript code.

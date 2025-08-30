@@ -15,14 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from users import views as users_views
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from users.models import UserProfile
 from django.contrib import messages
-from users.models import Appointment
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import include, path
+from users import views as users_views
+from users.models import Appointment, UserProfile
 
 urlpatterns = [
     path('', users_views.index_booking, name='index'),
@@ -33,13 +31,45 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('surgery-type/', users_views.surgery_type, name='surgery_type'),
     path('booking/', users_views.booking, name='booking'),
-    path('view-booking/', users_views.booking_calendar_view, name='view_booking'),
+    path(
+        'view-booking/',
+        users_views.booking_calendar_view,
+        name='view_booking'
+    ),
     path('index_booking/', users_views.index_booking, name='index_booking'),
-    path('delete-appointment/<int:appointment_id>/', users_views.delete_appointment, name='delete_appointment'),
-    path('edit-appointment/<int:appointment_id>/', users_views.edit_appointment, name='edit_appointment'),
-    path('contact/', users_views.message_practitioner, name='message_practitioner'),
-    path('therapist-dashboard/', users_views.therapist_dashboard, name='therapist_dashboard'),
-    path('reply-message/<int:message_id>/', users_views.reply_to_message, name='reply_to_message'),
-    path('delete-message/<int:message_id>/', users_views.delete_message, name='delete_message'),
-    path('testimonials/', users_views.testimonials, name='testimonials'),
+    path(
+        'delete-appointment/<int:appointment_id>/',
+        users_views.delete_appointment,
+        name='delete_appointment'
+    ),
+    path(
+        'edit-appointment/<int:appointment_id>/',
+        users_views.edit_appointment,
+        name='edit_appointment'
+    ),
+    path(
+        'contact/',
+        users_views.message_practitioner,
+        name='message_practitioner'
+    ),
+    path(
+        'therapist-dashboard/',
+        users_views.therapist_dashboard,
+        name='therapist_dashboard'
+    ),
+    path(
+        'reply-message/<int:message_id>/',
+        users_views.reply_to_message,
+        name='reply_to_message'
+    ),
+    path(
+        'delete-message/<int:message_id>/',
+        users_views.delete_message,
+        name='delete_message'
+    ),
+    path(
+        'testimonials/',
+        users_views.testimonials,
+        name='testimonials'
+    ),
 ]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, Appointment, Testimonials
+from .models import Appointment, Testimonials, UserProfile
 
 
 @admin.register(UserProfile)

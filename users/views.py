@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .models import UserProfile, Appointment, Message, Testimonials
-from datetime import date
 from calendar import monthrange
+from datetime import date
 import cloudinary.uploader
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Appointment, Message, Testimonials, UserProfile
 
 
 @login_required

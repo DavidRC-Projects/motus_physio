@@ -24,3 +24,4 @@ class AppointmentAdmin(admin.ModelAdmin):
 class TestimonialsAdmin(admin.ModelAdmin):
     list_display = ('user', 'testimonial', 'created_at', 'updated_at')
     list_filter = ('created_at', 'updated_at')
+

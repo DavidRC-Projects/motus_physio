@@ -26,17 +26,25 @@ def booking(request):
         appointment_time = request.POST.get('appointment_time')
         appointment_type = request.POST.get('appointment_type')
         notes = request.POST.get('notes')
-        
-        if not appointment_date or not appointment_time or not appointment_type:
-            messages.error(request, 'Please fill in all required fields.')
+
+        if (not appointment_date or not appointment_time or
+                not appointment_type):
+            messages.error(
+                request,
+                'Please fill in all required fields.'
+            )
         else:
             existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
                 appointment_time=appointment_time
             ).first()
-            
+
             if existing_appointment:
-                messages.error(request, 'This time slot is already booked. Please choose a different time.')
+                messages.error(
+                    request,
+                    'This time slot is already booked. '
+                    'Please choose a different time.'
+                )
             else:
                 appointment = Appointment.objects.create(
                     user=request.user,
@@ -45,15 +53,22 @@ def booking(request):
                     appointment_type=appointment_type,
                     notes=notes
                 )
-                messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
+                messages.success(
+                    request,
+                    f'Appointment booked successfully for {appointment_date} '
+                    f'at {appointment_time}!'
+                )
                 return redirect('booking')
-    
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-    
+
+    user_appointments = (
+        Appointment.objects.filter(user=request.user)
+        .order_by('-created_at')
+    )
+
     context = {
         'user_appointments': user_appointments,
     }
-    
+
     return render(request, 'users/booking.html', context)
 
 
@@ -71,17 +86,25 @@ def index_booking(request):
         appointment_time = request.POST.get('appointment_time')
         appointment_type = request.POST.get('appointment_type')
         notes = request.POST.get('notes')
-        
-        if not appointment_date or not appointment_time or not appointment_type:
-            messages.error(request, 'Please fill in all required fields.')
+
+        if (not appointment_date or not appointment_time or
+                not appointment_type):
+            messages.error(
+                request,
+                'Please fill in all required fields.'
+            )
         else:
             existing_appointment = Appointment.objects.filter(
                 appointment_date=appointment_date,
                 appointment_time=appointment_time
             ).first()
-            
+
             if existing_appointment:
-                messages.error(request, 'This time slot is already booked. Please choose a different time.')
+                messages.error(
+                    request,
+                    'This time slot is already booked. '
+                    'Please choose a different time.'
+                )
             else:
                 Appointment.objects.create(
                     user=request.user,
@@ -90,9 +113,13 @@ def index_booking(request):
                     appointment_type=appointment_type,
                     notes=notes
                 )
-                messages.success(request, f'Appointment booked successfully for {appointment_date} at {appointment_time}!')
+                messages.success(
+                    request,
+                    f'Appointment booked successfully for {appointment_date} '
+                    f'at {appointment_time}!'
+                )
                 return redirect('index')
-    
+
     return render(request, 'index.html')
 
 
@@ -120,10 +147,16 @@ def profile(request):
             profile, _ = UserProfile.objects.get_or_create(user=user)
             profile.profile_picture = profile_picture
             profile.save()
-            messages.success(request, 'Profile picture updated successfully')
+            messages.success(
+                request,
+                'Profile picture updated successfully'
+            )
             return redirect('profile')
-    
-    user_appointments = Appointment.objects.filter(user=user, status='confirmed').order_by('-created_at')
+
+    user_appointments = (
+        Appointment.objects.filter(user=user, status='confirmed')
+        .order_by('-created_at')
+    )
 
     context = {
         'user': user,
@@ -145,18 +178,27 @@ def delete_photo(request):
         user = request.user
         try:
             profile = user.userprofile
-            if profile.profile_picture and "placeholder" not in str(profile.profile_picture):
+            if (profile.profile_picture and
+                    "placeholder" not in str(profile.profile_picture)):
                 public_id = profile.profile_picture.public_id
                 cloudinary.uploader.destroy(public_id)
                 profile.profile_picture = 'placeholder'
                 profile.save()
-                messages.success(request, 'Profile picture deleted successfully!')
+                messages.success(
+                    request,
+                    'Profile picture deleted successfully!'
+                )
             else:
-                messages.info(request, 'No profile picture to delete.')
+                messages.info(
+                    request,
+                    'No profile picture to delete.'
+                )
         except Exception as e:
-            messages.error(request, f'Failed to delete profile picture: {str(e)}')
+            messages.error(
+                request,
+                f'Failed to delete profile picture: {str(e)}'
+            )
         return redirect('profile')
-    return redirect('profile')
 
 
 @login_required
@@ -174,7 +216,9 @@ def delete_appointment(request, appointment_id):
     Redirects to profile page after deletion.
     """
     if request.method == 'POST':
-        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        appointment = get_object_or_404(
+            Appointment, id=appointment_id, user=request.user
+        )
         appointment.delete()
     return redirect('profile')
 
@@ -195,24 +239,35 @@ def edit_appointment(request, appointment_id):
     Redirects to view_booking page after editing.
     """
     if request.method == 'POST':
-        appointment = get_object_or_404(Appointment, id=appointment_id, user=request.user)
+        appointment = get_object_or_404(
+            Appointment, id=appointment_id, user=request.user
+        )
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
-        existing_appointment = Appointment.objects.filter(
-            appointment_date=appointment_date,
-            appointment_time=appointment_time
-        ).exclude(id=appointment_id).first()
-        
+        existing_appointment = (
+            Appointment.objects.filter(
+                appointment_date=appointment_date,
+                appointment_time=appointment_time
+            ).exclude(id=appointment_id).first()
+        )
+
         if existing_appointment:
-            messages.error(request, 'This time slot is already booked. Please choose a different time.')
+            messages.error(
+                request,
+                'This time slot is already booked. '
+                'Please choose a different time.'
+            )
         else:
             appointment.appointment_date = appointment_date
             appointment.appointment_time = appointment_time
             appointment.status = 'pending'
             appointment.needs_approval = True
             appointment.save()
-            messages.success(request, 'Appointment updated! Changes require admin approval.')
-        
+            messages.success(
+                request,
+                'Appointment updated! Changes require admin approval.'
+            )
+
     return redirect('view_booking')
 
 
@@ -236,7 +291,10 @@ def surgery_type(request):
             else:
                 profile.surgery_type = surgery_type
             profile.save()
-            messages.success(request, 'Surgery type updated successfully')
+            messages.success(
+                request,
+                'Surgery type updated successfully'
+            )
             return redirect('profile')
     return redirect('profile')
 
@@ -255,12 +313,15 @@ def view_booking(request):
 
     :template:`users/view_booking.html`
     """
-    user_appointments = Appointment.objects.filter(user=request.user).order_by('-created_at')
-    
+    user_appointments = (
+        Appointment.objects.filter(user=request.user)
+        .order_by('-created_at')
+    )
+
     context = {
         'user_appointments': user_appointments,
     }
-    
+
     return render(request, 'users/view_booking.html', context)
 
 
@@ -298,24 +359,33 @@ def booking_calendar_view(request):
         month = 1
         year += 1
 
-    month_names = ['January', 'February', 'March', 'April', 'May', 'June',
-                   'July', 'August', 'September', 'October', 'November', 'December']
+    month_names = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ]
     month_name = month_names[month - 1]
     days_in_month = monthrange(year, month)[1]
-    current_month_appointments = Appointment.objects.filter(
-        user=request.user,
-        appointment_date__year=year,
-        appointment_date__month=month
+    current_month_appointments = (
+        Appointment.objects.filter(
+            user=request.user,
+            appointment_date__year=year,
+            appointment_date__month=month
+        )
     )
-    
+
     approval_appointments = Appointment.objects.filter(
         user=request.user,
         needs_approval=True
     )
-    
-    user_appointments = (current_month_appointments | approval_appointments).distinct().order_by('appointment_date')
-    
-    booked_days = [appointment.appointment_date.day for appointment in current_month_appointments]
+
+    user_appointments = (
+        current_month_appointments | approval_appointments
+    ).distinct().order_by('appointment_date')
+
+    booked_days = [
+        appointment.appointment_date.day
+        for appointment in current_month_appointments
+    ]
 
     context = {
         'month': month,
@@ -332,7 +402,8 @@ def booking_calendar_view(request):
 @login_required
 def message_practitioner(request):
     """
-    Handle sending messages to practitioners and display user's message history.
+    Handle sending messages to practitioners and display user's message
+    history.
 
     **Context**
 
@@ -346,7 +417,7 @@ def message_practitioner(request):
     if request.method == 'POST':
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        
+
         if subject and message:
             Message.objects.create(
                 user=request.user,
@@ -354,24 +425,34 @@ def message_practitioner(request):
                 message=message,
                 reply=False
             )
-            messages.success(request, 'Your message has been sent to the practitioner!')
+            messages.success(
+                request,
+                'Your message has been sent to the practitioner!'
+            )
             return redirect('message_practitioner')
         else:
-            messages.error(request, 'Please fill in all required fields.')
-    
-    user_messages = Message.objects.filter(user=request.user).order_by('-created_at')
-    
+            messages.error(
+                request,
+                'Please fill in all required fields.'
+            )
+
+    user_messages = (
+        Message.objects.filter(user=request.user)
+        .order_by('-created_at')
+    )
+
     context = {
         'user_messages': user_messages,
     }
-    
+
     return render(request, 'users/message_practitioner.html', context)
 
 
 @login_required
 def therapist_dashboard(request):
     """
-    Display dashboard for therapists to view all appointments and patient messages.
+    Display dashboard for therapists to view all appointments and patient
+    messages.
 
     **Context**
 
@@ -385,17 +466,26 @@ def therapist_dashboard(request):
     :template:`users/therapist_dashboard.html`
     """
     if not request.user.is_staff:
-        messages.error(request, 'Access denied. Therapist only.')
+        messages.error(
+            request,
+            'Access denied. Therapist only.'
+        )
         return redirect('index')
-    
-    all_appointments = Appointment.objects.all().order_by('-created_at')
-    all_messages = Message.objects.filter(reply=False).order_by('-created_at')
-    
+
+    all_appointments = (
+        Appointment.objects.all()
+        .order_by('-created_at')
+    )
+    all_messages = (
+        Message.objects.filter(reply=False)
+        .order_by('-created_at')
+    )
+
     context = {
         'appointments': all_appointments,
         'messages': all_messages,
     }
-    
+
     return render(request, 'users/therapist_dashboard.html', context)
 
 
@@ -416,7 +506,9 @@ def reply_to_message(request, message_id):
     if request.method == 'POST':
         reply_text = request.POST.get('reply_message')
         if reply_text:
-            original_message = get_object_or_404(Message, id=message_id)
+            original_message = get_object_or_404(
+                Message, id=message_id
+            )
             Message.objects.create(
                 user=request.user,
                 subject=f"Re: {original_message.subject}",
@@ -424,12 +516,15 @@ def reply_to_message(request, message_id):
                 reply=True,
                 parent_message=original_message
             )
-            
+
             original_message.reply = True
             original_message.save()
-            messages.success(request, 'Reply sent!')
+            messages.success(
+                request,
+                'Reply sent!'
+            )
             return redirect('therapist_dashboard')
-    
+
     return redirect('therapist_dashboard')
 
 
@@ -449,7 +544,10 @@ def delete_message(request, message_id):
     """
     message = get_object_or_404(Message, id=message_id)
     message.delete()
-    messages.success(request, 'Message deleted successfully.')
+    messages.success(
+        request,
+        'Message deleted successfully.'
+    )
     return redirect('message_practitioner')
 
 
@@ -473,22 +571,31 @@ def testimonials(request):
                 user=request.user,
                 testimonial=testimonial_text
             )
-            messages.success(request, 'Thank you! Your testimonial has been added.')
+            messages.success(
+                request,
+                'Thank you! Your testimonial has been added.'
+            )
             return redirect('testimonials')
 
         delete_id = request.POST.get('delete_testimonial')
         if delete_id:
-            testimonial = Testimonials.objects.get(id=delete_id, user=request.user)
+            testimonial = Testimonials.objects.get(
+                id=delete_id, user=request.user
+            )
             testimonial.delete()
-            messages.success(request, 'Testimonial deleted.')
+            messages.success(
+                request,
+                'Testimonial deleted.'
+            )
             return redirect('testimonials')
-    
-    testimonials = Testimonials.objects.all().order_by('-created_at')
-    
+
+    testimonials = (
+        Testimonials.objects.all()
+        .order_by('-created_at')
+    )
+
     context = {
         'testimonials': testimonials,
     }
-    
+
     return render(request, 'users/testimonials.html', context)
-
-

@@ -271,30 +271,44 @@ I used [JSHint](https://jshint.com/) to validate my JavaScript code.
 The following adjustments were made:
 
 #### **click_appointment.js** - Calendar Interaction Logic
-![JSHint Click Appointment Validation](documentation/jshintclickapp.png)
 
 **Issues Fixed:**
-- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+- ES6 compatibility warnings - Added /* jshint esversion: 6 */ to enable ES6 features.
 
 ---
 
 #### **date_valid.js** - Date Validation Logic
-![JSHint Date Valid Validation](documentation/jshintdatevalid.png)
 
 **Issues Fixed:**
-- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+- ES6 compatibility warnings - Added /* jshint esversion: 6 */ to enable ES6 features.
 
 ---
 
 #### **timepicker.js** - Time Selection Logic
-![JSHint Timepicker Validation](documentation/jshinttimepicker.png)
 
 **Issues Fixed:**
-- ES6 compatibility warnings - Added `/* jshint esversion: 6 */` to enable ES6 features
+- jQuery compatibility warnings - Added /* jshint jquery: true */ to enable jQuery features.
 
 ---
 
+#### **message_modal.js** - Message Modal Functionality
+
+**Issues Fixed:**
+- ES6 compatibility warnings - Added /* jshint esversion: 6 */ to enable ES6 features.
+- Undefined variable warnings - Added /* global bootstrap */ to handle Bootstrap global variable.
+
+---
+
+
+
 ### Validation Check for Python Files using CI Python Linter
+
+index.html
+Trailing slash warnings on void elements
+"End tag main seen, but there were open elements" error
+"Unclosed element div" error
+
+
 
 ### PEP8 Compliance Summary
 

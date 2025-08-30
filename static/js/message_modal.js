@@ -1,8 +1,11 @@
 /* jshint esversion: 6 */
+/* global bootstrap */
+
 /**
- Shows the Bootstrap modal with ID "messageModal" 
- as soon as the page finishes loading.
- */
+ Auto-show message modal functionality:
+ - Automatically displays Bootstrap modal.
+ - Shows notifications.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     var messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
     messageModal.show();

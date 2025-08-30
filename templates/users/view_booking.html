@@ -210,7 +210,7 @@
                                         <button class="btn btn-outline-purple btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
-                                        <div class="dropdown-menu p-3" style="min-width: 250px;">
+                                        <div class="dropdown-menu p-3 dropdown-menu-edit">
                                             <form method="POST" action="{% url 'edit_appointment' appointment.id %}">
                                                 {% csrf_token %}
                                                 <div class="mb-2">

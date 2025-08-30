@@ -207,6 +207,27 @@ main {
     font-family: var(--primary-font);
 }
 
+/* Profile picture styling */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.default-profile-picture {
+    width: 150px;
+    height: 150px;
+    background-color: #e9ecef;
+}
+
+.dropdown-menu-edit {
+    min-width: 250px;
+}
+
+.hidden-input {
+    display: none;
+}
+
 /* Card header styling for User Profile */
 .card .card-header {
     background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
@@ -234,6 +255,7 @@ main {
 
 /*  View appointments page styling */
 /* Styles for booking calendar in view appointments page */
+
 
 /* Calendar container */
 .calendar-container {
@@ -387,6 +409,23 @@ main {
     color: var(--clr-white);
     font-weight: bold;
     transition: all 0.3s ease;
+}
+
+/* Book now buttons styling */
+.btn-outline-purple {
+    background: transparent;
+    border: 2px solid var(--clr-purple-medium);
+    color: var(--clr-purple-medium);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-purple:hover {
+    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-purple-medium) 100%);
+    border-color: var(--clr-purple-dark);
+    color: var(--clr-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--clr-purple-light);
 }
 
 /* Upload button style */

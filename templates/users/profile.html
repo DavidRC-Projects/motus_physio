@@ -19,9 +19,9 @@
                             <div class="col-md-4 text-center">
                                 <div class="profile-picture-container">
                                     {% if user.userprofile.profile_picture and "placeholder" not in user.userprofile.profile_picture.url %}
-                                        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+                                        <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle profile-picture">
                                     {% else %}
-                                        <div class="default-profile-picture rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 150px; height: 150px; background-color: #e9ecef;">
+                                        <div class="default-profile-picture rounded-circle d-flex align-items-center justify-content-center mx-auto">
                                             <i class="fas fa-user fa-3x text-muted"></i>
                                         </div>
                                     {% endif %}
@@ -93,7 +93,7 @@
                                                     </div>
                                                     <div class="mb-2" id="other-input">
                                                         <label for="other_surgery" class="form-label small">Other Surgery:</label>
-                                                        <input type="text" name="other_surgery" id="other_surgery" class="form-control form-control-sm" placeholder="Please specify..." style="display: none;">
+                                                        <input type="text" name="other_surgery" id="other_surgery" class="form-control form-control-sm hidden-input" placeholder="Please specify...">
                                                     </div>
                                                 <div>
                                                     <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
@@ -144,7 +144,7 @@
                                             <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-edit"></i> Edit
                                             </button>
-                                            <div class="dropdown-menu p-3" style="min-width: 250px;" id="editDropdown_{{ appointment.id }}">
+                                            <div class="dropdown-menu p-3 dropdown-menu-edit" id="editDropdown_{{ appointment.id }}">
                                                 <form method="POST" action="{% url 'edit_appointment' appointment.id %}">
                                                     {% csrf_token %}
                                                     <div class="mb-2">

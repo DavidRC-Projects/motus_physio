@@ -73,3 +73,5 @@ urlpatterns = [
         name='testimonials'
     ),
 ]
+
+handler404 = 'users.views.custom_404'

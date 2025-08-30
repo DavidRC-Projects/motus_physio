@@ -263,6 +263,80 @@ No CSS styles applied for active nav bar link. Added this to underline in white 
 time input in the appointment booking form did not allow input. Checked code in index.html and its inputtype was date and not time. This worked after chaning this.
 
 
+## Lighthouse Performance Testing
+
+I used [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) to test the performance, accessibility, best practices, and SEO of my website on both desktop and mobile devices.
+
+### **Homepage Testing**
+
+#### **Desktop Performance**
+![Homepage Desktop Lighthouse](documentation/lightdesktophome.png)
+
+#### **Mobile Performance**
+![Homepage Mobile Lighthouse](documentation/lightmobilehome.png)
+
+---
+
+### **Profile Page Testing**
+
+#### **Desktop Performance**
+![Profile Desktop Lighthouse](documentation/lightdesktopprofile.png)
+
+#### **Mobile Performance**
+![Profile Mobile Lighthouse](documentation/lightmobileprofile.png)
+
+---
+
+### **Appointment Booking Testing**
+
+#### **Desktop Performance**
+![Booking Desktop Lighthouse](documentation/lightdesktopbooking.png)
+
+#### **Mobile Performance**
+![Booking Mobile Lighthouse](documentation/lightmobilebooking.png)
+
+---
+
+### **View Bookings Testing**
+
+#### **Desktop Performance**
+![View Bookings Desktop Lighthouse](documentation/lightdesktopview.png)
+
+#### **Mobile Performance**
+![View Bookings Mobile Lighthouse](documentation/lightmobileview.png)
+
+---
+
+### **Contact Page Testing**
+
+#### **Desktop Performance**
+![Contact Desktop Lighthouse](documentation/lightdesktopcontact.png)
+
+#### **Mobile Performance**
+![Contact Mobile Lighthouse](documentation/lightmobilecontact.png)
+
+---
+
+### **Testimonials Testing**
+
+#### **Desktop Performance**
+![Testimonials Desktop Lighthouse](documentation/lightdesktoptest.png)
+
+#### **Mobile Performance**
+![Testimonials Mobile Lighthouse](documentation/lightmobiletest.png)
+
+---
+
+### **Therapist Dashboard Testing**
+
+#### **Desktop Performance**
+![Dashboard Desktop Lighthouse](documentation/lightdesktopdash.png)
+
+#### **Mobile Performance**
+![Dashboard Mobile Lighthouse](documentation/lightmobiledash.png)
+
+---
+
 ## Validation checks
 
 ### Validation Check for HTML Files using W3C HTML Validator

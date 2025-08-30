@@ -348,41 +348,7 @@ main {
     margin-top: 0.5rem;
 }
 
-/* 404 error styling */
-.not-found-page {
-    text-align: center;
-    padding: 50px;
-    background: linear-gradient(135deg, var(--clr-purple-dark) 0%, var(--clr-dark) 100%);
-    min-height: 100vh;
-}
 
-.not-found-number {
-    font-size: 4rem;
-    color: var(--clr-purple-medium);
-    margin-bottom: 20px;
-    display: block;
-}
-
-.not-found-title {
-    color: var(--clr-white);
-    margin-bottom: 20px;
-    display: block;
-}
-
-.not-found-text {
-    color: var(--clr-white);
-    margin-bottom: 30px;
-    display: block;
-}
-
-.not-found-button {
-    background: var(--clr-purple-medium);
-    color: var(--clr-white);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: inline-block;
-}
 
 /* Footer */
 .footer {

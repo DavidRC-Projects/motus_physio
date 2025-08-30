@@ -81,6 +81,8 @@ def index_booking(request):
 
     :template:`index.html`
     """
+
+
     if request.method == 'POST':
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')
@@ -604,3 +606,8 @@ def testimonials(request):
 def custom_404(request, exception):
     """Custom 404 error handler."""
     return render(request, '404.html', status=404)
+
+
+def custom_500(request):
+    """Custom 500 error handler."""
+    return render(request, '500.html', status=500)

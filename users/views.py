@@ -46,7 +46,7 @@ def booking(request):
                     'Please choose a different time.'
                 )
             else:
-                appointment = Appointment.objects.create(
+                Appointment.objects.create(
                     user=request.user,
                     appointment_date=appointment_date,
                     appointment_time=appointment_time,
@@ -81,8 +81,6 @@ def index_booking(request):
 
     :template:`index.html`
     """
-
-
     if request.method == 'POST':
         appointment_date = request.POST.get('appointment_date')
         appointment_time = request.POST.get('appointment_time')

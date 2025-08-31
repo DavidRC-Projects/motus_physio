@@ -17,10 +17,10 @@
 
 ### Design
 
-* [Database Schema](#database-schema)
 * [Colour Scheme](#colour-scheme)
 * [Typography](#typography)
 * [Wireframes](#wireframes)
+* [Database Schema](#database-schema)
 
 ## Project Goals
 
@@ -69,6 +69,8 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 ### User Stories
 
 #### **User Stories**
+
+**Project Management Board**: [View the project board on GitHub](https://github.com/users/DavidRC-Projects/projects/3/views/1) - Track the development progress, user stories, and project milestones.
 
 | User Story ID | As a/an | I want to be able to ... | So that I can... |
 | :--- | :--- | :--- | :---|
@@ -229,8 +231,33 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 2. Status changes should be reflected immediately in the user dashboard.
 3. Admin can only modify appointment status.
 
+The following users stories were not developed included Email confirmation, account recovery and marking appointments as complete. This was because the other features were prioritised within the availiable time and wwill be implemented in the future.
 
 ### Design
+
+#### Colour Scheme
+The application uses a purple gradient theme throughout, maintaining visual consistency across all pages.
+
+#### Typography
+
+#### Wireframes
+Initial wireframes were created using Figma to plan the user interface:
+
+* **Homepage Wireframe** - Initial design concept for the main booking interface and welcome section.
+
+  ![Homepage Wireframe](documentation/figmahome.png)
+
+* **Calendar Wireframe** - Planning the interactive calendar interface for appointment booking.
+
+  ![Calendar Wireframe](documentation/figmacalendar.png)
+
+* **Contact Page Wireframe** - Design concept for the messaging interface between patients and healthcare professionals.
+
+  ![Contact Wireframe](documentation/figmacontact.png)
+
+* **Sign In Wireframe** - Authentication interface design for user login.
+
+  ![Sign In Wireframe](documentation/figmasignin.png)
 
 #### **Database Schema**
 

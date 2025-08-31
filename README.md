@@ -34,6 +34,10 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 
 ## Feature Planning
 
+Below is a table of opportunities for the project, together with a score of their importance level and viability (rated low to high, 1-5). Features that score highly on importance and viability will be features that must be addressed first as part of the MVP. Features that are scored mid range are should have features, which will be added to the project once it has achieved MVP status. Low scored features, are could have features and if not attended to in this development version will be marked to be addressed in a future version.
+
+User roles are included in this project as there are different features of the site dependant on what type of user you are. There are three categories of user for the site: **Guest Users** (those who do not have an account), **Users** (who have signed up and verified their account) and **Admins** (users who have superuser status and are able to perform additional tasks on the site reserved for healthcare professionals, such as managing appointments and responding to patient messages).
+
 | User Type   | Feature                          | Importance | Viability | MVP |
 | :---------- | :------------------------------- | :--------: | :-------: | :-: |
 | User       | Sign up for an account           |     5      |     5     | MVP |
@@ -236,9 +240,17 @@ The following users stories were not developed included Email confirmation, acco
 ### Design
 
 #### Colour Scheme
-The application uses a purple gradient theme throughout, maintaining visual consistency across all pages.
+The application uses a purple gradient theme throughout, maintaining visual consistency across all pages. The color palette was carefully selected using Coolers to give a professional appearance:
+
+![Colour Palette](documentation/colours.png)
 
 #### Typography
+The application uses Google Fonts **Marvel** and **Montserrat** throughout.
+
+- **Marvel**: Used for headings and brand elements, providing a modern, clean aesthetic that conveys professionalism.
+- **Montserrat**: Used for body text and navigation, offering excellent readability across all devices and screen sizes.
+
+These font choices were selected for their clean, contemporary appearance that aligns with my view of a more modern healthcare application.
 
 #### Wireframes
 Initial wireframes were created using Figma to plan the user interface:

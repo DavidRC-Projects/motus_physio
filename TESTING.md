@@ -242,25 +242,46 @@
 | Reply Redirect | Check after reply submission | Redirects back to therapist dashboard | Pass |
 
 
-### Bug fixes
+### Testing After Bug Fix
 | Feature | Testing Performed | Result | Pass/Fail |
 |---------|------------------|---------|-----------|
 | Protected Route Access - View Bookings | Try to access viewbooking page without login | Type Error at /view-booking/ | Pass |
 | Active State Highlighting | Check if current page is highlighted | Current page navigation showing active state | Pass |
 | Time Field | Click on time field | Time picker opens | Pass |
 
+#### **Bug Fixes:**
 
+**1. Protected Route Access Error:**
+When logged out and clicking on the view-bookings page, the following error occurred:
+```
+TypeError at /view-booking/
+Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x107d73980>>
+```
+**Solution:** Added `@login_required` decorator to the `booking_calendar_view` function in `views.py`.
 
+**2. Time Picker Functionality:**
+**Issue:** Time input field in the appointment booking form was not opening the time picker.
+**Solution:** Changed the input type from "date" to "text" in the appointment form to enable the jQuery timepicker plugin.
 
-Fix:
-When logged out i clicked on the view-bookings page and it came up with the following error: TypeError at /view-booking/
-Field 'id' expected a number but got <SimpleLazyObject: <django.contrib.auth.models.AnonymousUser object at 0x107d73980>>.
+**4. Navbar Text Positioning:**
+**Issue:** Welcome message was appearing above the logout button on desktop instead of next to it.
+**Solution:** Adjusted CSS flexbox properties and margins to properly position the welcome message.
 
-This was fixed by adding @login required for the booking_calendar_view function in the views.py.
+**5. Profile Picture Responsiveness:**
+**Issue:** Profile pictures were not displaying correctly on mobile devices.
+**Solution:** Added responsive CSS rules for different device breakpoints to ensure proper sizing.
 
-No CSS styles applied for active nav bar link. Added this to underline in white when page is active.
+**7. Appointment Header Overlap:**
+**Issue:** Appointment headers were overlapping with the fixed navbar on mobile and tablet devices.
+**Solution:** Added `margin-top` adjustments in CSS media queries to provide proper spacing.
 
-time input in the appointment booking form did not allow input. Checked code in index.html and its inputtype was date and not time. This worked after chaning this.
+**8. Calendar Mobile Scaling:**
+**Issue:** Calendar was too large on mobile devices, making it difficult to use.
+**Solution:** Added `transform: scale(0.8)` and other size adjustments within mobile media queries.
+
+**9. Migration Errors:**
+**Issue:** Error 500 occurred because database changes hadn't been migrated after model updates.
+**Solution:** Ran `makemigrations` and `migrate` commands to apply database changes and resolve the server error.
 
 
 ## Lighthouse Performance Testing

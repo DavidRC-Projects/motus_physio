@@ -2,13 +2,15 @@
 
 ![Motus Healthcare](static/images/readmebanner.jpg)
 
-
-
 ## CONTENTS
 * [Project Goals](#project-goals)
 * [Feature Planning](#feature-planning)
 * [User Stories](#user-stories)
-
+* [Design](#design)
+* [Technologies Used](#technologies-used)
+* [Installation & Setup](#installation--setup)
+* [Deployment](#deployment)
+* [Testing](#testing)
 
 ### Design
 
@@ -16,7 +18,6 @@
 * [Colour Scheme](#colour-scheme)
 * [Typography](#typography)
 * [Wireframes](#wireframes)
-
 
 ## Project Goals
 
@@ -286,7 +287,209 @@ Each page of the site shares the following:
 
 
 
+## Technologies Used
+
+### Backend
+- **Django 4.2** - Python web framework for rapid development.
+- **Python 3.13.2+** - Programming language and version.
+- **PostgreSQL** - Relational database for data storage.
+- **Django Allauth** - Authentication system for user management.
+- **Django Summernote** - Rich text editor for admin interface.
+
+### Frontend
+- **HTML5** - Markup language.
+- **CSS** - Styling and responsive design.
+- **JavaScript (ES6)** - Client-side interactivity.
+- **Bootstrap 5** - CSS framework for responsive design.
+- **jQuery** - JavaScript library for DOM manipulation.
+
+### External Services
+- **Cloudinary** - Cloud storage for user profile pictures.
+- **Heroku** - Cloud platform for deployment.
+- **GitHub** - Version control and code repository.
+
+### Development Tools
+- **VS Code** - Code editor.
+- **Git** - Version control.
+- **PEP8** - Python style guide compliance.
+- **JSHint** - JavaScript code quality tool.
+- **W3C Validator** - HTML/CSS validation.
+
+### Key Packages
+- **Django 4.2.23** - Main web framework for building the application.
+- **django-allauth** - Authentication system for user registration, login, and social authentication.
+- **django-crispy-forms** - Form rendering library for better form styling.
+- **crispy-bootstrap5** - Bootstrap 5 template pack for crispy forms.
+- **django-summernote** - Rich text editor for admin interface.
+- **cloudinary** - Cloud storage service for user profile pictures and media files.
+- **dj-database-url** - Database URL configuration for Heroku deployment.
+- **gunicorn** - WSGI-compatible web server for production deployment on Heroku.
+- **psycopg2** - PostgreSQL adapter for Python, used by Django when connecting to PostgreSQL database.
+- **whitenoise** - Static file serving middleware for Django in production environments.
+
+## Installation & Setup
+
+### Prerequisites
+- Python 3.13.2
+- GitHub account (for repository access)
+- A PostgreSQL database
+- A Cloudinary account (free tier is fine)
+
+### Local Development Setup
+
+1. **Fork and Clone the Repository**
+   - **Fork the Repository:**
+     - Go to the original repository on GitHub.
+     - Click the "Fork" button in the top-right corner.
+     - Select your GitHub account to create a fork.
+   
+   - **Clone Using VS Code:**
+     - Open VS Code.
+     - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open Command Palette.
+     - Type "Git: Clone" and select it.
+     - Enter your forked repository URL: `https://github.com/your-username/motus_physio.git`.
+     - Choose a local folder to save the project.
+     - Click "Clone".
+     - VS Code will automatically open the project folder.
+
+2. **Set Up Virtual Environment**
+   - **Create Virtual Environment:**
+     - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open Command Palette.
+     - Type "Python: Create Environment" and select it.
+     - Choose "Venv" as the environment type.
+     - Select your Python interpreter (usually the latest version).
+     - Choose ".venv" as the environment name.
+     - VS Code will create the virtual environment automatically.
+   
+   - **Verify Virtual Environment:**
+     - Check that '.venv' is displayed in the bottom information bar (on the right hand side).
+
+3. **Install Dependencies**
+   - **Install from requirements.txt:**
+     - Ensure your virtual environment is activated (you should see `(.venv)` in terminal).
+     - Run: `pip install -r requirements.txt`.
+     - You should see a success message when installation is complete.
+   
+   - **Verify Installation:**
+     - Run: `pip list` to see all installed packages.
+     - You should see Django and other packages listed.
+
+4. **Environment Variables**
+   - **Create .env File:**
+     - In VS Code, right-click in the explorer panel (left sidebar).
+     - Select "New File".
+     - Name it exactly `.env` (with the dot).
+     - Add the following content:
+
+import os
+os.environ.setdefault("DATABASE_URL", <database_url_goes_here>)
+os.environ.setdefault("SECRET_KEY", <secret_key_goes_here>)
+os.environ.setdefault("CLOUDINARY_CLOUD_NAME", <cloud_name_goes_here>)
+os.environ.setdefault("CLOUDINARY_API_KEY", <api_key_goes_here>)
+os.environ.setdefault("CLOUDINARY_API_SECRET", <api_secret_goes_here>)
+
+5. **Database Setup**
+   - **Run Migrations:**
+     - Open VS Code terminal (ensure virtual environment is activated).
+     - Run: `python manage.py migrate`.
+     - Wait for all migrations to complete.
+
+6. **Create Superuser**
+   - **Set Up Admin Account:**
+     - In the terminal, run: `python manage.py createsuperuser`.
+     - Enter a username when prompted.
+     - Enter an email address when prompted.
+     - Enter and confirm a password when prompted.
+
+7. **Collect Static Files**
+   - **Prepare Static Files:**
+     - In the terminal, run: `python manage.py collectstatic`.
+     - Type "yes" when prompted to collect static files.
+     - Files will be copied to the `staticfiles` directory.
+
+8. **Run Development Server**
+   - **Start Local Server:**
+     - In the terminal, run: `python manage.py runserver`.
+     - You should see "Starting development server at http://127.0.0.1:8000/".
+     - Open your web browser and go to `http://127.0.0.1:8000/`.
+     - Your app should now be running locally.
+
+- **Cloudinary Setup**: Sign up for a free account at [cloudinary.com](https://cloudinary.com) and get your cloud name, API key, and API secret
+- **Database**: For local development, you can use SQLite (Django's default) or set up PostgreSQL
+- **Static Files**: The project uses Django's static file handling with Cloudinary for media files
+
+## Deployment
+
+This project is deployed on [Heroku](https://www.heroku.com/). Follow these steps to deploy your own instance:
+
+### 1. Prepare for Deployment
+
+**Install Required Packages:**
+- Open VS Code terminal (ensure virtual environment is activated).
+- Run: `pip install whitenoise gunicorn`.
+- Run: `pip freeze --local > requirements.txt`.
+- This updates your requirements.txt with the new packages.
+
+**Create Procfile:**
+- In VS Code, right-click in the explorer panel (left sidebar).
+- Select "New File".
+- Name it exactly `Procfile` (no file extension).
+- Add this content: `web: gunicorn my_project.wsgi`.
+- Save the file.
+
+**Update Settings.py:**
+- Open `my_project/settings.py` in VS Code.
+- Find the `ALLOWED_HOSTS` setting and update it to: `ALLOWED_HOSTS = [".herokuapp.com"]`.
+- Add this line: `CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com"]`.
+- Find `DEBUG = True` and change it to: `DEBUG = False`.
+- Save the file.
+
+### 2. Heroku Setup
+
+**Create Heroku Account:**
+- Go to [heroku.com](https://www.heroku.com/).
+- Click "Sign up" and create a new account.
+- Verify your email address.
+
+**Create New App:**
+- Go to your Heroku dashboard.
+- Click "New" → "Create new app".
+- Enter a unique app name.
+- Select "Common Runtime Europe" for location.
+- Click "Create app".
+
+**Connect GitHub Repository:**
+- In your Heroku app dashboard, go to "Deploy" tab.
+- Under "Deployment method", select "GitHub".
+- Click "Connect to GitHub".
+- Authorize Heroku to access your GitHub account.
+- Search for your repository and click "Connect".
+
+### 3. Configure Environment Variables
+
+**Get Your Values Ready:**
+- **SECRET_KEY**: Generate a new Django secret key or use your existing one.
+- **Cloudinary Credentials**: Get these from your Cloudinary dashboard.
+
+**Add Environment Variables:**
+- In Heroku dashboard, go to "Settings" tab.
+- Scroll down to "Config Vars" section.
+- Click "Reveal Config Vars".
+- Add each variable one by one:
+  - `DATABASE_URL`: Provided by PostgreSQL.
+  - `SECRET_KEY`: Your Django secret key.
+  - `CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
+  - `CLOUDINARY_API_KEY`: Your Cloudinary API key.
+  - `CLOUDINARY_API_SECRET`: Your Cloudinary API secret
+
+### 4. Deployment
+
+**Deploy from GitHub:**
+- In "Deploy" tab, scroll down to "Manual deploy" section.
+- Select the main branch.
+- Click "Deploy Branch".
 
 
 
+Credits
 https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield

@@ -611,10 +611,14 @@ For detailed testing procedures, results, and validation reports, see [TESTING.m
 - **Bootstrap 5** - CSS framework for responsive design.
 - **jQuery** - JavaScript library for DOM manipulation.
 
-### External Services
+### External Services and tools
 - **Cloudinary** - Cloud storage for user profile pictures.
 - **Heroku** - Cloud platform for deployment.
 - **GitHub** - Version control and code repository.
+- **Image Resizer** [Image Resizer](https://imageresizer.com/) to resize images.
+- **Tiny PNG** [TinyPNG](https://tinypng.com/) - To compress images and convert them to png.
+- **Slack** - For updates and communication.
+- [Canva](https://www.canva.com/) - For custom Motus healthcare logo and README image.
 
 ### Development Tools
 - **VS Code** - Code editor.
@@ -800,8 +804,27 @@ This project is deployed on [Heroku](https://www.heroku.com/). Follow these step
 
 ## Credits
 
-- **NHS Physiotherapy Waiting Times Data**: [Flexcare Injury Clinic](https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield) - Information about NHS physiotherapy waiting times in the UK
-- canvas for logo and readme image.
-- pexels for user photos to test and use in app.
+### Data Sources
+- **[NHS Physiotherapy Waiting Times Data](https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield)** - Information about NHS physiotherapy waiting times in the UK.
+
+### Design Resources
+- **[Canvas](https://canvas.com)** - Logo design and README banner image.
+- **[Pexels](https://pexels.com)** - User profile photos for testing and application use.
+- **[Coolors](https://coolors.co)** - Color palette generation and selection.
+- **[jQuery Timepicker](https://timepicker.co)** - Time selection plugin for appointment booking.
+- **[Favicon.io](https://favicon.io/favicon-converter/)** - Favicon generation and conversion.
+
+### Learning Resources
+- **[Django Project](https://www.djangoproject.com/)** - Official Django documentation and framework.
+- **[CodeStars Blog](https://learn.codeinstitute.net/)** - Django tutorial by code institute.
+- **[Think Therefore I Blog](https://learn.codeinstitute.net/)** - Django tutorial by code institute.
+
+### Video Tutorials
+- **[Django Walkthrough Tutorial](https://www.youtube.com/watch?v=l0QEGvAX8rU)** - Django guide.
+- **[Django Models Tutorial](https://www.youtube.com/watch?v=48KzlkIqOnM)** - Understanding Django models and database relationships.
 
 ## Acknowledgements
+* I would like thank my mentor Jubril Akolade for his advice and support during the project. Jubril helped give advice on improving the user experience by adding an image in the user icon and adding bootstrap model alerts.
+* I would like to thank my partner and family for their unwavering support during this project.
+
+[Back to Contents](#contents)

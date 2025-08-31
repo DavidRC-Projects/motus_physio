@@ -7,6 +7,7 @@
 * [Feature Planning](#feature-planning)
 * [User Stories](#user-stories)
 * [Design](#design)
+* [Features Overview](#features-overview)
 * [Testing](#testing)
 * [Technologies Used](#technologies-used)
 * [Installation & Setup](#installation--setup)
@@ -228,6 +229,9 @@ As a physiotherapist, I recognise a clear need for follow up care once a patient
 2. Status changes should be reflected immediately in the user dashboard.
 3. Admin can only modify appointment status.
 
+
+### Design
+
 #### **Database Schema**
 
 Entity Relationship Diagrams (ERD's)
@@ -269,23 +273,276 @@ Entity Relationship Diagrams (ERD's)
 
 
 
-## General Features of the Site
+## Features Overview
+
 
 Each page of the site shares the following:
 
-* **Favicon** - I used [Favicon.io](https://favicon.io/) to create the favicon for the site.
+* **Motus Logo** - The logo maintains consistency across all pages and helps establish trust with users seeking healthcare services.
 
-  ![Motus Physio Favicon](static/images/motusfavicon.png)
 
-* **Navbar** - The navbar on the site is split into two sections, the first section contains the Motus Physio logo and navigation links. The second section contains the main site navigation including Home, Profile, Bookings, Testimonials, and Contact. The navbar is fully responsive, and utilises a hamburger menu toggle on smaller screens.
+  ![Motus Logo](documentation/motuslogo.png)
 
-  The navigation links have smooth transitions and hover effects that give the user additional feedback when interacting with the menu. The navbar adapts to show different options depending on whether a user is logged in or not.
+* **Favicon** - I used [Favicon.io](https://favicon.io/) to create the favicon for the site. This small icon appears in browser tabs, making it easier for users to identify and return to the Motus Healthcare website.
 
-  ![Navbar](static/images/motusnavbar.png)
+
+  ![Motus Physio Favicon](documentation/motusfavicon.png)
+
+
+* **Navbar** - The navbar on the site is split into two sections, the first section contains the Motus Physio logo and navigation links. The second section contains the main site navigation including Home, Profile, Bookings, Testimonials, and Contact. The navbar is fully responsive, and utilises a hamburger menu toggle on mobile screens.
+
+  The navigation links will show a white underline to give the user feedback on what page they are on when interacting with the menu. The navbar adapts to show different options depending on whether a user is logged in or not. The navbar also displays the username on the far right on desktop and tablet views and in the middle for mobile views.
+
+  ![Navbar](documentation/navbar.png)
+
+
+* **Therapist Navbar** - When healthcare professionals/admin users are logged in, the navbar displays additional options including access to the Therapist Dashboard. The user does not have acces to this dashboard option. The testimomials and appoinment booking pages are omitted as they are not used by the practitioner.  
+
+  ![Therapist Navbar](documentation/therapistnavbar.png)
+
 
 * **Footer** - The footer contains information about Motus Physio, including contact details and social media links. The footer is fully responsive and uses the same purple gradient theme as the navbar to maintain visual consistency throughout the site.
 
-  ![Site Footer](static/images/motusfooter.png)
+    ![Site Footer](documentation/footer.png)
+
+
+* **Defensive Programming** - This has been implemented throughout the site to ensure security and prevent unauthorised access:
+
+  - `@login_required` decorator applied to all user-specific views (booking, profile and messages).
+  - Users are automatically redirected to login page when accessing protected routes.
+  - Session-based authentication ensures users remain logged in during their visit.
+  - `is_staff` check for therapist dashboard access - only healthcare professionals can access admin features.
+  - Django admin panel access restricted to admin/staff users only.
+  - User-specific data filtering (`filter(user=request.user)`) ensures users can only access their own appointments and messages.
+
+  **Input Validation:**
+  - Form validation checks for required fields before processing.
+  - Duplicate appointment prevention by checking existing bookings.
+  - Date and time validation to prevent past bookings.
+  - CSRF protection on all forms to prevent cross-site request forgery.
+
+
+### Homepage (index.html)
+* **Appointment Booking Form** - The main feature allowing users to book appointments with healthcare professionals. Users can select date, time, appointment type, and add optional notes. The form includes real-time validation and prevents booking past dates or unavailable time slots. This ensures users can only book valid appointments.
+
+
+  ![Homepage Booking Form](documentation/homebooking.png)
+
+
+* **Welcome Section** - Displays a welcoming message and brief introduction to Motus Healthcare services. This section helps users understand the service and encourages them with a friendly message.
+
+
+  ![Homepage Welcome Section](documentation/welcomemessagehome.png)
+
+
+* **Mobile Homepage** - Responsive design showing how the homepage adapts to mobile devices. This ensures users can access the service easily from their smartphones and tablets.
+
+
+  ![Mobile Homepage](documentation/bookingmobhome.png)
+
+
+* **Appointment Success Message** - Confirmation message displayed after successful appointment booking with details and next steps. This provides users with reassurance that their booking has been received.
+
+
+  ![Appointment Success](documentation/homeappsuccess.png)
+
+
+### User Profile Page (profile.html)
+* **Profile Information Display** - Shows user's personal information including username, email, surgery type, and account creation date. Information is displayed using a card-based layout.
+
+
+  ![Profile Information Display](documentation/profile.png)
+
+
+* **Profile Picture Management** - Users can upload, change, or delete their profile picture. The system uses Cloudinary for image storage and provides a default placeholder when no image is uploaded.
+
+
+  ![Profile Picture Management](documentation/profilepicupdate.png)
+
+
+* **Mobile Profile View** - Responsive profile page for mobile devices and also responsive to tablet view.
+
+
+  ![Mobile Profile](documentation/profilemob.png)
+
+
+* **Surgery Type Selection** - Dropdown menu allowing users to select or input their surgery type and allows insight for the therapist before they have contact.
+
+
+  ![Surgery Type Selection](documentation/surgerydropdown.png)
+
+
+* **Surgery Type Success** - Confirmation message displayed after successfully updating surgery type information.
+
+
+  ![Surgery Type Success](documentation/surgerysuccess.png)
+
+
+* **Confirmed Appointment Display** - Shows confirmed appointments.
+
+
+  ![Confirmed Appointment](documentation/confirmedappprofile.png)
+
+
+### Appointment Booking Page (booking.html)
+* **Calendar View** - Interactive calendar showing available and booked time slots. Users can click on dates to see available times. The user can click on dates that are free and will be redirected to the appointment bookings page. If the user selects a booked appointment then a warning message will be displayed as a bootstrap modal 'This day is already booked. Please select a different day'.
+
+
+  ![Booking Calendar View](documentation/bookingcalendar.png)
+
+
+* **Mobile Calendar View** - Responsive calendar interface for mobile devices and also tablets.
+
+
+  ![Mobile Calendar](documentation/calendarmob.png)
+
+
+* **Booked Appointment Display** - Calendar view showing booked appointments with visual indicators and status information. Booked appointments are highlighted in blue and provide the appointment time. This gives the user visual feedback of when they booked their appointments.
+
+
+  ![Booked Appointment Calendar](documentation/calendarbookedapp.png)
+
+
+* **Appointment Booking Form** - Booking form with date picker, time selector, appointment type selection (Initial Consultation/Follow Up), and notes field.
+
+
+  ![Appointment Booking Form](documentation/appbooking.png)
+
+
+* **Mobile Booking Form**
+
+
+  ![Mobile Booking Form](documentation/appbookingmob.png)
+
+### View Bookings Page (view_booking.html)
+* **Pending Appointment Display** - Shows appointments with pending status, allowing users to view details and manage their bookings. The admin can confirm appointments using Django administration.
+
+
+  ![Pending Appointment](documentation/viewbookingpending.png)
+
+
+* **Edit Appointment Success** - Confirmation message displayed after successfully editing appointment details.
+
+
+  ![Edit Success](documentation/editappsuccess.png)
+
+
+### Contact Page (message_practitioner.html)
+* **Contact Page** - Main contact interface allowing users to send messages to healthcare professionals with form validation.
+
+
+  ![Contact Page](documentation/contactpage.png)
+
+
+* **Message History** - Displays all sent messages and received replies in chronological order. Users can view conversation threads and delete their own messages.
+
+
+  ![Message History](documentation/yourmessagescontact.png)
+
+
+* **Message Deletion** - Interface for deleting messages with confirmation to prevent accidental deletion.
+
+
+  ![Message Deletion](documentation/contactmessagedelete.png)
+
+
+* **Empty Message History** - Display when no messages have been sent yet. This gives the user feedback that there are no messages.
+
+
+  ![Empty Messages](documentation/contactnomessage.png)
+
+### Testimonials Page (testimonials.html)
+* **Testimonials Page** - Main testimonials interface displaying user testimonials in a card-based layout with username, timestamp, and content.
+
+
+  ![Testimonials Page](documentation/testimonialpage.png)
+
+
+* **Add Testimonial Success** - Confirmation message displayed after successfully submitting a testimonial.
+
+
+  ![Testimonial Success](documentation/testsuccess.png)
+
+
+* **Delete Testimonial** - Interface for deleting testimonials with confirmation modal to prevent accidental deletion.
+
+
+  ![Delete Testimonial](documentation/testdelete.png)
+
+
+### Therapist Dashboard (therapist_dashboard.html)
+* **Therapist Dashboard** - Main admin interface showing all patient appointments with user details, appointment information and and status.
+
+
+  ![Therapist Dashboard](documentation/therapistdashboard.png)
+
+
+  * **Reply Sent Confirmation** - Confirmation message displayed after successfully replying to a patient message.
+
+
+  ![Reply Sent](documentation/tdreplysent.png)
+
+
+* **Message Reply Success** - Confirmation message displayed after successfully sending a reply to a patient message.
+
+
+  ![Message Reply Success](documentation/contactmessagesuccess.png)
+
+
+* **Admin Appointment View** - View of Django administration. This shows all appointments with user information, appointment details, and admin controls.
+
+
+  ![Admin Appointment View](documentation/adminappview.png)
+
+
+* **Admin User Management** - Interface for managing user accounts and viewing user information.
+
+
+  ![Admin User Management](documentation/adminusers.png)
+
+
+### Authentication Pages
+* **Login Page** - The login form with username/email and password fields. Includes validation and error message display for failed login attempts.
+
+
+  ![Login Page](documentation/signinpage.png)
+
+
+* **Login Success** - Confirmation message displayed after successful login.
+
+
+  ![Login Success](documentation/signinsuccess.png)
+
+
+* **Registration Page** - User registration form with username, email, and password fields.
+
+
+  ![Registration Page](documentation/registerpage.png)
+
+
+* **Logout Page**
+
+
+  ![Logout Page](documentation/signoutpage.png)
+
+
+* **Logout Success** - Confirmation message displayed after successful logout.
+
+
+  ![Logout Success](documentation/signoutsuccess.png)
+
+
+### Error Pages
+* **404 Error Page** - Custom error page for page not found errors with button to return to homepage.
+
+
+  ![404 Error Page](documentation/error404.png)
+
+
+* **500 Error Page** - Custom error page for server errors with button to return to homepage.
+
+
+  ![500 Error Page](documentation/error500.png)
 
 ## Testing
 
@@ -296,7 +553,6 @@ I performed manual testing on each page and feature of the app to test its funct
 - **Python**: PEP8 compliance with proper formatting and documentation.
 - **JavaScript**: JSHint validation with ES6 compatibility.
 - **HTML/CSS**: W3C validation for markup and styling.
-- **Performance**: Lighthouse testing for desktop and mobile devices.
 
 For detailed testing procedures, results, and validation reports, see [TESTING.md](TESTING.md).
 
@@ -506,5 +762,7 @@ This project is deployed on [Heroku](https://www.heroku.com/). Follow these step
 ## Credits
 
 - **NHS Physiotherapy Waiting Times Data**: [Flexcare Injury Clinic](https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield) - Information about NHS physiotherapy waiting times in the UK
+- canvas for logo and readme image.
+- pexels for user photos to test and use in app.
 
 ## Acknowledgements

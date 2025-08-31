@@ -801,6 +801,7 @@ This project is deployed on [Heroku](https://www.heroku.com/). Follow these step
 - Select the main branch.
 - Click "Deploy Branch".
 
+Heroku deployment link: https://motus-physio-2117024da225.herokuapp.com/
 
 ## Credits
 

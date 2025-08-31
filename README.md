@@ -74,7 +74,7 @@ User roles are included in this project as there are different features of the s
 
 #### **User Stories**
 
-**Project Management Board**: [View the project board on GitHub](https://github.com/users/DavidRC-Projects/projects/3/views/1) - Track the development progress, user stories, and project milestones.
+**Project Management Board**: [View the project board on GitHub](https://github.com/users/DavidRC-Projects/projects/3/views/1).
 
 | User Story ID | As a/an | I want to be able to ... | So that I can... |
 | :--- | :--- | :--- | :---|
@@ -93,7 +93,7 @@ User roles are included in this project as there are different features of the s
 | Appointment marked as confirmed | Admin | approve and confirm patient appointments | ensure users know their appointments are confirmed |
 | Appointment marked as complete | Admin | mark appointments as finished | track user care progress and maintain records |
 
-#### **Acceptance Criteria and Specific tasks **
+#### **Acceptance Criteria and Specific tasks**
 
 **Navigation bar**
 1. The navbar should be visible on all pages.

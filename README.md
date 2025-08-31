@@ -7,10 +7,12 @@
 * [Feature Planning](#feature-planning)
 * [User Stories](#user-stories)
 * [Design](#design)
+* [Testing](#testing)
 * [Technologies Used](#technologies-used)
 * [Installation & Setup](#installation--setup)
 * [Deployment](#deployment)
-* [Testing](#testing)
+* [Credits](#credits)
+* [Acknowledgements](#acknowledgements)
 
 ### Design
 
@@ -285,7 +287,18 @@ Each page of the site shares the following:
 
   ![Site Footer](static/images/motusfooter.png)
 
+## Testing
 
+###
+I performed manual testing on each page and feature of the app to test its functionality and responsiveness.
+
+### Validation Tools Used
+- **Python**: PEP8 compliance with proper formatting and documentation.
+- **JavaScript**: JSHint validation with ES6 compatibility.
+- **HTML/CSS**: W3C validation for markup and styling.
+- **Performance**: Lighthouse testing for desktop and mobile devices.
+
+For detailed testing procedures, results, and validation reports, see [TESTING.md](TESTING.md).
 
 ## Technologies Used
 
@@ -490,6 +503,8 @@ This project is deployed on [Heroku](https://www.heroku.com/). Follow these step
 - Click "Deploy Branch".
 
 
+## Credits
 
-Credits
-https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield
+- **NHS Physiotherapy Waiting Times Data**: [Flexcare Injury Clinic](https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield) - Information about NHS physiotherapy waiting times in the UK
+
+## Acknowledgements

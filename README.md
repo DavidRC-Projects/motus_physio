@@ -235,7 +235,7 @@ User roles are included in this project as there are different features of the s
 2. Status changes should be reflected immediately in the user dashboard.
 3. Admin can only modify appointment status.
 
-The following users stories were not developed included Email confirmation, account recovery and marking appointments as complete. This was because the other features were prioritised within the availiable time and wwill be implemented in the future.
+The following users stories were not developed included Email confirmation, account recovery and marking appointments as complete. This was because the other features were prioritised within the available time and will be implemented in the future.
 
 ### Design
 
@@ -274,6 +274,19 @@ Initial wireframes were created using Figma to plan the user interface:
 #### **Database Schema**
 
 Entity Relationship Diagrams (ERD's)
+
+![Database ERD](documentation/erdimage.png)
+
+**How the Database Schema Works:**
+
+The Motus Healthcare application uses a relational database design with Django's built-in User model as the central entity. Here's how the relationships work:
+
+**Core Relationships:**
+- **User ↔ UserProfile (1:1)**: Each user has exactly one profile containing extended information like surgery type and profile picture.
+- **User ↔ Appointment (1:Many)**: Each user can book multiple appointments over time.
+- **User ↔ Message (1:Many)**: Each user can send multiple messages to healthcare professionals.
+- **User ↔ Testimonials (1:Many)**: Each user can write multiple testimonials about their experience.
+- **Message ↔ Message (1:Many)**: Self-referential relationship allowing threaded conversations with replies.
 
 | Model        | Key | Name              | Type              | Description |
 | :----------- | :-- | :---------------- | :---------------- | :---------- |
@@ -335,7 +348,7 @@ Each page of the site shares the following:
   ![Navbar](documentation/navbar.png)
 
 
-* **Therapist Navbar** - When healthcare professionals/admin users are logged in, the navbar displays additional options including access to the Therapist Dashboard. The user does not have acces to this dashboard option. The testimomials and appoinment booking pages are omitted as they are not used by the practitioner.  
+* **Therapist Navbar** - When healthcare professionals/admin users are logged in, the navbar displays additional options including access to the Therapist Dashboard. The user does not have access to this dashboard option. The testimonials and appointment booking pages are omitted as they are not used by the practitioner.  
 
   ![Therapist Navbar](documentation/therapistnavbar.png)
 
@@ -809,7 +822,7 @@ Heroku deployment link: https://motus-physio-2117024da225.herokuapp.com/
 - **[NHS Physiotherapy Waiting Times Data](https://flexcareinjuryclinic.co.uk/nhs-physiotherapy-waiting-list-sheffield)** - Information about NHS physiotherapy waiting times in the UK.
 
 ### Design Resources
-- **[Canvas](https://canvas.com)** - Logo design and README banner image.
+- **[Canvas](https://canvas.com)** - Logo design, README banner image and flow diagram for ERD.
 - **[Pexels](https://pexels.com)** - User profile photos for testing and application use.
 - **[Coolors](https://coolors.co)** - Color palette generation and selection.
 - **[jQuery Timepicker](https://timepicker.co)** - Time selection plugin for appointment booking.

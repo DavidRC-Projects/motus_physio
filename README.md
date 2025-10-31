@@ -5,6 +5,7 @@
 ## CONTENTS
 * [Project Goals](#project-goals)
 * [Feature Planning](#feature-planning)
+* [Epics](#epics)
 * [User Stories](#user-stories)
 * [Design](#design)
 * [Features Overview](#features-overview)
@@ -69,6 +70,20 @@ User roles are included in this project as there are different features of the s
 | All         | Mobile-Friendly Design           |     5      |     5     | MVP |
 | All         | Date/Time Validation             |     5      |     5     |     |
 | All         | Past Date Prevention             |     5      |     5     | MVP |
+
+### Epics
+
+The project features are organised into the following epics, which group related user stories and features together.
+
+| Epic | Description | User Stories Included |
+| :--- | :---------- | :----------- |
+| **E1: Navigation** | Ensures intuitive navigation and user experience across all devices and screen sizes | Navigation bar, Responsive Navigation, Mobile-Friendly Design |
+| **E2: User Authentication & Account Management** | Enables users to create accounts, securely log in and out, and manage account security features | Register an account, User login and logout |
+| **E3: User Profile Management** | Allows users to manage their personal information, profile settings, and previous surgery | Profile view, Profile Picture Upload, Surgery Type Information, User Profile Management |
+| **E4: Appointment Management** | Core functionality for booking, viewing, amending, and cancelling appointments with healthcare professionals | Book an appointment, View appointment status, Amend an appointment, Cancel Appointments, Visual Calendar View |
+| **E5: Communication & Messaging** | Facilitates communication between patients and healthcare professionals through a messaging system | Contact, Send Messages, View Message Replies |
+| **E6: Admin/Therapist Dashboard** | Provides healthcare professionals the ability to manage patient appointments, view messages, and respond to patient inquiries | View appointments, View messages, Reply to messages, Appointment marked as confirmed, Appointment marked as complete, Therapist Dashboard |
+| **E7: Community & Testimonials** | Allows users to share their recovery experiences and read testimonials from other patients | Testimonials, Submit Testimonials, Read Other Testimonials, Delete Own Testimonials |
 
 ### User Stories
 
